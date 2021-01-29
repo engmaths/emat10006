@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/basics2/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/numpy/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/matplotlib/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/outline/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/assessment/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/versioncontrol/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/ivps/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/settingup/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/basics/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/404/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/fileio/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/structures/index.html</loc>
+    <lastmod>2021-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+</urlset>

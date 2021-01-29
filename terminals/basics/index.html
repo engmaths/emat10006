@@ -1,0 +1,150 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/katex/katex.min.css"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Basics of Python &mdash; Scientific Computing</title> <header> <div class=blog-name ><a href="">EMAT30008: Scientific Computing</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/assessment/">Assessment</a> <li><a href="/emat10006/basics/">Basics</a> <li><a href="/emat10006/odes/">ODE problems</a> <li><a href="/emat10006/pdes/">PDE problems</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=basics_of_python ><a href="#basics_of_python">Basics of Python</a></h1> <p>This unit is aimed at students who have seen Python before but are perhaps a bit rusty with it. If you&#39;ve never seen Python before or can&#39;t remember it very well then I recommend to you to follow a more detailed tutorial such as <a href="https://docs.python.org/3/tutorial/index.html">the one at python.org</a>. In particular right now we want to make sure that we&#39;re fully up to date with numbers, strings and lists. These are all described <a href="https://docs.python.org/3/tutorial/introduction.html">in this page of the python.org tutorial</a> so read that unless you already know everything.</p> <p>The <code>python.org</code> tutorial is aimed at the general Python programmer and our target is scientific programming so we have a slightly different emphasis here which is why I&#39;ve written the following about numbers. We will also soon be using multi-dimensional arrays so a good understanding of <em>slicing</em> is essential. There are <a href="#exercises">exercises</a> at the bottom to test your understanding of both numbers and slicing.</p> <h2 id=numbers ><a href="#numbers">Numbers</a></h2> <p>Python has three basic numeric types: <code>int</code>, <code>float</code>, and <code>complex</code>. As you can probably guess the <code>int</code> type is for integers. We create an object of type <code>int</code> every time we have a decimal literal e.g. <code>1234</code>:</p> <pre><code class="python hljs">&gt;&gt;&gt; a = 12
+&gt;&gt;&gt; a + a
+24
+&gt;&gt;&gt; a * 2
+24
+&gt;&gt;&gt; a - 3
+9
+&gt;&gt;&gt; a ** 2
+144
+&gt;&gt;&gt; type(a)
+&lt;class &#x27;int&#x27;&gt;
+&gt;&gt;&gt; a / 2
+6.0
+&gt;&gt;&gt; type(a / 2)
+&lt;class &#x27;float&#x27;&gt;</code></pre> <p>So we can do all the standard operations with <code>int</code> and we will generally get back an <code>int</code> with the exception of <em>division</em> which gives an expression of type <code>float</code>. We can see that it is a float because the number is shown with a <code>.0</code> at the end.</p> <p>Unusually among programming languages the standard <code>int</code> type in Python has unlimited range: it can be used for arbitrarily large integers. So if you want to know how many ways you can order a deck of cards then you can easily find it:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> math
+<span class=hljs-meta >&gt;&gt;&gt; </span>math.factorial(<span class=hljs-number >52</span>)
+<span class=hljs-number >80658175170943878571660636856403766975289505440883277824000000000000</span></code></pre> <p>In most programming languages the basic integer type would overflow before representing such large numbers. The <code>int</code> type can only do integers though so we also have the <code>float</code> type:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>b = <span class=hljs-number >2.5</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>b
+<span class=hljs-number >2.5</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>b * <span class=hljs-number >2</span>
+<span class=hljs-number >5.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>b / b
+<span class=hljs-number >1.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>c = <span class=hljs-number >1e3</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>c
+<span class=hljs-number >1000.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> math
+<span class=hljs-meta >&gt;&gt;&gt; </span>math.sin(<span class=hljs-number >1.0</span>)
+<span class=hljs-number >0.8414709848078965</span></code></pre> <p>The <code>math</code> module provides standard mathematical functions mostly for working with <code>float</code> numbers. You can read the documentation for <a href="https://docs.python.org/3/library/math.html">the math module here</a>.</p> <p>The <code>float</code> type represents non-integer number using <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format#IEEE_754_double-precision_binary_floating-point_format:_binary64">standard 64-bit IEEE 754 binary floating point</a> as is standard in most modern programming languages. This floating point format allows us to represent positive or negative numbers from roughly as small as <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>300</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-300}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8141079999999999em;vertical-align:0em;"></span><span class=mord >1</span><span class=mord ><span class=mord >0</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span> to as big as <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>300</mn></msup></mrow><annotation encoding="application/x-tex">10^{300}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8141079999999999em;vertical-align:0em;"></span><span class=mord >1</span><span class=mord ><span class=mord >0</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span> with a precision of around 15 decimal digits.</p> <p>You can see the effect of having &#40;approximately&#41; 15 digits of precision when we get <em>additive underflow</em>:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e15</span>
+<span class=hljs-number >1000000000000000.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e15</span> + <span class=hljs-number >1</span>
+<span class=hljs-number >1000000000000001.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e16</span>
+<span class=hljs-number >1e+16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e16</span> + <span class=hljs-number >1</span>
+<span class=hljs-number >1e+16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e16</span> + <span class=hljs-number >1</span> == <span class=hljs-number >1e16</span>
+<span class=hljs-literal >True</span></code></pre> <p>Likewise we also have conversion overflow/underflow:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e350</span>
+inf
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-built_in >float</span>(<span class=hljs-number >10</span>**<span class=hljs-number >350</span>)
+Traceback (most recent call last):
+  File <span class=hljs-string >&quot;&lt;stdin&gt;&quot;</span>, line <span class=hljs-number >1</span>, <span class=hljs-keyword >in</span> &lt;module&gt;
+OverflowError: long <span class=hljs-built_in >int</span> too large to convert to <span class=hljs-built_in >float</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >1e-350</span>
+<span class=hljs-number >0.0</span></code></pre> <p>Finally since we are using <em>binary</em> floating point some simple looking non-integer numbers will not be represented exactly leading to sometimes surprising results:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >0.01</span> + <span class=hljs-number >0.11</span>
+<span class=hljs-number >0.12</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>(<span class=hljs-number >0.12</span> - <span class=hljs-number >0.01</span>) - <span class=hljs-number >0.11</span>
+<span class=hljs-number >0.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>(<span class=hljs-number >0.12</span> - <span class=hljs-number >0.11</span>) - <span class=hljs-number >0.01</span>
+-<span class=hljs-number >5.204170427930421e-18</span></code></pre> <p>These results are only surprising because it looks as if the numbers 0.01, 0.01, and 0.12 are represented exactly. In <em>binary</em> floating point there is no possible way to represent these numbers exactly. We can see the <em>exact</em> value represented by a <code>float</code> with e.g.:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> decimal
+<span class=hljs-meta >&gt;&gt;&gt; </span>print(decimal.Decimal(<span class=hljs-number >0.01</span>))
+<span class=hljs-number >0.01000000000000000020816681711721685132943093776702880859375</span></code></pre> <p>Finally we have the <code>complex</code> type which as you can imagine represents complex numbers:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>z = <span class=hljs-number >1</span> + <span class=hljs-number >1j</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>z
+(<span class=hljs-number >1</span>+<span class=hljs-number >1j</span>)
+<span class=hljs-meta >&gt;&gt;&gt; </span>z**z
+<span class=hljs-number >2j</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>z.real
+<span class=hljs-number >1.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>z.imag
+<span class=hljs-number >1.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-built_in >abs</span>(z)
+<span class=hljs-number >1.4142135623730951</span></code></pre> <p>The <code>complex</code> type represents complex numbers using a pair of floats for the real and imaginary parts.</p> <p>You can read more about Python&#39;s standard numeric types <a href="https://docs.python.org/3/library/stdtypes.html#typesnumeric">in the documentation</a>.</p> <h2 id=strings ><a href="#strings">Strings</a></h2> <p>Strings are described in the <a href="https://docs.python.org/3/tutorial/introduction.html#strings">python.org tutorial</a> and also the <a href="https://docs.python.org/3/library/stdtypes.html#textseq">official docs</a>. I&#39;m not going to repeat that stuff here but I will mention a few things</p> <p>String objects are an example of a <em>sequence</em> type. There are other sequence types e.g. <code>list</code>, <code>tuple</code> that we shall see shortly. What this means is that we can <em>index</em> and <em>slice</em> a string:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>s = <span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >0</span>]
+<span class=hljs-string >&#x27;f&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >1</span>]
+<span class=hljs-string >&#x27;o&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >2</span>]
+<span class=hljs-string >&#x27;o&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >3</span>]
+<span class=hljs-string >&#x27;b&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >0</span>:<span class=hljs-number >3</span>]
+<span class=hljs-string >&#x27;foo&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[<span class=hljs-number >3</span>:]
+<span class=hljs-string >&#x27;bar&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[-<span class=hljs-number >1</span>]
+<span class=hljs-string >&#x27;r&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[:-<span class=hljs-number >1</span>]
+<span class=hljs-string >&#x27;fooba&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[-<span class=hljs-number >2</span>]
+<span class=hljs-string >&#x27;a&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[::<span class=hljs-number >2</span>]
+<span class=hljs-string >&#x27;foa&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s[::-<span class=hljs-number >1</span>]
+<span class=hljs-string >&#x27;raboof&#x27;</span></code></pre> <p>Slicing and indexing are critically important in Python and for us in this unit in particular. You need to make sure that you understand each of the expressions above perfectly &#40;see also the <a href="#exercises">exercises</a> below&#41;.</p> <p>Like most other sequence types strings can be added or multiplied:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>s
+<span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s + s
+<span class=hljs-string >&#x27;foobarfoobar&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-number >3</span>*s
+<span class=hljs-string >&#x27;foobarfoobarfoobar&#x27;</span></code></pre> <p>We can also use the special <code>in</code> operator to test if a string contains a <em>substring</em>:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-string >&#x27;foo&#x27;</span> <span class=hljs-keyword >in</span> <span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-literal >True</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-string >&#x27;arf&#x27;</span> <span class=hljs-keyword >in</span> <span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-literal >False</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-string >&#x27;arf&#x27;</span> <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>*<span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-literal >True</span></code></pre> <p>Strings also have a number of methods such as <code>.startswith</code>, <code>.upper</code> etc. There is plenty more information about strings in <a href="https://docs.python.org/3/library/stdtypes.html#textseq">the docs</a> but you can also get a list of string methods and query each one using the built-in help function of the interpreter:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-built_in >dir</span>(<span class=hljs-built_in >str</span>)
+[<span class=hljs-string >&#x27;__add__&#x27;</span>, <span class=hljs-string >&#x27;__class__&#x27;</span>, <span class=hljs-string >&#x27;__contains__&#x27;</span>, <span class=hljs-string >&#x27;__delattr__&#x27;</span>, <span class=hljs-string >&#x27;__doc__&#x27;</span>, <span class=hljs-string >&#x27;__eq__&#x27;</span>,
+<span class=hljs-string >&#x27;__format__&#x27;</span>, <span class=hljs-string >&#x27;__ge__&#x27;</span>, <span class=hljs-string >&#x27;__getattribute__&#x27;</span>, <span class=hljs-string >&#x27;__getitem__&#x27;</span>, <span class=hljs-string >&#x27;__getnewargs__&#x27;</span>,
+<span class=hljs-string >&#x27;__gt__&#x27;</span>, <span class=hljs-string >&#x27;__hash__&#x27;</span>, <span class=hljs-string >&#x27;__init__&#x27;</span>, <span class=hljs-string >&#x27;__iter__&#x27;</span>, <span class=hljs-string >&#x27;__le__&#x27;</span>, <span class=hljs-string >&#x27;__len__&#x27;</span>, <span class=hljs-string >&#x27;__lt__&#x27;</span>,
+<span class=hljs-string >&#x27;__mod__&#x27;</span>, <span class=hljs-string >&#x27;__mul__&#x27;</span>, <span class=hljs-string >&#x27;__ne__&#x27;</span>, <span class=hljs-string >&#x27;__new__&#x27;</span>, <span class=hljs-string >&#x27;__reduce__&#x27;</span>, <span class=hljs-string >&#x27;__reduce_ex__&#x27;</span>,
+<span class=hljs-string >&#x27;__repr__&#x27;</span>, <span class=hljs-string >&#x27;__rmod__&#x27;</span>, <span class=hljs-string >&#x27;__rmul__&#x27;</span>, <span class=hljs-string >&#x27;__setattr__&#x27;</span>, <span class=hljs-string >&#x27;__sizeof__&#x27;</span>, <span class=hljs-string >&#x27;__str__&#x27;</span>,
+<span class=hljs-string >&#x27;__subclasshook__&#x27;</span>, <span class=hljs-string >&#x27;capitalize&#x27;</span>, <span class=hljs-string >&#x27;center&#x27;</span>, <span class=hljs-string >&#x27;count&#x27;</span>, <span class=hljs-string >&#x27;encode&#x27;</span>, <span class=hljs-string >&#x27;endswith&#x27;</span>,
+<span class=hljs-string >&#x27;expandtabs&#x27;</span>, <span class=hljs-string >&#x27;find&#x27;</span>, <span class=hljs-string >&#x27;format&#x27;</span>, <span class=hljs-string >&#x27;format_map&#x27;</span>, <span class=hljs-string >&#x27;index&#x27;</span>, <span class=hljs-string >&#x27;isalnum&#x27;</span>, <span class=hljs-string >&#x27;isalpha&#x27;</span>,
+<span class=hljs-string >&#x27;isdecimal&#x27;</span>, <span class=hljs-string >&#x27;isdigit&#x27;</span>, <span class=hljs-string >&#x27;isidentifier&#x27;</span>, <span class=hljs-string >&#x27;islower&#x27;</span>, <span class=hljs-string >&#x27;isnumeric&#x27;</span>, <span class=hljs-string >&#x27;isprintable&#x27;</span>,
+<span class=hljs-string >&#x27;isspace&#x27;</span>, <span class=hljs-string >&#x27;istitle&#x27;</span>, <span class=hljs-string >&#x27;isupper&#x27;</span>, <span class=hljs-string >&#x27;join&#x27;</span>, <span class=hljs-string >&#x27;ljust&#x27;</span>, <span class=hljs-string >&#x27;lower&#x27;</span>, <span class=hljs-string >&#x27;lstrip&#x27;</span>,
+<span class=hljs-string >&#x27;maketrans&#x27;</span>, <span class=hljs-string >&#x27;partition&#x27;</span>, <span class=hljs-string >&#x27;replace&#x27;</span>, <span class=hljs-string >&#x27;rfind&#x27;</span>, <span class=hljs-string >&#x27;rindex&#x27;</span>, <span class=hljs-string >&#x27;rjust&#x27;</span>, <span class=hljs-string >&#x27;rpartition&#x27;</span>,
+<span class=hljs-string >&#x27;rsplit&#x27;</span>, <span class=hljs-string >&#x27;rstrip&#x27;</span>, <span class=hljs-string >&#x27;split&#x27;</span>, <span class=hljs-string >&#x27;splitlines&#x27;</span>, <span class=hljs-string >&#x27;startswith&#x27;</span>, <span class=hljs-string >&#x27;strip&#x27;</span>, <span class=hljs-string >&#x27;swapcase&#x27;</span>,
+<span class=hljs-string >&#x27;title&#x27;</span>, <span class=hljs-string >&#x27;translate&#x27;</span>, <span class=hljs-string >&#x27;upper&#x27;</span>, <span class=hljs-string >&#x27;zfill&#x27;</span>]</code></pre> <p>To query a method e.g. the <code>.startswith</code> method you can call <code>help</code> on it. The <code>help</code> function will open a help page in the terminal showing:</p> <pre><code class="python hljs">&gt;&gt;&gt; help(str.startswith)
+Help on method_descriptor:
+
+startswith(...)
+    S.startswith(prefix[, start[, end]]) -&gt; bool
+    
+    Return True if S starts with the specified prefix, False otherwise.
+    With optional start, test S beginning at that position.
+    With optional end, stop comparing S at that position.
+    prefix can also be a tuple of strings to try.</code></pre> <p>&#40;press <code>q</code> to exit the help screen&#41;</p> <p>This kind of help is sometimes more useful when you just need reminding about a method/function than when you&#39;ve never seen it before. In this case a google would probably give a better introductory explanation. A more straight-forward version is that the <code>.startswith</code> method is used to find out whether or not a string <em>starts with</em> another string:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>s
+<span class=hljs-string >&#x27;foobar&#x27;</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s.startswith(<span class=hljs-string >&#x27;foo&#x27;</span>)
+<span class=hljs-literal >True</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>s.startswith(<span class=hljs-string >&#x27;bar&#x27;</span>)
+<span class=hljs-literal >False</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-string >&#x27;bar&#x27;</span> <span class=hljs-keyword >in</span> s
+<span class=hljs-literal >True</span></code></pre> <p>As the <code>&#39;bar&#39;</code> example shows this is not the same as using the <code>in</code> operator - the <code>.startswith</code> method was introduced to discourage programmers from incorrectly using <code>in</code> like this.</p> <h2 id=exercises ><a href="#exercises">Exercises</a></h2> <ol> <li><p>Explain what happens here:</p> </ol> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>(<span class=hljs-number >1</span> + <span class=hljs-number >1e-15</span>)
+<span class=hljs-number >1.000000000000001</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>(<span class=hljs-number >1</span> + <span class=hljs-number >1e-15</span>)-<span class=hljs-number >1e-15</span>
+<span class=hljs-number >1.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x = <span class=hljs-number >1</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>y = <span class=hljs-number >1e-16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + y
+<span class=hljs-number >1.0</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + y == x
+<span class=hljs-literal >True</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>(x + y) - y
+<span class=hljs-number >0.9999999999999999</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + (y - y)
+<span class=hljs-number >1.0</span></code></pre> <ol start=2 > <li><p>What about this?</p> </ol> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>x = <span class=hljs-number >10</span>**<span class=hljs-number >16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + <span class=hljs-number >1</span> == x
+<span class=hljs-literal >False</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x
+<span class=hljs-number >10000000000000000</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + <span class=hljs-number >1</span>
+<span class=hljs-number >10000000000000001</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + <span class=hljs-number >1</span> == x
+<span class=hljs-literal >False</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>y = <span class=hljs-number >1e16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>y
+<span class=hljs-number >1e+16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>y + <span class=hljs-number >1</span>
+<span class=hljs-number >1e+16</span>
+<span class=hljs-meta >&gt;&gt;&gt; </span>y + <span class=hljs-number >1</span> == y
+<span class=hljs-literal >True</span></code></pre> <ol start=3 > <li><p>Find the smallest integer that cannot be represented exactly as a <code>float</code>.</p> <li><p>Given a <code>list</code> &#40;or <code>string</code>&#41; what expression gives a <code>list</code> &#40;or <code>string</code>&#41; containing the first 5 elements of the <code>list</code>?</p> <li><p>How can you get all elements <em>after</em> the first 5 elements of a <code>list</code>?</p> <li><p>How about the <em>last</em> 5 elements of the <code>list</code>?</p> <li><p>How would you get only the even indexed elements of a list?</p> <li><p>How can you convert a number to a string &#40;or a string to a number&#41;?</p> </ol> <h2 id=finished ><a href="#finished">Finished?</a></h2> <p>If you&#39;re happy with these you can move on to <a href="../basics2/">loops, conditionals and functions</a>.</p> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: January 29, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>

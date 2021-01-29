@@ -1,0 +1,4 @@
+Sitemap: https://engmaths.github.io/emat10006/sitemap.xml
+
+User-agent: *
+Disallow:
