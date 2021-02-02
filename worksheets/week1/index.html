@@ -122,7 +122,17 @@ Hello World</code></pre>
 <h1 id=command_line_arguments ><a href="#command_line_arguments">Command line arguments</a></h1>
 <p>Command line arguments are the usual way in which a user tells a program how they want it to run. You have heard the word &#39;arguments&#39; before when talking about functions in Python. Arguments are the inputs you give to a function, and might paths to specify: how the function should run; provide some data; provide files, etc.. It is a similar idea when we give a program arguments from the command line, they are the inputs the program runs with, meaning a user can specify how they want the program to run at the time of execution.</p>
 <p>In fact we have already seen this several times – you have been using command line arguments all along&#33; When entering the command <code>cd my_directory</code> into the terminal, <code>my_directory</code> is an argument that is passed to <code>cd</code> specifying which directory it should open. When we run <code>python hello.py</code>, we are passing the path of our python script &#40;in this case just <code>python.py</code>&#41; to the interpreter as an argument. Some of the commands you used earlier took two arguments, such as <code>mv</code> which took a source and a destination. In actual fact nearly all of these commands can take a variable number of arguments.</p>
-<p>Try copying this simple Python script and saving it as <code>cl-arguments.py</code> The program prints out the command line arguments given at execution:<br /> Here&#39;s an example of executing this program from the command line:</p>
+<p>Try copying this simple Python script and saving it as <code>cl-arguments.py</code> The program prints out the ./cl-arguments.py 10 foo 87.4 4 command line argument&#40;s&#41; inputted: ./cl-arguments.py 10 foo 87.4 command line arguments given at execution:</p>
+<pre><code class="python hljs"><span class=hljs-comment >#!/usr/bin/env python3</span>
+
+<span class=hljs-keyword >import</span> sys
+
+number_of_args = <span class=hljs-built_in >len</span>(sys.argv)
+print(number_of_args, <span class=hljs-string >&quot;command line argument(s) inputted:&quot;</span>)
+
+<span class=hljs-keyword >for</span> arg <span class=hljs-keyword >in</span> sys.argv:
+    print(arg)</code></pre>
+<p>Here&#39;s an example of executing this program from the command line:</p>
 <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > chmod +x cl-arguments.py</span>
 <span class=hljs-meta >$</span><span class=bash > ./cl-arguments.py 10 foo 87.4</span>
 4 command line argument(s) inputted:
