@@ -56,7 +56,7 @@
 
 ## Family tree ([source](https://medium.com/@anaharris/human-languages-vs-programming-languages-c89410f13252))
 
-![](materials/tree.jpg)
+![](tree.jpg)
 
 ## How Python?
 
