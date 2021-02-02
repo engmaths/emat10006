@@ -9,7 +9,7 @@ Week 1 -- using Python from the command line
 Please read through the following bits of housekeeping before attempting
 the remaining worksheet tasks.
 
-## Getting started
+## Setting up your computer
 
 This worksheet has been written assuming you have set up your computer first.
 You will need to first make sure you have:
@@ -39,7 +39,7 @@ The terminal (or command line) is an essential part of any operating
 system. It's an efficient way to navigate a file system, open files, run
 executables and make time-saving scripts. Pretty much anything you do by
 clicking around on a GUI (Graphical User Interface) can be done in the
-terminal, often more efficiently!
+terminal, often more efficiently.
 
 ## Basic terminal commands
 
