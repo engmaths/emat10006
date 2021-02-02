@@ -9,7 +9,7 @@ Week 1 -- using Python from the command line
 Please read through the following bits of housekeeping before attempting
 the remaining worksheet tasks.
 
-## Using your own computer
+## Getting started
 
 This worksheet has been written assuming you have set up your computer first.
 You will need to first make sure you have:
