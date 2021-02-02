@@ -10,31 +10,11 @@ Getting started
 Please read through the following bits of housekeeping before attempting
 the remaining worksheet tasks.
 
-Finding a TA
-------------
-
-Before you start with this week's tasks on learning to use the terminal,
-please make sure you are registered with a post-graduate Teaching
-Assistant (TA). They should be standing around near your table and
-wearing name badges. Please fill out your name and username on the
-register they are carrying. As with the Introduction to Programming unit
-last term, you should sit at the same table each week in order to get
-help from your TA. You will receive an email form them next week.
-
-If you were not in the lab on Friday 31st January, and are reading this
-after, please email Shree Sarvaharman urgently
-(s.sarvaharman\@bristol.ac.uk) to arrange finding a TA.
-
-Later in the unit there will be assignments which will require you to
-work in a pair, and in a group of four. The idea is that everyone in
-these groups, where possible, will come from within your TA group.\
-
 Using your own computer
 -----------------------
 
-This worksheet has been written assuming you are using a lab computer.
-If you wish to use your own computer you will need to first make sure
-you have:
+This worksheet has been written assuming you have set up your computer first.
+You will need to first make sure you have:
 
 1.  a bash shell installed,
 
@@ -45,12 +25,13 @@ you have:
 If you are running **Linux** or **OSX**, they come with a bash terminal
 as standard. So all you need to do is download the correct version of
 Python (3.X), and add it to your PATH by opening a terminal and typing
-`export PATH="PATH:your_python_path"`{.text}, where
-`your_python_path`{.text} is replaced with the location of your Python3
-installation. By default this is `/usr/local/bin/python`{.text}. We will
+`export PATH="PATH:your_python_path"`, where
+`your_python_path` is replaced with the location of your Python3
+installation. By default this is `/usr/local/bin/python`. We will
 talk more about the PATH variable later. Note that some machines come
 with Python 2 by default, but since we are using Python 3, you will need
 to go and download the correct version.\
+
 If you are running **Windows** we strongly recommend you use a lab
 computer this week, as Windows does not come with a bash terminal. Next
 week you will get instructions on installing Git, which comes with a
@@ -82,23 +63,23 @@ Basic terminal commands
 -   First open up a terminal by hitting the Windows key (or clicking
     Activities), then typing "terminal" and pressing enter. A terminal
     window will open, with some stuff followed by a line that reads
-    `bash-4.2$`{.text} telling you the computer is running version 4.2
-    of bash, and the `$`{.text} is the bash prompt, indicating you can
+    `bash-4.2$` telling you the computer is running version 4.2
+    of bash, and the `$` is the bash prompt, indicating you can
     enter bash commands.
 
--   So let's try our first bash commands! Type `ls`{.text} and hit
+-   So let's try our first bash commands! Type `ls` and hit
     enter. You should see something like this:
 
-    ``` {.shell bgcolor="termbgcol" breaklines=""}
+    ```
     	$ ls
     	Desktop  Documents  Downloads 
     ```
 
-    The `ls`{.text} command is a special terminal command that means
+    The `ls` command is a special terminal command that means
     list the contents of the current directory. In this case the
     directory is my user directory and it shows all of the folders that
     are contained within it. After you hit enter the terminal will run
-    the `ls`{.text} command and the `ls`{.text} command will print out a
+    the `ls` command and the `ls` command will print out a
     list of the files and folders in the current directory: this appears
     on the second and third lines (bin, Desktop etc.).
 
@@ -110,12 +91,12 @@ Basic terminal commands
     look a little different, as you will have different folders and
     files to me!
 
--   The next two commands we want to learn in addition to `ls`{.text}
-    are `pwd`{.text} and `cd`{.text}. The `pwd`{.text} command is short
+-   The next two commands we want to learn in addition to `ls`
+    are `pwd` and `cd`. The `pwd` command is short
     for "print working directory" and will print out the current working
     directory. This is the folder that you are currently working in. The
-    `cd`{.text} command is short for "change directory" and is used to
-    change to a new working directory. You can then use `ls`{.text} to
+    `cd` command is short for "change directory" and is used to
+    change to a new working directory. You can then use `ls` to
     see what is in the new working directory:
 
     ``` {.shell bgcolor="termbgcol"}
@@ -130,46 +111,46 @@ Basic terminal commands
     	/home/sw1850/current/emat10006
     ```
 
-    In the session above I use `pwd`{.text} to show that I am currently
-    in the directory `/home/sw1850`{.text} (this is the name of my user
+    In the session above I use `pwd` to show that I am currently
+    in the directory `/home/sw1850` (this is the name of my user
     directory on this computer). Within my user directory is a folder
-    called `current`{.text} which contains things I am currently working
-    on. In there is a folder called `emat10006web`{.text} which contains
+    called `current` which contains things I am currently working
+    on. In there is a folder called `emat10006web` which contains
     the files used for working on this unit. If I want to work in that
     directory I can change to it by typing
-    `cd current/emat10006web`{.text}. Afterwards my current working
-    directory is `/home/sw1850/current/emat10006web`{.text} and if I run
-    `ls`{.text} it will show me the contents of this new directory.
+    `cd current/emat10006web`. Afterwards my current working
+    directory is `/home/sw1850/current/emat10006web` and if I run
+    `ls` it will show me the contents of this new directory.
 
 -   **Exercise:** Try these commands out yourself. Get comfortable
     moving between directories, looking at files and the working
     directory as you go.
 
 -   **Exercise:** Can you figure out what entering the command
-    `cd ..`{.text} does?
+    `cd ..` does?
 
--   You may have found some issues when using `cd`{.text} to move around
-    if a directory has a space character in it. The `cd`{.text} command
+-   You may have found some issues when using `cd` to move around
+    if a directory has a space character in it. The `cd` command
     sees strings separated by a space as two separate strings and will
     try to change to a directory named by the string before the space.
     This is why it's a good idea to avoid using spaces, and instead use
     dashes (-) or underscores (\_), when naming files and folders. You
     can get around this by using quotation marks, e.g.
-    `cd  'My Directory'`{.text}.
+    `cd  'My Directory'`.
 
 You can do all of things you might do in a formal file browser in the
 terminal! Below I've demonstrated lots of new commands.
 
 -   **Exercise**: Try all of these commands for yourself. Work out what
-    they each do by checking your directory with `ls`{.text} before
+    they each do by checking your directory with `ls` before
     moving onto the next command.
 
 -   If you're unsure what they do, try checking their help function by
-    typing the command followed by `--help`{.text}, for example
-    `cp --help`{.text} (you should only need to read the top of the
+    typing the command followed by `--help`, for example
+    `cp --help` (you should only need to read the top of the
     help).
 
--   Lines starting with a `#`{.text} are comments, which you don't need
+-   Lines starting with a `#` are comments, which you don't need
     to enter, but contain extra questions or tips.
 
 ``` {.shell bgcolor="termbgcol"}
@@ -212,7 +193,7 @@ using the terminal:
     names, and reduces typos. Whenever you start typing the name of a
     file or directory, hit the Tab key and the terminal will try and
     automatically complete what you are typing based on what's in the
-    directory. E.g. say I enter `ls`{.text} in my current directory and
+    directory. E.g. say I enter `ls` in my current directory and
     see 3 folders:
 
     ``` {.shell bgcolor="termbgcol"}
@@ -221,21 +202,21 @@ using the terminal:
     	
     ```
 
-    If I type `cd l`{.text} and hit tab it completes to
-    `cd lecture_notes`{.text}. If I type `cd ho`{.text} and hit tab
-    multiple times, it cycles between `cd homework_questions`{.text} and
-    `cd homework_solutions`{.text}. Hitting enter runs the command as
+    If I type `cd l` and hit tab it completes to
+    `cd lecture_notes`. If I type `cd ho` and hit tab
+    multiple times, it cycles between `cd homework_questions` and
+    `cd homework_solutions`. Hitting enter runs the command as
     usual. Navigate to somewhere with lots of folders / files and play
-    around with this. Try just typing `cd `{.text} (with a space) and
+    around with this. Try just typing `cd ` (with a space) and
     hitting tab twice -- what happens? Try accessing a folder within a
-    folder, e.g. `cd lecture_notes/week1/`{.text} using tab to
+    folder, e.g. `cd lecture_notes/week1/` using tab to
     autocomplete both parts of the path.
 
 -   You can cycle through old commands using the arrow keys. Try hitting
     the up arrow key a few times, then hit enter to run the displayed
     command.
 
--   Try typing the command `history`{.text} and hitting enter. You'll
+-   Try typing the command `history` and hitting enter. You'll
     see a list of previously entered command with numbers next to them,
     e.g.
 
@@ -248,17 +229,17 @@ using the terminal:
     	
     ```
 
-    Then typing e.g. `!122`{.text} and hitting enter will run
-    `cd homework_solutions`{.text}.
+    Then typing e.g. `!122` and hitting enter will run
+    `cd homework_solutions`.
 
 -   The previously typed command can always be referred to as
-    `!!`{.text}. This can be useful is you forgot something at the end
+    `!!`. This can be useful is you forgot something at the end
     or start of your previous command.
 
 -   You may have noticed that you cannot move the terminal cursor using
-    the mouse. To move to the start of the line we use `Ctrl-a`{.text},
-    to move the end of the line we use `Ctrl-e`{.text}. To move forward
-    and backward by character use `Ctrl-f`{.text}, and `Ctrl-b`{.text}.
+    the mouse. To move to the start of the line we use `Ctrl-a`,
+    to move the end of the line we use `Ctrl-e`. To move forward
+    and backward by character use `Ctrl-f`, and `Ctrl-b`.
     You should never really use arrow keys.
 
 **Exercise:** try all of these out!
@@ -271,19 +252,19 @@ already done this in Python, but we are going to run it from the
 terminal.
 
 -   Start by opening a text editor (on lab computers we recommend gedit)
-    and writing a Hello World program. Save it as `hello.py`{.text}
+    and writing a Hello World program. Save it as `hello.py`
     *taking careful note of where you save it!* (If you're getting
     confident with the terminal, try just entering:
-    `gedit hello.py`{.text}, this will create a new file and open it for
+    `gedit hello.py`, this will create a new file and open it for
     editing straight away, write your script and save and quit and the
     terminal will be ready to go again. Hopefully you're starting to see
     benefits of using the terminal!)
 
 -   Open the terminal, and using the commands you learned above,
-    navigate to the folder where your `hello.py`{.text} script is saved.
+    navigate to the folder where your `hello.py` script is saved.
 
--   To run the `hello.py`{.text} Python script we run the
-    `python`{.text} command and give it the name of the script we want
+-   To run the `hello.py` Python script we run the
+    `python` command and give it the name of the script we want
     it to run:
 
     ``` {.shell bgcolor="termbgcol"}
@@ -291,42 +272,42 @@ terminal.
       Hello World!
     ```
 
-    There's our expected output! Here the `python`{.text} command tells
-    the computer to run `python.exe`{.text} (the Python interpreter)
-    with the path of our script `hello.py`{.text} as an argument (more
+    There's our expected output! Here the `python` command tells
+    the computer to run `python.exe` (the Python interpreter)
+    with the path of our script `hello.py` as an argument (more
     on this below). Python then knows to execute this Python script.
     Note, that since we first navigated to the directory where
-    `hello.py`{.text} is located, the relative path was just the name of
+    `hello.py` is located, the relative path was just the name of
     the file; but in general we could provide a path to a script in a
     different directory, or use an absolute path.
 
--   But how does the terminal know to understand the `python`{.text}
-    command? It isn't a standard bash command, like `pwd`{.text} or
-    `cd`{.text}. The answer is because `python`{.text} is on the
+-   But how does the terminal know to understand the `python`
+    command? It isn't a standard bash command, like `pwd` or
+    `cd`. The answer is because `python` is on the
     computer's PATH environment variable. This variable specifies a set
     of directories which contain executable programs which you might
     frequently want to run. Python is one such program and so when you
-    type `python`{.text} into the terminal, the computer looks through
+    type `python` into the terminal, the computer looks through
     the directories in its PATH variable, looking for one called
-    `python.exe`{.text} which it then runs. This saves you having to
+    `python.exe` which it then runs. This saves you having to
     remember and type out the absolute paths of commonly used
     executables.The same goes for all of the terminal commands you are
     using, they stored in some directory on the PATH. Look at what's on
-    your PATH variable using `echo $PATH`{.text} (the `$`{.text} here
-    tells the terminal that `PATH`{.text} is a variable, try to run it
-    without the `$`{.text}. The terminal now sees the word `PATH`{.text}
+    your PATH variable using `echo $PATH` (the `$` here
+    tells the terminal that `PATH` is a variable, try to run it
+    without the `$`. The terminal now sees the word `PATH`
     as a plain old string).
 
 Python Interactive Mode
 -----------------------
 
-Another thing we can do with the `python`{.text} command in the terminal
+Another thing we can do with the `python` command in the terminal
 is just to enter the Python interactive mode. It behaves a bit like a
-terminal but where you type Python commands. Just type `python`{.text}
-and hit enter, and you'll see a welcome message and the `$`{.text}
-prompt will change to a `>>>`{.text}, Python's prompt. From here you can
+terminal but where you type Python commands. Just type `python`
+and hit enter, and you'll see a welcome message and the `$`
+prompt will change to a `>>>`, Python's prompt. From here you can
 now type in Python commands (but not bash commands until you quit Python
-interactive mode by typing `quit()`{.text}).
+interactive mode by typing `quit()`).
 
 The interactive mode is great for trying out little code snippets,
 finding the right in-built function, etc. Now is the perfect time to
@@ -343,28 +324,28 @@ to use:
 
 -   basic control flow using conditional statements and loops
 
--   importing and using modules such as `math`{.text}
+-   importing and using modules such as `math`
 
 As you will remember, using interactive mode is only really for writing
 a line or two of code. Practically, we will always be working with
 Python scripts and running them from the terminal like we did with
-`hello.py`{.text} above.
+`hello.py` above.
 
 Using a shebang
 ---------------
 
-Add a line to the top of your `hello.py`{.text} script, so that it looks
+Add a line to the top of your `hello.py` script, so that it looks
 like this:
 
 This line at the top is called a shebang, or hash bang. Now you may not
 think adding this would do anything, since lines starting with a
-`#`{.text} in Python are comments and the interpreter ignores them. But
+`#` in Python are comments and the interpreter ignores them. But
 this line isn't for the Python interpreter, it's actually for the
 operating system's program loader. The program loader will read the
-first two bytes of a file, and if they are `0x23 0x21`{.text} (which, in
-ascii, are the characters `#!`{.text}) it knows to treat this file as a
+first two bytes of a file, and if they are `0x23 0x21` (which, in
+ascii, are the characters `#!`) it knows to treat this file as a
 script. The script will then be passed to the executable mentioned on
-the first line -- in our case the `python`{.text} command which calls
+the first line -- in our case the `python` command which calls
 the Python interpreter. Python then reads the line as a comment, as
 usual, and executes the script. The shebang must come write at the
 beginning of the file.
@@ -372,9 +353,9 @@ beginning of the file.
 Shebangs are used because it allows the person who wrote the script to
 control how the script is run on a user's computer, rather than the
 other way around. In our case for example, we have specified that our
-script should be run with `python3`{.text}, rather than any other
+script should be run with `python3`, rather than any other
 version of Python. This is useful because if we released our script and
-a user runs it from the terminal as `python hello.py`{.text}, then they
+a user runs it from the terminal as `python hello.py`, then they
 might be running it with the wrong version of Python and the behaviour
 might not be as we intended.
 
@@ -391,23 +372,23 @@ commands:
  Hello World
 ```
 
-The `ls -l`{.text} command works like `ls`{.text} but shows more
+The `ls -l` command works like `ls` but shows more
 information. The first 10 characters of the line with the file
 information are the permissions the file has. Notice how some of the
-dashes turn to `x`{.text} after the second command is ran. The
-`chmod`{.text} command is short for "change mode", and it changes the
-mode (or permissions) of the file. So `chmod +x hello.py`{.text} file
+dashes turn to `x` after the second command is ran. The
+`chmod` command is short for "change mode", and it changes the
+mode (or permissions) of the file. So `chmod +x hello.py` file
 has changed the permission of the script to be executable (it can also
 change read and write permissions, for example), and this is what the
-`x`{.text} is telling us. Changing this 'bit' basically lets the
+`x` is telling us. Changing this 'bit' basically lets the
 operating system know this file is an executable, and you should now
-find you can run your script by simply typing `./hello.py`{.text}
+find you can run your script by simply typing `./hello.py`
 without explicitly invoking the Python interpreter. Try it!
 
 It may seem like a minor addition, but shebangs are used universally by
 real programmers when writing scripts to make them robust across
 platforms. You should always use them from now on! Don't forget to
-change the executable permission bit using `chmod +x filename.py`{.text}
+change the executable permission bit using `chmod +x filename.py`
 for each new script you write.
 
 Command line arguments
@@ -423,17 +404,17 @@ program runs with, meaning a user can specify how they want the program
 to run at the time of execution.\
 In fact we have already seen this several times -- you have been using
 command line arguments all along! When entering the command
-`cd my_directory`{.text} into the terminal, `my_directory`{.text} is an
-argument that is passed to `cd`{.text} specifying which directory it
-should open. When we run `python hello.py`{.text}, we are passing the
-path of our python script (in this case just `python.py`{.text}) to the
+`cd my_directory` into the terminal, `my_directory` is an
+argument that is passed to `cd` specifying which directory it
+should open. When we run `python hello.py`, we are passing the
+path of our python script (in this case just `python.py`) to the
 interpreter as an argument. Some of the commands you used earlier took
-two arguments, such as `mv`{.text} which took a source and a
+two arguments, such as `mv` which took a source and a
 destination. In actual fact nearly all of these commands can take a
 variable number of arguments.
 
 Try copying this simple Python script and saving it as
-`cl-arguments.py`{.text} The program prints out the command line
+`cl-arguments.py` The program prints out the command line
 arguments given at execution:\
 
 Here's an example of executing this program from the command line:
@@ -448,16 +429,16 @@ Here's an example of executing this program from the command line:
 	87.4
 ```
 
-First we have imported the `sys`{.text} library, which allows access to
-a variable called `argv`{.text}. This is the list of command line
+First we have imported the `sys` library, which allows access to
+a variable called `argv`. This is the list of command line
 arguments that were given to the Python interpreter upon execution,
-stored as strings. After that we print `argv`{.text}'s length, then loop
+stored as strings. After that we print `argv`'s length, then loop
 over the list printing each element. Play around with running the
 program with different arguments -- spaces separate them, but what if
 you use quotation marks? Are there characters it ignores? Notice how the
 name of the script is the first (or zero-th) element of
-`sys.argv`{.text}. This is because `argv`{.text} is the list of
-arguments provided to `python`{.text}, not specifically to our script.\
+`sys.argv`. This is because `argv` is the list of
+arguments provided to `python`, not specifically to our script.\
 
 -   **Exercise** Write a program which accepts up to 5 integers as
     command line arguments, and prints their sum to the terminal. If
@@ -467,18 +448,18 @@ Notice how the number of arguments given at the command line is not
 necessarily fixed. Programs often take advantage of this to allow
 optional arguments, or as a way of specifying how a program should run.
 Again, we have already seen this, as we have seen that running
-`python`{.text} with no arguments opens it in interactive mode; whereas
+`python` with no arguments opens it in interactive mode; whereas
 running it with a script filename, runs that script.
 
-Try running the commands `python --help`{.text},
-`python --version`{.text} or `ls -l`{.text}. These arguments are called
+Try running the commands `python --help`,
+`python --version` or `ls -l`. These arguments are called
 'flags', and are the conventional way of allowing the user to indicate
 how they want the program to run. They are usually distinguished from
 other arguments by the prefix '--' but they are still just strings. When
-you run Python with the `--help`{.text} flag, notice it lists all the
+you run Python with the `--help` flag, notice it lists all the
 different flags you can specify.
 
-Using `__name__`{.text}
+Using `__name__`
 -----------------------
 
 Lastly we are going to cover another convention used by programmers when
@@ -493,34 +474,34 @@ if __name__ == '__main__':
 	main()	
 ```
 
-This says that the function called `main`{.text} will only be ran if a
-variable called `__name__`{.text} has the value `'main'`{.text}. Note
+This says that the function called `main` will only be ran if a
+variable called `__name__` has the value `'main'`. Note
 that since this is the only code in the script not in a function, if
-`__name__`{.text} does not equal `'main'`{.text} then no further code
+`__name__` does not equal `'main'` then no further code
 will be executed.
 
 The primary reason for doing this will become clearer a bit later in the
 course, when we cover importing modules. But for those of you who can't
 wait until then here is a brief description: when the Python interpreter
 reads a source file it sets up a few variables first, before executing
-all the code. One of those variables is called `__name__`{.text}. If
+all the code. One of those variables is called `__name__`. If
 your module (script) is being ran as the main program (e.g.
-`python foo.py`{.text} then this variable is set to
-`__name__ = '__main__'`{.text}. Whereas if your module is being imported
-by another script, e.g. `bar.py`{.text} contains the line
-`import foo.py`{.text}, then the `__name__`{.text} is set to something
-else for `foo.py`{.text}. Therefore the conditional statement at the end
+`python foo.py` then this variable is set to
+`__name__ = '__main__'`. Whereas if your module is being imported
+by another script, e.g. `bar.py` contains the line
+`import foo.py`, then the `__name__` is set to something
+else for `foo.py`. Therefore the conditional statement at the end
 only executes when your module is the one being ran. Only then will the
-main function in `foo.py`{.text} be ran. Otherwise the functions and
-stuff in `foo.py`{.text} will be callable in `bar.py`{.text} once it has
-been imported, but the main function in `foo.py`{.text} will not run on
+main function in `foo.py` be ran. Otherwise the functions and
+stuff in `foo.py` will be callable in `bar.py` once it has
+been imported, but the main function in `foo.py` will not run on
 that import line.)
 
 Essentially this allows your script to be either ran by itself, or
 imported elsewhere for its functions. This is another convention you
 should get used to doing yourself! Here's an example of a Python script
 which uses all of the above conventions. The code is in a file called
-`upper-lower.py`{.text} on Blackboard. Once you fully understand how it
+`upper-lower.py` on Blackboard. Once you fully understand how it
 works, move on to the final task.
 
 Task: Writing a program using command line arguments
@@ -534,32 +515,32 @@ the arguments your program takes and outputs it gives must be precisely
 as they are asked for. This is how it would be for a real software
 engineer. This short task lets you practice this, as well as the topics
 we've covered this week before your first assignment next week.\
-Write a program called `averages.py`{.text} that can calculate the mean,
+Write a program called `averages.py` that can calculate the mean,
 median and mode of some data.
 
 The inputs to the program should be given through the command line, and
 consist of:
 
--   Optional flags: `--mean`{.text}, `--mode`{.text}, `--median`{.text}
+-   Optional flags: `--mean`, `--mode`, `--median`
     or any combination of these (you may assume they must be in this
     order, even if some are omitted)
 
 -   The program should expect the data to be integers entered as
     arguments (up to a maximum of 8 data points)
 
--   When ran without `--mean`{.text}, `--mode`{.text}, or
-    `--median`{.text} the program should output all three averages. The
+-   When ran without `--mean`, `--mode`, or
+    `--median` the program should output all three averages. The
     format of the output should be exactly as shown below.
 
--   When ran with any combination of `--mean`{.text}, `--mode`{.text},
-    or `--median`{.text} it should output just those averages specified.
+-   When ran with any combination of `--mean`, `--mode`,
+    or `--median` it should output just those averages specified.
 
 -   When an unrecognised flag is inputted, or non-integer data points
     are given, etc., appropriate error messages should be given.
 
 -   **Extension**: The program should also accept an additional optional
-    flag, `--file`{.text} (you may assume this always comes after the
-    other flags). When ran with the `--file`{.text} flag, the program
+    flag, `--file` (you may assume this always comes after the
+    other flags). When ran with the `--file` flag, the program
     expects one non-flag input which should be the name of a .txt file
     in which there is the data, formatted as one integer per line (with
     no maximum number of data points)
