@@ -60,56 +60,50 @@ terminal, often more efficiently!
 Basic terminal commands
 -----------------------
 
--   First open up a terminal by hitting the Windows key (or clicking
-    Activities), then typing "terminal" and pressing enter. A terminal
-    window will open, with some stuff followed by a line that reads
-    `bash-4.2$` telling you the computer is running version 4.2
-    of bash, and the `$` is the bash prompt, indicating you can
-    enter bash commands.
+First open up a terminal by hitting the Windows key (or clicking Activities),
+then typing "terminal" and pressing enter. A terminal window will open, with
+some stuff followed by a line that reads `bash-4.2$` telling you the computer
+is running version 4.2 of bash, and the `$` is the bash prompt, indicating you
+can enter bash commands.
 
--   So let's try our first bash commands! Type `ls` and hit
-    enter. You should see something like this:
+So let's try our first bash commands! Type `ls` and hit enter. You should see
+something like this:
+```console
+$ ls
+Desktop  Documents  Downloads
+```
+The `ls` command is a special terminal command that means
+list the contents of the current directory. In this case the
+directory is my user directory and it shows all of the folders that
+are contained within it. After you hit enter the terminal will run
+the `ls` command and the `ls` command will print out a
+list of the files and folders in the current directory: this appears
+on the second and third lines (bin, Desktop etc.).
 
-    ```
-    	$ ls
-    	Desktop  Documents  Downloads 
-    ```
+Note that from now on that shaded section above is how you can expect to see
+terminal commands demonstrated. I've omitted the stuff before the prompt, but
+what comes immediately after the prompt is the command you should type before
+hitting enter. Also because we are on different machines, you can expect the
+output to sometimes look a little different, as you will have different
+folders and files to me!
 
-    The `ls` command is a special terminal command that means
-    list the contents of the current directory. In this case the
-    directory is my user directory and it shows all of the folders that
-    are contained within it. After you hit enter the terminal will run
-    the `ls` command and the `ls` command will print out a
-    list of the files and folders in the current directory: this appears
-    on the second and third lines (bin, Desktop etc.).
-
--   Note that from now on that shaded section above is how you can
-    expect to see terminal commands demonstrated. I've omitted the stuff
-    before the prompt, but what comes immediately after the prompt is
-    the command you should type before hitting enter. Also because we
-    are on different machines, you can expect the output to sometimes
-    look a little different, as you will have different folders and
-    files to me!
-
--   The next two commands we want to learn in addition to `ls`
-    are `pwd` and `cd`. The `pwd` command is short
-    for "print working directory" and will print out the current working
-    directory. This is the folder that you are currently working in. The
-    `cd` command is short for "change directory" and is used to
-    change to a new working directory. You can then use `ls` to
-    see what is in the new working directory:
-
-    ``` {.shell bgcolor="termbgcol"}
-    	$ pwd
-    	/home/sw1850
-    	$ ls
-    	Desktop  Documents  current
-    	$ cd current/emat10006
-    	$ ls
-    	index.html Makfile src/
-    	$ pwd
-    	/home/sw1850/current/emat10006
-    ```
+The next two commands we want to learn in addition to `ls` are `pwd` and `cd`.
+The `pwd` command is short for "print working directory" and will print out
+the current working directory. This is the folder that you are currently
+working in. The `cd` command is short for "change directory" and is used to
+change to a new working directory. You can then use `ls` to see what is in the
+new working directory:
+```shell
+$ pwd
+/home/sw1850
+$ ls
+Desktop  Documents  current
+$ cd current/emat10006
+$ ls
+index.html Makfile src/
+$ pwd
+/home/sw1850/current/emat10006
+```
 
     In the session above I use `pwd` to show that I am currently
     in the directory `/home/sw1850` (this is the name of my user
