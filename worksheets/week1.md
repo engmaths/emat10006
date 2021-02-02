@@ -1,6 +1,6 @@
 @def title = "Terminals worksheet"
 
-# Code testing
+# Terminals
 
 Week 1 -- using Python from the command line
 
@@ -9,15 +9,13 @@ Week 1 -- using Python from the command line
 Please read through the following bits of housekeeping before attempting
 the remaining worksheet tasks.
 
-## Using your own computer
+## Getting started
 
 This worksheet has been written assuming you have set up your computer first.
 You will need to first make sure you have:
 
 1.  a bash shell installed,
-
 2.  Python 3.X installed,
-
 3.  Python 3 on your computer's PATH variable.
 
 If you are running **Linux** or **OSX**, they come with a bash terminal
