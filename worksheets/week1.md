@@ -367,10 +367,25 @@ arguments, such as `mv` which took a source and a destination. In actual fact
 nearly all of these commands can take a variable number of arguments.
 
 Try copying this simple Python script and saving it as `cl-arguments.py` The
-program prints out the command line arguments given at execution:\
+program prints out the ./cl-arguments.py 10 foo 87.4
+4 command line argument(s) inputted:
+./cl-arguments.py
+10
+foo
+87.4 command line arguments given at execution:
+```python
+#!/usr/bin/env python3
+
+import sys
+
+number_of_args = len(sys.argv)
+print(number_of_args, "command line argument(s) inputted:")
+
+for arg in sys.argv:
+    print(arg)
+```
 
 Here's an example of executing this program from the command line:
-
 ```console
 $ chmod +x cl-arguments.py
 $ ./cl-arguments.py 10 foo 87.4
