@@ -134,13 +134,13 @@ Lines starting with a `#` are comments, which you don't need to enter, but
 contain extra questions or tips.
 
 ```console
-  $ mkdir new-work
-  $ cd new-work
-  $ touch foo.txt
-  $ # make sure to ls after each command!
-  $ touch ../bar.txt
-  $ # where is bar.txt?
-  $ gedit foo.txt
+$ mkdir new-work
+$ cd new-work
+$ touch foo.txt
+$ # make sure to ls after each command!
+$ touch ../bar.txt
+$ # where is bar.txt?
+$ gedit foo.txt
 ```
 
 At this point gedit (a text editor installed on the lab computers)
@@ -367,12 +367,7 @@ arguments, such as `mv` which took a source and a destination. In actual fact
 nearly all of these commands can take a variable number of arguments.
 
 Try copying this simple Python script and saving it as `cl-arguments.py` The
-program prints out the ./cl-arguments.py 10 foo 87.4
-4 command line argument(s) inputted:
-./cl-arguments.py
-10
-foo
-87.4 command line arguments given at execution:
+program prints out the command line arguments given at execution:
 ```python
 #!/usr/bin/env python3
 
