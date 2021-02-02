@@ -19,29 +19,31 @@
 
 ## Unit schedule
 
-| Week | Activity |
+| Week | Type | Activity |
 |------|----------|
-| 13 | Welcome |
-| 14 | Topics/worksheet |
-| 15 | Topics/worksheet |
-| 16 | Topics/worksheet |
-| 17 | Consolidation week |
-| 18 | Topics/worksheet |
-| 19 | Assignment released |
-| 20 | Group meetings |
-| E1 | -------- Easter |
-| E2 | Easter |
-| E3 | Easter |
-| 21 | Group meetings |
-| 22 | Group meetings |
-| 23 | Group meetings |
-| 24 | Group meetings |
+| 13 | Term | Welcome |
+| 14 | Term | worksheet |
+| 15 | Term | worksheet |
+| 16 | Term | worksheet |
+| 17 | Consolidation | |
+| 18 | Term | worksheet |
+| 19 | Term | Assignment released |
+| 20 | Term | Group meetings |
+| E1 | Easter | |
+| E2 | Easter | |
+| E3 | Easter | |
+| 21 | Term | Group meetings |
+| 22 | Term | Group meetings |
+| 23 | Term | Group meetings |
+| 24 | Term | Group meetings |
 
-| Assignment | Deadline | Group? | Weight |
-|------|---------|-----------|----|
-| 1 | Tuesday Wk 16 | Individual | 25% |
-| 2 | Tuesday Wk 19 | Pairs      | 25% |
-| 3 | Friday Wk 23 | Group of 4  | 50% |
+## Assessment
+
+* Single coursework
+* Deadline Friday week 24
+* Group coursework (groups of 4-5)
+* Different tasks within a shared codebase (using github)
+* Individual short report
 
 ## Why Python?
 
@@ -53,7 +55,7 @@
 
 ## Family tree ([source](https://medium.com/@anaharris/human-languages-vs-programming-languages-c89410f13252))
 
-![](tree.jpg)
+![](assets/tree.jpg)
 
 ## How Python?
 
