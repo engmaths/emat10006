@@ -1,17 +1,15 @@
-EMAT10006: Further Computer Programming\
+@def title = "Terminals worksheet"
 
-Week 1 -- using Python from the command line\
+# Code testing
 
-------------------------------------------------------------------------
+Week 1 -- using Python from the command line
 
-Getting started
-===============
+## Getting started
 
 Please read through the following bits of housekeeping before attempting
 the remaining worksheet tasks.
 
-Using your own computer
------------------------
+## Using your own computer
 
 This worksheet has been written assuming you have set up your computer first.
 You will need to first make sure you have:
@@ -37,19 +35,7 @@ computer this week, as Windows does not come with a bash terminal. Next
 week you will get instructions on installing Git, which comes with a
 bash terminal.
 
-A word of warning\...
----------------------
-
-Be careful when trying to copy and paste code snippets from these
-worksheets. In documents which are in Portable Document Format (PDF),
-characters are sometimes encoded in strange ways, which can create
-unexpected or different characters when pasted into a text editor.
-Please be aware of this, and ideally type code out yourself. We will
-provide you with longer code snippets on Blackboard when required, and
-this will be made clear in the worksheet.
-
-Using the terminal
-==================
+## Using the terminal
 
 The terminal (or command line) is an essential part of any operating
 system. It's an efficient way to navigate a file system, open files, run
@@ -57,8 +43,7 @@ executables and make time-saving scripts. Pretty much anything you do by
 clicking around on a GUI (Graphical User Interface) can be done in the
 terminal, often more efficiently!
 
-Basic terminal commands
------------------------
+## Basic terminal commands
 
 First open up a terminal by hitting the Windows key (or clicking Activities),
 then typing "terminal" and pressing enter. A terminal window will open, with
@@ -68,10 +53,12 @@ can enter bash commands.
 
 So let's try our first bash commands! Type `ls` and hit enter. You should see
 something like this:
+
 ```console
 $ ls
 Desktop  Documents  Downloads
 ```
+
 The `ls` command is a special terminal command that means
 list the contents of the current directory. In this case the
 directory is my user directory and it shows all of the folders that
