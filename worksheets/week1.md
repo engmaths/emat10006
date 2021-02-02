@@ -14,24 +14,32 @@ the remaining worksheet tasks.
 This worksheet has been written assuming you have set up your computer first.
 You will need to first make sure you have:
 
-1.  a bash shell installed,
+1.  A bash shell installed,
 2.  Python 3.X installed,
 3.  Python 3 on your computer's PATH variable.
 
-If you are running **Linux** or **OSX**, they come with a bash terminal
-as standard. So all you need to do is download the correct version of
-Python (3.X), and add it to your PATH by opening a terminal and typing
-`export PATH="PATH:your_python_path"`, where
-`your_python_path` is replaced with the location of your Python3
-installation. By default this is `/usr/local/bin/python`. We will
-talk more about the PATH variable later. Note that some machines come
-with Python 2 by default, but since we are using Python 3, you will need
-to go and download the correct version.
+If you are running **Linux** or **OSX**, they come with a bash terminal as
+standard. So all you need to do is download the correct version of Python
+(3.X), and add it to your PATH after opening a terminal by typing `export
+PATH="PATH:your_python_path"`, where `your_python_path` is replaced with the
+location of your Python3 installation. You can find the location of your
+Python3 installation from within Python itself. For example on OSX it
+might look like:
+```python
+>>> import sys
+>>> sys.executable
+'/Library/Frameworks/Python.framework/Versions/3.8/bin/python3'
+```
+That means that in the terminal I should run:
+```console
+$ export PATH="PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin"
+```
+That will ensure that when I run `python` in the terminal it runs Python 3.
 
-If you are running **Windows** we strongly recommend you use a lab
-computer this week, as Windows does not come with a bash terminal. Next
-week you will get instructions on installing Git, which comes with a
-bash terminal.
+If you are running **Windows** it is recommended to install git for windows
+which comes with a "git bash" terminal that uses the same commands as the
+terminals on OSX or Linux. Many of the example commands below will not work in
+the standard Windows "DOS" terminal.
 
 ## Using the terminal
 
@@ -43,11 +51,10 @@ terminal, often more efficiently.
 
 ## Basic terminal commands
 
-First open up a terminal by hitting the Windows key (or clicking Activities),
-then typing "terminal" and pressing enter. A terminal window will open, with
-some stuff followed by a line that reads `bash-4.2$` telling you the computer
-is running version 4.2 of bash, and the `$` is the bash prompt, indicating you
-can enter bash commands.
+First open up a terminal. A terminal window will open, with some stuff
+followed by a line that reads `bash-4.2$` telling you the computer is running
+version 4.2 of bash, and the `$` is the bash prompt, indicating you can enter
+bash commands.
 
 So let's try our first bash commands! Type `ls` and hit enter. You should see
 something like this:
@@ -57,13 +64,12 @@ $ ls
 Desktop  Documents  Downloads
 ```
 
-The `ls` command is a special terminal command that means
-list the contents of the current directory. In this case the
-directory is my user directory and it shows all of the folders that
-are contained within it. After you hit enter the terminal will run
-the `ls` command and the `ls` command will print out a
-list of the files and folders in the current directory: this appears
-on the second and third lines (bin, Desktop etc.).
+The `ls` command is a special terminal command that means list the contents of
+the current directory. In this case the directory is my user directory and it
+shows all of the folders that are contained within it. After you hit enter the
+terminal will run the `ls` command and the `ls` command will print out a list
+of the files and folders in the current directory: this appears on the second
+and third lines (bin, Desktop etc.).
 
 Note that from now on that shaded section above is how you can expect to see
 terminal commands demonstrated. I've omitted the stuff before the prompt, but
@@ -91,16 +97,14 @@ $ pwd
 /home/sw1850/current/emat10006
 ```
 
-In the session above I use `pwd` to show that I am currently
-in the directory `/home/sw1850` (this is the name of my user
-directory on this computer). Within my user directory is a folder
-called `current` which contains things I am currently working
-on. In there is a folder called `emat10006web` which contains
-the files used for working on this unit. If I want to work in that
-directory I can change to it by typing
-`cd current/emat10006web`. Afterwards my current working
-directory is `/home/sw1850/current/emat10006web` and if I run
-`ls` it will show me the contents of this new directory.
+In the session above I use `pwd` to show that I am currently in the directory
+`/home/sw1850` (this is the name of my user directory on this computer).
+Within my user directory is a folder called `current` which contains things I
+am currently working on. In there is a folder called `emat10006web` which
+contains the files used for working on this unit. If I want to work in that
+directory I can change to it by typing `cd current/emat10006web`. Afterwards
+my current working directory is `/home/sw1850/current/emat10006web` and if I
+run `ls` it will show me the contents of this new directory.
 
 - **Exercise:** Try these commands out yourself. Get comfortable moving
   between directories, looking at files and the working directory as you go.
