@@ -19,23 +19,23 @@
 
 ## Unit schedule
 
-| Week | Type | Activity |
-|------|----------|
-| 13 | Term | Welcome |
-| 14 | Term | worksheet |
-| 15 | Term | worksheet |
-| 16 | Term | worksheet |
-| 17 | Consolidation | - |
-| 18 | Term | worksheet |
-| 19 | Term | Assignment released |
-| 20 | Term | Group meetings |
-| E1 | Easter | - |
-| E2 | Easter | - |
-| E3 | Easter | - |
-| 21 | Term | Group meetings |
-| 22 | Term | Group meetings |
-| 23 | Term | Group meetings |
-| 24 | Term | Group meetings |
+| Week | Type     | Activity |
+|------|----------|-----------|
+| 13   | Term     | Welcome |
+| 14   | Term     | worksheet |
+| 15   | Term     | worksheet |
+| 16   | Term     | worksheet |
+| 17   | Consolidation | - |
+| 18   | Term | worksheet |
+| 19   | Term | Assignment released |
+| 20   | Term | Group meetings |
+| E1   | Easter | - |
+| E2   | Easter | - |
+| E3   | Easter | - |
+| 21   | Term | Group meetings |
+| 22   | Term | Group meetings |
+| 23   | Term | Group meetings |
+| 24   | Term | Group meetings |
 
 ## Assessment
 
