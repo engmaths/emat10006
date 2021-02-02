@@ -1,9 +1,8 @@
-% EMAT10006 - FCP - Lecture 01
-% Oscar Benjamin
-% Week 13
+@def title = "Outline, intro and terminals"
 
-The idea
---------
+# Outline
+
+## The idea
 
 * Build on the intro unit
 * Reinforce basic programming
@@ -11,18 +10,32 @@ The idea
 * Work collaboratively
 * Use version control (git/github)
 
-Schedule
---------
+## Weekly Schedule
 
-* Runs from week 13 to week 23 (except week 18).
-* 1hr lecture
-* 2hr lab
+* Videos and other materials
+* 1hr live session
 * Dropin session
-* Forum?
-* Deadlines...
+* 2hr lab
 
-Assignments
------------
+## Unit schedule
+
+| Week | Activity |
+|------|----------|
+| 13 | Welcome |
+| 14 | Topics/worksheet |
+| 15 | Topics/worksheet |
+| 16 | Topics/worksheet |
+| 17 | Consolidation week |
+| 18 | Topics/worksheet |
+| 19 | Assignment released |
+| 20 | Group meetings |
+| E1 | -------- Easter |
+| E2 | Easter |
+| E3 | Easter |
+| 21 | Group meetings |
+| 22 | Group meetings |
+| 23 | Group meetings |
+| 24 | Group meetings |
 
 | Assignment | Deadline | Group? | Weight |
 |------|---------|-----------|----|
@@ -30,8 +43,7 @@ Assignments
 | 2 | Tuesday Wk 19 | Pairs      | 25% |
 | 3 | Friday Wk 23 | Group of 4  | 50% |
 
-Why Python?
------------
+## Why Python?
 
 * High level language
 * Intends not to be hard to learn
@@ -39,13 +51,11 @@ Why Python?
 * Used heavily in data science etc
 * Right tool for the job in student projects
 
-Family tree ([source](https://medium.com/@anaharris/human-languages-vs-programming-languages-c89410f13252))
------------
+## Family tree ([source](https://medium.com/@anaharris/human-languages-vs-programming-languages-c89410f13252))
 
 ![](tree.jpg)
 
-How Python?
------------
+## How Python?
 
 * Created by Guido van Rossum (BDFL) in the early 90s
 * Derived from the C family
@@ -54,35 +64,36 @@ How Python?
 * See [discussions](https://discuss.python.org/)
 * Named after [Monty Python](https://www.youtube.com/watch?v=vZw35VUBdzo)
 
-Year reps?
-----------
+## Year reps?
 
-Look at forum posts?
---------------------
-
-Terminal
---------
+## Terminal
 
 Quick demo...
 
-Understand the `$` convention for input/output:
-```
+Understand the `$` convention for input/output. This you should type in the
+terminal:
+```console
 $ ls
 myscript.py
 $ python myscript.py
 stuff
 ```
 
-Terminal
---------
+These are Python commands (note `>>>`) and you should type them into *python*:
+```python
+>>> x = 1 + 1
+>>> x
+2
+```
+
+## Terminal
 
 * CLI: Command Line Interface
 * GUI: Graphical User Interface
 
 Learning terminal and CLI is *not* optional here!
 
-Command line
-------------
+## Command line
 
 * Lower level way of interacting with computers
 * More efficient
@@ -90,30 +101,27 @@ Command line
 * Composable
 * Automatable
 
-Terminal
---------
+## Terminal
 
 Longer demo...
 
-Build Python
-------------
+## Build Python
 
 ```console
 $ wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz
+$ tar -xzf Python-3.8.1.tgz
+$ cd Python-3.8.1
 $ ./configure
 $ make
 $ make install
 ```
 
-Github
-------
+## Github
 
 We'll talk about this more later but here's CPython:
 
 [https://github.com/python/cpython](https://github.com/python/cpython)
 
-That's all
-----------
+## That's all
 
-Make sure to be in the lab on Friday so that you are allocated to a TA (and paired
-up for future assignments).
+Make sure to meet your TA on Friday!
