@@ -110,6 +110,10 @@ Hello World!</code></pre>
 <p>As you will remember, using interactive mode is only really for writing a line or two of code. Practically, we will always be working with Python scripts and running them from the terminal like we did with <code>hello.py</code> above.</p>
 <h2 id=using_a_shebang ><a href="#using_a_shebang">Using a shebang</a></h2>
 <p>Add a line to the top of your <code>hello.py</code> script, so that it looks like this:</p>
+<pre><code class="python hljs"><span class=hljs-comment >#!/usr/bin/env python3</span>
+
+print(<span class=hljs-string >&#x27;Hello world&#x27;</span>)</code></pre>
+<p>&#40;Note you might need to use <code>python</code> rather than <code>python3</code> - this depends on exactly how you have installed Python and what OS you are using. Try <code>python</code> if <code>python3</code> doesn&#39;t work.&#41;</p>
 <p>This line at the top is called a shebang, or hash bang. Now you may not think adding this would do anything, since lines starting with a <code>#</code> in Python are comments and the interpreter ignores them. But this line isn&#39;t for the Python interpreter, it&#39;s actually for the operating system&#39;s program loader. The program loader will read the first two bytes of a file, and if they are <code>0x23
 0x21</code> &#40;which, in ascii, are the characters <code>#&#33;</code>&#41; it knows to treat this file as a script. The script will then be passed to the executable mentioned on the first line – in our case the <code>python</code> command which calls the Python interpreter. Python then reads the line as a comment, as usual, and executes the script. The shebang must come write at the beginning of the file.</p>
 <p>Shebangs are used because it allows the person who wrote the script to control how the script is run on a user&#39;s computer, rather than the other way around. In our case for example, we have specified that our script should be run with <code>python3</code>, rather than any other version of Python. This is useful because if we released our script and a user runs it from the terminal as <code>python
