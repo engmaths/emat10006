@@ -4,7 +4,7 @@
 <p>That will ensure that when I run <code>python</code> in the terminal it runs Python 3.</p>
 <p>If you are running <strong>Windows</strong> it is recommended to install git for windows which comes with a &quot;git bash&quot; terminal that uses the same commands as the terminals on OSX or Linux. Many of the example commands below will not work in the standard Windows &quot;DOS&quot; terminal.</p>
 <h2 id=using_the_terminal ><a href="#using_the_terminal">Using the terminal</a></h2>
-<p>The terminal &#40;or command line&#41; is an essential part of any operating system. It&#39;s an efficient way to navigate a file system, open files, run executables and make time-saving scripts. Pretty much anything you do by clicking around on a GUI &#40;Graphical User Interface&#41; can be done in the terminal, often more efficiently.</p>
+<p>The terminal &#40;or command line&#41; is an essential part of any operating system. It&#39;s an efficient way to navigate a file system, open files, run executables and make time-saving scripts. Pretty much anything you do by clicking around on a GUI &#40;Graphical User Interface&#41; can be done in the terminal, often more efficiently&#33;</p>
 <p>## Basic terminal commands</p>
 <p>First open up a terminal. A terminal window will open, with some stuff followed by a line that reads <code>bash-4.2&#36;</code> telling you the computer is running version 4.2 of bash, and the <code>&#36;</code> is the bash prompt, indicating you can enter bash commands.</p>
 <p>So let&#39;s try our first bash commands&#33; Type <code>ls</code> and hit enter. You should see something like this:</p>
@@ -45,7 +45,9 @@ Directory&#39;</code>.</p>
 <span class=hljs-meta >$</span><span class=bash > touch ../bar.txt</span>
 <span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># where is bar.txt?</span></span>
 <span class=hljs-meta >$</span><span class=bash > gedit foo.txt</span></code></pre>
-<p>At this point gedit &#40;a text editor installed on the lab computers&#41; should open, and you should add some text &#40;use multiple lines, and some tab characters too&#41;, save it then close the window. Note that the prompt will not appear in the terminal while gedit is still open.</p>
+<p><strong>Note</strong> The command <code>gedit</code> above runs a program that is often installed on Linux computer but won&#39;t be available on OSX or Windows. For OSX run <code>open
+foo.txt</code>. On Windows you could use <code>notepad foo.txt</code>. Basically the command just runs a text editor that opens the file <code>foo.txt</code> but there are different text editors installed on different computers. For example if you use <code>vscode</code> you could run <code>code foo.txt</code>.</p>
+<p>At this point gedit &#40;or whichever editor you ran&#41; should open, and you should add some text &#40;use multiple lines, and some tab characters too&#41;, save it then close the window. Note that the prompt will not appear in the terminal while gedit is still open.</p>
 <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > cat foo.txt</span>
 <span class=hljs-meta >$</span><span class=bash > cat foo.txt -A</span>
 <span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># what do you think those extra characters represent?</span></span>
@@ -83,7 +85,9 @@ ho</code> and hit tab multiple times, it cycles between <code>cd homework_questi
 </ul>
 <h2 id=hello_world ><a href="#hello_world">Hello World&#33;</a></h2>
 <p>Next, we are going to make a Hello World program. Of course you&#39;ve already done this in Python, but we are going to run it from the terminal.</p>
-<p>Start by opening a text editor &#40;on lab computers we recommend gedit&#41; and writing a Hello World program. Save it as <code>hello.py</code><em>taking careful note of where you save it&#33;</em> &#40;If you&#39;re getting confident with the terminal, try just entering: <code>gedit hello.py</code>, this will create a new file and open it for editing straight away, write your script and save and quit and the terminal will be ready to go again. Hopefully you&#39;re starting to see benefits of using the terminal&#33;&#41;</p>
+<p>Start by opening a text editor &#40;on lab computers we recommend gedit&#41; and writing a Hello World program. The contents of the file should look like:</p>
+<pre><code class="python hljs">print(<span class=hljs-string >&#x27;Hello World!&#x27;</span>)</code></pre>
+<p>Save it as <code>hello.py</code><em>taking careful note of where you save it&#33;</em> &#40;If you&#39;re getting confident with the terminal, try just entering: <code>gedit hello.py</code>, this will create a new file and open it for editing straight away, write your script and save and quit and the terminal will be ready to go again. Hopefully you&#39;re starting to see benefits of using the terminal&#33;&#41;</p>
 <p>Open the terminal, and using the commands you learned above, navigate to the folder where your <code>hello.py</code> script is saved.</p>
 <p>To run the <code>hello.py</code> Python script we run the <code>python</code> command and give it the name of the script we want it to run:</p>
 <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python hello.py</span>
@@ -106,7 +110,8 @@ Hello World!</code></pre>
 <p>As you will remember, using interactive mode is only really for writing a line or two of code. Practically, we will always be working with Python scripts and running them from the terminal like we did with <code>hello.py</code> above.</p>
 <h2 id=using_a_shebang ><a href="#using_a_shebang">Using a shebang</a></h2>
 <p>Add a line to the top of your <code>hello.py</code> script, so that it looks like this:</p>
-<p>This line at the top is called a shebang, or hash bang. Now you may not think adding this would do anything, since lines starting with a <code>#</code> in Python are comments and the interpreter ignores them. But this line isn&#39;t for the Python interpreter, it&#39;s actually for the operating system&#39;s program loader. The program loader will read the first two bytes of a file, and if they are <code>0x23 0x21</code> &#40;which, in ascii, are the characters <code>#&#33;</code>&#41; it knows to treat this file as a script. The script will then be passed to the executable mentioned on the first line – in our case the <code>python</code> command which calls the Python interpreter. Python then reads the line as a comment, as usual, and executes the script. The shebang must come write at the beginning of the file.</p>
+<p>This line at the top is called a shebang, or hash bang. Now you may not think adding this would do anything, since lines starting with a <code>#</code> in Python are comments and the interpreter ignores them. But this line isn&#39;t for the Python interpreter, it&#39;s actually for the operating system&#39;s program loader. The program loader will read the first two bytes of a file, and if they are <code>0x23
+0x21</code> &#40;which, in ascii, are the characters <code>#&#33;</code>&#41; it knows to treat this file as a script. The script will then be passed to the executable mentioned on the first line – in our case the <code>python</code> command which calls the Python interpreter. Python then reads the line as a comment, as usual, and executes the script. The shebang must come write at the beginning of the file.</p>
 <p>Shebangs are used because it allows the person who wrote the script to control how the script is run on a user&#39;s computer, rather than the other way around. In our case for example, we have specified that our script should be run with <code>python3</code>, rather than any other version of Python. This is useful because if we released our script and a user runs it from the terminal as <code>python
 hello.py</code>, then they might be running it with the wrong version of Python and the behaviour might not be as we intended.</p>
 <p>After adding the shebang to your script and saving it, run the following commands:</p>
@@ -145,7 +150,7 @@ foo
 <li><p><strong>Exercise</strong> Write a program which accepts up to 5 integers as   command line arguments, and prints their sum to the terminal. If   more than five are entered, instead print an error message.</p>
 
 </ul>
-<p>Notice how the number of arguments given at the command line is not necessarily fixed. Programs often take advantage of this to allow optional arguments, or as a way of specifying how a program should run. Again, we have already seen this, as we have seen that running <code>python</code> with no arguments opens it in interactive mode; whereas running it with a script filename, runs that script.</p>
+<p>Notice how the number of arguments given at the command line is not necessarily fixed. Programs often take advantage of this to allow optional arguments, or as a way of specifying how a program should run.  Again, we have already seen this, as we have seen that running <code>python</code> with no arguments opens it in interactive mode; whereas running it with a script filename, runs that script.</p>
 <p>Try running the commands <code>python --help</code>, <code>python --version</code> or <code>ls -l</code>. These arguments are called &#39;flags&#39;, and are the conventional way of allowing the user to indicate how they want the program to run. They are usually distinguished from other arguments by the prefix &#39;–&#39; but they are still just strings. When you run Python with the <code>--help</code> flag, notice it lists all the different flags you can specify.</p>
 <h2 id=using__name_ ><a href="#using__name_">Using <code>__name__</code></a></h2>
 <p>Lastly we are going to cover another convention used by programmers when writing Python scripts. As you should have noticed, when Python scripts are ran, the interpreter seems to start by running the lines of code it finds which are <em>not</em> in a function. The convention in Python is that &#40;usually&#41; the only code not in a function is inside a strange looking conditional statement, like this:</p>
@@ -189,7 +194,7 @@ foo
 <p>Before you start writing, think carefully about the control flow of your program, and how to deal with the variety of different combinations of inputs. You should also make sure you use functions to organise the code. As a <em>minimum</em> it should have a main function then one function each for the mean, median and mode calculations. Use this to help with efficiency: e.g. if the user specifies only the mode, don&#39;t bother calculating the mean or median.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: February 02, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: February 03, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
