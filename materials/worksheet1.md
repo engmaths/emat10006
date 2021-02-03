@@ -47,7 +47,7 @@ The terminal (or command line) is an essential part of any operating
 system. It's an efficient way to navigate a file system, open files, run
 executables and make time-saving scripts. Pretty much anything you do by
 clicking around on a GUI (Graphical User Interface) can be done in the
-terminal, often more efficiently.
+terminal, often more efficiently!
 
 ## Basic terminal commands
 
@@ -143,10 +143,17 @@ $ # where is bar.txt?
 $ gedit foo.txt
 ```
 
-At this point gedit (a text editor installed on the lab computers)
-should open, and you should add some text (use multiple lines, and some
-tab characters too), save it then close the window. Note that the prompt
-will not appear in the terminal while gedit is still open.
+**Note** The command `gedit` above runs a program that is often installed on
+Linux computer but won't be available on OSX or Windows. For OSX run `open
+foo.txt`. On Windows you could use `notepad foo.txt`. Basically the command
+just runs a text editor that opens the file `foo.txt` but there are different
+text editors installed on different computers. For example if you use `vscode`
+you could run `code foo.txt`.
+
+At this point gedit (or whichever editor you ran) should open, and you should
+add some text (use multiple lines, and some tab characters too), save it then
+close the window. Note that the prompt will not appear in the terminal while
+gedit is still open.
 
 ```console
 $ cat foo.txt
@@ -221,12 +228,15 @@ already done this in Python, but we are going to run it from the
 terminal.
 
 Start by opening a text editor (on lab computers we recommend gedit) and
-writing a Hello World program. Save it as `hello.py` *taking careful note of
-where you save it!* (If you're getting confident with the terminal, try just
-entering: `gedit hello.py`, this will create a new file and open it for
-editing straight away, write your script and save and quit and the terminal
-will be ready to go again. Hopefully you're starting to see benefits of using
-the terminal!)
+writing a Hello World program. The contents of the file should look like:
+```python
+print('Hello World!')
+```
+Save it as `hello.py` *taking careful note of where you save it!* (If you're
+getting confident with the terminal, try just entering: `gedit hello.py`, this
+will create a new file and open it for editing straight away, write your
+script and save and quit and the terminal will be ready to go again. Hopefully
+you're starting to see benefits of using the terminal!)
 
 Open the terminal, and using the commands you learned above, navigate to the
 folder where your `hello.py` script is saved.
@@ -262,19 +272,17 @@ without the `$`. The terminal now sees the word `PATH` as a plain old string).
 
 ## Python Interactive Mode
 
-Another thing we can do with the `python` command in the terminal
-is just to enter the Python interactive mode. It behaves a bit like a
-terminal but where you type Python commands. Just type `python`
-and hit enter, and you'll see a welcome message and the `$`
-prompt will change to a `>>>`, Python's prompt. From here you can
-now type in Python commands (but not bash commands until you quit Python
-interactive mode by typing `quit()`).
+Another thing we can do with the `python` command in the terminal is just to
+enter the Python interactive mode. It behaves a bit like a terminal but where
+you type Python commands. Just type `python` and hit enter, and you'll see a
+welcome message and the `$` prompt will change to a `>>>`, Python's prompt.
+From here you can now type in Python commands (but not bash commands until you
+quit Python interactive mode by typing `quit()`).
 
-The interactive mode is great for trying out little code snippets,
-finding the right in-built function, etc. Now is the perfect time to
-re-familiarise yourself with some basic Python, as we won't have time to
-revise things you were taught last term. Make sure you can remember how
-to use:
+The interactive mode is great for trying out little code snippets, finding the
+right in-built function, etc. Now is the perfect time to re-familiarise
+yourself with some basic Python, as we won't have time to revise things you
+were taught last term. Make sure you can remember how to use:
 
 -   variables: how to initialise them, the basic types, casting and
     scope
@@ -287,28 +295,24 @@ to use:
 
 -   importing and using modules such as `math`
 
-As you will remember, using interactive mode is only really for writing
-a line or two of code. Practically, we will always be working with
-Python scripts and running them from the terminal like we did with
-`hello.py` above.
+As you will remember, using interactive mode is only really for writing a line
+or two of code. Practically, we will always be working with Python scripts and
+running them from the terminal like we did with `hello.py` above.
 
 ## Using a shebang
 
-Add a line to the top of your `hello.py` script, so that it looks
-like this:
+Add a line to the top of your `hello.py` script, so that it looks like this:
 
-This line at the top is called a shebang, or hash bang. Now you may not
-think adding this would do anything, since lines starting with a
-`#` in Python are comments and the interpreter ignores them. But
-this line isn't for the Python interpreter, it's actually for the
-operating system's program loader. The program loader will read the
-first two bytes of a file, and if they are `0x23 0x21` (which, in
-ascii, are the characters `#!`) it knows to treat this file as a
-script. The script will then be passed to the executable mentioned on
-the first line -- in our case the `python` command which calls
-the Python interpreter. Python then reads the line as a comment, as
-usual, and executes the script. The shebang must come write at the
-beginning of the file.
+This line at the top is called a shebang, or hash bang. Now you may not think
+adding this would do anything, since lines starting with a `#` in Python are
+comments and the interpreter ignores them. But this line isn't for the Python
+interpreter, it's actually for the operating system's program loader. The
+program loader will read the first two bytes of a file, and if they are `0x23
+0x21` (which, in ascii, are the characters `#!`) it knows to treat this file
+as a script. The script will then be passed to the executable mentioned on the
+first line -- in our case the `python` command which calls the Python
+interpreter. Python then reads the line as a comment, as usual, and executes
+the script. The shebang must come write at the beginning of the file.
 
 Shebangs are used because it allows the person who wrote the script to control
 how the script is run on a user's computer, rather than the other way around.
@@ -406,11 +410,11 @@ specifically to our script.
     more than five are entered, instead print an error message.
 
 Notice how the number of arguments given at the command line is not
-necessarily fixed. Programs often take advantage of this to allow
-optional arguments, or as a way of specifying how a program should run.
-Again, we have already seen this, as we have seen that running
-`python` with no arguments opens it in interactive mode; whereas
-running it with a script filename, runs that script.
+necessarily fixed. Programs often take advantage of this to allow optional
+arguments, or as a way of specifying how a program should run.  Again, we have
+already seen this, as we have seen that running `python` with no arguments
+opens it in interactive mode; whereas running it with a script filename, runs
+that script.
 
 Try running the commands `python --help`, `python --version` or `ls -l`. These
 arguments are called 'flags', and are the conventional way of allowing the
