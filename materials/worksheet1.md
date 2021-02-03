@@ -302,6 +302,14 @@ running them from the terminal like we did with `hello.py` above.
 ## Using a shebang
 
 Add a line to the top of your `hello.py` script, so that it looks like this:
+```python
+#!/usr/bin/env python3
+
+print('Hello world')
+```
+(Note you might need to use `python` rather than `python3` - this depends on
+exactly how you have installed Python and what OS you are using. Try `python`
+if `python3` doesn't work.)
 
 This line at the top is called a shebang, or hash bang. Now you may not think
 adding this would do anything, since lines starting with a `#` in Python are
