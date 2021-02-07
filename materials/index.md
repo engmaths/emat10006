@@ -9,3 +9,11 @@ worksheet (see the link below).
     https://web.microsoftstream.com/video/c0238bf3-ba21-4407-9263-8bfafc43991b?list=studio)
 4. [(Video) Add Python to PATH on Windows](
     https://web.microsoftstream.com/video/c4c0ced6-c526-4696-99bc-14236b37cd28?list=studio)
+
+# Week 2 - Git and github
+
+**Note** OSX users should install git (this is explained in the start of the
+worksheet).
+
+1. [Slides](slides2/)
+2. [Worksheet](worksheet2/)
