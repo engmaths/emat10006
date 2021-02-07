@@ -49,14 +49,14 @@ $ git status
 
 ## Change the code
 
-```
+```shell
 $ git status       # Check all clean
 $ gedit README.md  # Make changes and save
 $ git status       # Shows changed files
 $ git diff         # Shows the changes
 ```
 
-```
+```python
 diff --git a/t.py b/t.py
 index c5d61cf..fbcc63c 100644
 --- a/t.py
@@ -102,14 +102,14 @@ Use `git log` to see the history (or look on github)
 * Git stores commits in the `.git` folder.
 * Use push to send them to github
 
-```
+```shell
 $ git status   # Always check clean first
 $ git log      # What am I pushing?
 $ git push
 ```
 
 Get changes *from* github:
-```
+```shell
 $ git pull
 ```
 
