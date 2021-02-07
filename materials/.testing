@@ -1,0 +1,113 @@
+
+# Testing in Python
+
+Testing is an important part of writing working code and helps to avoid future
+work debugging. It is a huge topic in software engineering and can be very
+complex, but it doesn't need to be hard. In this exercise we will start off
+just getting to grips with how to execute tests and understanding test output.
+
+## Installing pytest and virtual environments
+
+The python module we will be using for testing is called `pytest` and you can
+find the documentation [pytest here](https://docs.pytest.org/en/latest/)
+
+```shell
+$ pip install pytest
+```
+
+To deactivate the virtual environment, simply run `deactivate` and the virtual
+environment name should disappear from before the prompt.
+
+## Cloning the repo from Github and using the code
+
+Firstly, clone the exercise repo "wk14\_testing\_exercise" available at
+[this link](https://github.com/uobfcp/wk14_testing_exercise). If you are
+unsure how to do this, go back and check the earlier exercises. You should now
+have a python file called "rationals.py", a "README.md" and a "tests"
+directory which includes the python file "test\_rationals.py".
+
+We can start to use the code in a terminal python console likes so (making
+sure we are in the same directory as "rationals.py"):
+
+```python
+>>> from rationals import Rational
+>>> a = Rational(3, 4)
+>>> a
+<rationals.Rational object at 0x7ffdf38f4710> 
+>>> print(a)
+3/4
+>>> print(Rational(3, 4) + Rational(2, 3))
+17/12
+```
+
+Carefully read the "rationals.py" code in order to understand what the code is
+meant to do. Pay particular attention to the information the comments are
+giving you.
+
+If you need a refresher on Classes either refer back to the EMAT10007 notes or
+check the official tutorial here:
+[https://docs.python.org/3/tutorial/classes.html>](https://docs.python.org/3/tutorial/classes.html>)
+
+Note that the methods like `__add__` are called "magic methods".  The only
+purpose of them here is that this allows us to overwrite the behaviour of the
+"+" operator for our class, for example. This means we can write,
+```python
+print(Rational(3, 4) + Rational(2, 3))
+```
+instead of
+```python
+print(Rational(3, 4).add(Rational(2, 3)))
+```
+
+## Executing the tests
+
+Now we are ready to execute the tests. In the same directory as
+"rationals.py" run the command
+```shell
+$ python -m pytest -vv
+```
+The `-m` is a python flag and allows us to run the `pytest` module as a script
+from the command line, meaning that our current directory is added to the path
+and so our test scripts can import from "rational.py". The `-vv` is a pytest
+flag which increases the verbosity of the pytest output. Another useful flag
+is `-x` which exits the tests after the first error or failed test.  More
+information about pytest usage can be found here:
+[pytest usage docs](https://docs.pytest.org/en/latest/usage.html)
+
+## Understanding the pytest traceback
+
+Python tests should be written such that they each test a single part of the
+overall functionality. The pytest traceback firstly gives a list of all the
+tests which were run and whether they passed or failed. Then for each test
+which failed it will give a longer explanation of why it failed. There are
+three main reasons why a test might fail:
+
+1.  `AssertionError`: This means that the code is not producing
+    the expected output.
+
+2.  Failed to raise an Error: This means that the code was expected to
+    produce a particular error but did not.
+
+3.  Another error: This means that there is something wrong with the
+    code itself, which prevented the test from running.
+
+The traceback is designed to be as informative as possible, so make sure to
+read it carefully. Often it will provide examples of the code which has not
+worked, so this is the best starting point. For example, if you get an
+`AssertionError` and the traceback reads:
+
+```shell
+>   assert str(Rational(2, -5)) == "-2/5"
+E   AssertionError: assert '2/-5' == '-2/5'
+```
+
+This is telling you that something needs to be fixed/added to the `Rational`
+class so that when it takes the inputs `2` and `-5` it should output `-2\5`.
+Also remember to check the name of the failed test as this tells you what is
+being tested for and so is a good starting point for what needs fixing.
+
+**Exercise**: Fix the "rationals.py" file so that all the tests pass. Run the
+tests to confirm that they pass.
+
+
+# All done!

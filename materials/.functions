@@ -1,0 +1,144 @@
+
+
+## Functions in a script
+
+```python
+# myscript.py
+
+def double(thing):
+    """Doubles the thing"""
+    return thing + thing
+
+print(double(2))
+print(double([1, 2]))
+print(double("foo"))
+```
+
+Run in the terminal:
+
+```shell
+$ python myscript.py
+4
+[1, 2, 1, 2]
+'foofoo'
+```
+
+## Why functions
+
+* Break up code into small pieces
+* Good function names improve readability
+* Reuse code
+* Don't repeat yourself (DRY)
+* One place to fix bugs
+
+
+## Functions in a module
+
+```python
+# myscript.py
+
+def double(thing):
+    """Doubles the thing"""
+    return thing + thing
+```
+
+Run in the *Python* shell:
+
+```python
+>>> from myscript import double
+>>> double(4)
+8
+```
+
+
+## Function execution
+
+DEMO...
+
+
+## Good names
+
+```python
+# Call func1
+var1 = func1(var2)
+```
+
+VS
+
+```python
+# All components are equally weighted
+unit_mark = mean(component_marks)
+```
+
+* Variable and function names can explain code
+* Comments should explain non-obvious things
+
+
+## Raising exceptions
+
+```python
+def get_first_name(student_number):
+    """Return first name of the student with this student number"""
+
+    if student_number not in registered_students:
+        raise ValueError("No such student registered %s" % student_number)
+
+    details = registered_students[student_number]
+    return details['firstname']
+```
+
+Use exceptions when it is not possible to return something sensible
+
+
+## Seeing Exceptions
+
+```python
+>>> x = 2
+>>> x.upper()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'int' object has no attribute 'upper'
+>>> 2 + [3]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'list'
+```
+
+## Traceback
+
+```python
+>>> import subprocess
+>>> subprocess.run('foo')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File ".../lib/python3.8/subprocess.py", line 489, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File ".../lib/python3.8/subprocess.py", line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File ".../lib/python3.8/subprocess.py", line 1702, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'foo'
+```
+
+
+## Traceback demo
+
+Demo...
+
+Make sure you read the traceback!
+
+
+## Catching exceptions
+
+```python
+number_string = input("Please enter a number: ")
+try:
+    number = int(number_string)
+except ValueError:
+    print("Not a valid number. Found '%s'" number_string)
+```
+
+* Catch exception to handle failure (if expected!)
+* Usually best not to catch the exception
+* Catch *only* the exception you expect
+
