@@ -49,7 +49,7 @@ executables and make time-saving scripts. Pretty much anything you do by
 clicking around on a GUI (Graphical User Interface) can be done in the
 terminal, often more efficiently!
 
-## Basic terminal commands
+## Basic terminal commands
 
 First open up a terminal. A terminal window will open, with some stuff
 followed by a line that reads `bash-4.2$` telling you the computer is running
