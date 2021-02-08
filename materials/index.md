@@ -17,3 +17,5 @@ worksheet).
 
 1. [Slides](slides2/)
 2. [Worksheet](worksheet2/)
+3. [(Video) Create a github account and clone a repo](
+    https://web.microsoftstream.com/video/1138576c-6a80-4bb0-ad8d-c97dcef917ad)
