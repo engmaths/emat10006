@@ -13,7 +13,7 @@ Topics:
 
 # Git
 
-* Version constrol system
+* Version control system
 * Useful for collaborating on large codebases
 * Originally for Linux code (30 million lines)
 * Created by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds)

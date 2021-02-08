@@ -51,10 +51,8 @@ well as share code publicly.
 2.  **An important note on usernames:** usernames on GitHub are public.
     So while you can use whatever pseudonym you like, it will be visible
     to anyone. Therefore, if you would prefer to remain anonymous,
-    either choose a random username yourself, or run this command in the
-    terminal which will give you a random 6 character name you can use
-    as a username (I'm not sure if this command works in git bash...):
-    `cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1`.
+    choose a random unrecognisable username (but keep a note of what that
+    username is!).
 
 3.  Next you may asked to prove you're a human by doing a little
     puzzle\... When you've convinced them you are human, make sure the
@@ -80,170 +78,164 @@ well as share code publicly.
 
 # Our first Git repository
 
-As you know from the lecture, a repository (or repo for short) is where
-you store all the files for a particular project. Repos on GitHub have a
-unique URL associated with them. If they are public, this means anyone
-can use this URL to make their own clone of the code. The user can even
-make changes and, if they think other users might also benefit from
-these changes, they can request that the owner incorporates the changes
-into the repo (a 'pull request').
+As you know from the lecture, a repository (or repo for short) is where you
+store all the files for a particular project. Repos on GitHub have a unique
+URL associated with them. If they are public, this means anyone can use this
+URL to make their own clone of the code. The user can even make changes and,
+if they think other users might also benefit from these changes, they can
+  request that the owner incorporates the changes into the repo (a 'pull
+  request').
 
 Let's create our first repo, but we will keep ours private for now!
 
-1.  When you are signed in to GitHub, on the homepage, there's a green
-    button on the left labeled 'Create repository'. Press this and it
-    will take you to a page where we can make a blank repo.
+When you are signed in to GitHub, on the homepage, there's a green button on
+the left labeled 'Create repository'. Press this and it will take you to a
+page where we can make a blank repo.
 
-2.  Give your repo a suitable name (e.g. 'fcp-week14'), and a
-    description if you like, then make sure the Private option is
-    selected. Tick the 'Initialise this repository with a README' box,
-    then click 'Create Repository'.
+Give your repo a suitable name (e.g. 'fcp-week14'), and a description if you
+like, then make sure the Private option is selected. Tick the 'Initialise this
+repository with a README' box, then click 'Create Repository'.
 
-3.  This creates a repo and takes you to that repo's unique page (notice
-    the URL has the format
-    'github.com/your\_user\_name/your\_repo\_name'). The only file in
-    the repo will be a README.md, and it tells you that it was created
-    on the 'Initial commit'. The contents of the README.md is displayed
-    at the bottom. It is written in 'markdown' (hence the .md file
-    suffix), but you can just think of it as a txt file with some fancy
-    formatting options similar to html.
+This creates a repo and takes you to that repo's unique page (notice the URL
+has the format 'github.com/your\_user\_name/your\_repo\_name'). The only file
+in the repo will be a README.md, and it tells you that it was created on the
+'Initial commit'. The contents of the README.md is displayed at the bottom. It
+is written in 'markdown' (hence the .md file suffix), but you can just think
+of it as a txt file with some fancy formatting options similar to html.
 
-4.  There's lots of information on the repo's webpage which we will
-    introduce in the coming weeks. But first let's add some files and
-    practice committing them to our repo. First we're going to need a
-    local 'clone' of the repo on our computer, so that we can add and
-    edit files on our computer before putting them on the repo.
+There's lots of information on the repo's webpage which we will introduce in
+the coming weeks. But first let's add some files and practice committing them
+to our repo. First we're going to need a local 'clone' of the repo on our
+computer, so that we can add and edit files on our computer before putting
+them on the repo.
 
-5.  From the repo page, click the green 'Clone or Download' button, and
-    copy the link that it gives you. Then in a terminal window, navigate
-    to a suitable place to create a new local repo, such as Documents.
-    Then type `git clone` followed by a space and the URL you
-    just copied (Ctrl+V won't paste, but Shift+Insert should). In a
-    strange pop-up window you will be asked to enter your GitHub
-    username and password. Once you have done this you should see
-    something like this:
+From the repo page, click the green 'Clone or Download' button, and copy the
+link that it gives you. Then in a terminal window, navigate to a suitable
+place to create a new local repo, such as Documents.  Then type `git clone`
+followed by a space and the URL you just copied.
 
-        $ git clone https://github.com/uob-simon/fcp-week14.git
-        Cloning into 'fcp-week14'...
-        remote: Enumerating objects: 3, done.
-        remote: Counting objects: 100\% (3/3), done.
-        remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-        Unpacking objects: 100\% (3/3), done.
+Note at this stage you might find that `git clone` fails saying something like
+`authentication failed`. I found that this happened the first time I tried to
+clone a repo using a new github account. Running the exact same command again
+a second time fixed the problem (no idea why that works!).
 
-    This is Git telling us it has succesfully cloned our online repo on
-    GitHub into a local repo on our computer. While on your computer, a
-    repo is basically just a folder with a special .git folder in it. If
-    you `cd` into your new repo and enter `ls -a` you'll
-    see it. Git uses this folder to store all the data it needs to do
-    its version control magic, but you don't really need to worry about
-    what's in it.
+In a strange pop-up window you will be asked to enter your GitHub username and
+password. You might also need to click "Authorise credential manager" or
+something like that...
 
-6.  We can clone any repo we have access to (i.e. if the repo is public,
-    or we are a collaborator on a private repo) by running
-    `git clone repo_url`. You'll need to do this to get the code
-    for the assignment!
+Once you have done that you should see something like this:
+```console
+$ git clone https://github.com/uob-simon/fcp-week14.git
+Cloning into 'fcp-week14'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100\% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100\% (3/3), done.
+```
+This is Git telling us it has succesfully cloned our online repo on GitHub
+into a local repo on our computer. While on your computer, a repo is basically
+just a folder with a special .git folder in it. If you `cd` into your new repo
+and enter `ls -a` you'll see it. Git uses this folder to store all the data it
+needs to do its version control magic, but you don't really need to worry
+about what's in it.
 
-Okay, so we now have an exact copy of our online repo on our local
-machine. These two instances of the repo do not 'sync' automatically
-like Google Drive or Microsoft's OneDrive. If we make changes locally,
-they won't appear in our online GitHub repo until we explicitly 'push'
-them there. Equally, if a collaborator made changes to the GitHub repo,
-the changes won't appear locally until we 'pull' them down. This gives
-us complete control over when and how the contents of our repo changes.
-Let's explore how we push changes from the computer up to GitHub using
-Git now. This takes us through a few of the fundamental Git commands and
-concepts. First up: making a commit.
+We can clone any repo we have access to (i.e. if the repo is public, or we are
+a collaborator on a private repo) by running `git clone repo_url`. You'll need
+to do this to get the code for the assignment!
+
+Okay, so we now have an exact copy of our online repo on our local machine.
+These two instances of the repo do not 'sync' automatically like Google Drive
+or Microsoft's OneDrive. If we make changes locally, they won't appear in our
+online GitHub repo until we explicitly 'push' them there. Equally, if a
+collaborator made changes to the GitHub repo, the changes won't appear locally
+until we 'pull' them down. This gives us complete control over when and how
+the contents of our repo changes.  Let's explore how we push changes from the
+computer up to GitHub using Git now. This takes us through a few of the
+fundamental Git commands and concepts. First up: making a commit.
 
 # Making your first commit
 
-1.  When you have `cd`'ed into your repo, type
-    `git status` and hit enter. Git tells us that we are on the
-    master branch (more on this in future weeks) and that there is
-    nothing to commit, and our working directory is clean. This is Git
-    telling us that all is well -- we have not made any changes to the
-    contents of our new repo.
+When you have `cd`'ed into your repo, type `git status` and hit enter. Git
+tells us that we are on the master branch (more on this in future weeks) and
+that there is nothing to commit, and our working directory is clean.  This is
+Git telling us that all is well -- we have not made any changes to the
+contents of our new repo.
 
-2.  Let's add a simple Python script to our repo. When inside your repo
-    directory, type `gedit welcome.py` and copy this very simple
-    script in there and save it:
+Let's add a simple Python script to our repo. When inside your repo directory,
+type `gedit welcome.py` and copy this very simple script in there and save it:
+```console
+#! /usr/bin/python3
+print("Welcome to my repository")
+```
+Type `ls` to see the new script, then try the command `git status` again.  You
+should see something like:
+```console
+$ git status
+ On branch master
+ Untracked files:
+   (use "git add <file>..." to include in what will be committed)
 
-        #! /usr/bin/python3
-        print("Welcome to my repository")
+  welcome.py
+nothing added to commit but untracked files present (use "git add" to track)
+```
+This essentially says that Git has noticed we have made a new file, but
+until we add it using `git add`, Git is not going to do anything with it.
 
-    Type `ls` to see the new script, then try the command
-    `git status` again. You should see something like:
+Get used to running `git status` after nearly every new command you enter to
+check what Git is seeing, as it tracks changes to files, new files, etc.
 
-        $ git status
-         On branch master
-         Untracked files:
-           (use "git add <file>..." to include in what will be committed)
-        
-          welcome.py
-        nothing added to commit but untracked files present (use "git add" to track)
+So let's take Git's advice and 'add' our new file. Enter the command `git add
+welcome.py`. Then try `git status` again. The output from Git now says there
+is one new file, welcome.py, which comes under 'Changes to be committed'.
 
-    This essentially says that Git has noticed we have made a new file,
-    but until we add it using `git add`, Git is not going to do
-    anything with it.
+A quick aside: each Git **commit** is a record of what files have changed
+since the previous commit. You can think of them as like snapshots of your
+repo, which you take regularly to keep a tracked history of how your repo has
+changed since it began. They form the foundation of Git's 'version control',
+and allow you to go back to a previous state of the repo by going back to a
+particular commit.
 
-3.  Get used to running `git status` after nearly every new
-    command you enter to check what Git is seeing, as it tracks changes
-    to files, new files, etc.
+Back to our file: by adding it, the file is now in the Git 'staging area'. The
+staging area is where we put the files that we wish to commit. So the files
+listed under 'Changes to be committed:' when we run `git status` are in the
+staging area.
 
-4.  So let's take Git's advice and 'add' our new file. Enter the command
-    `git add welcome.py`. Then try `git status` again. The
-    output from Git now says there is one new file, welcome.py, which
-    comes under 'Changes to be committed'.
+Once we are happy with the new / changed files which are in the staging area,
+we can make our commit. Type the following and you should see some similar
+output:
+```console
+$ git commit -m "Add a new welcome script"
+[master 60d6d24] Add a new welcome script
+Committer: Simon Webber <sw1850@it075705.wks.bris.ac.uk>
+1 file changed, 2 insertions(+)
+create mode 100644 welcome.py
+```
+The string after the `-m` flag is the commit message. It can be whatever you
+like, but it should be short, informative and usually worded like a command
+(e.g. starting with "Add \... \", "Change \... \", "Fix \... \"). When you
+look back at your commits the message will be included, so you should be able
+to understand what state your repo was in just by lokoing through recent
+commit messages. Notice also how Git gives a summary of what has changed: it
+tells us one file has been changed, and that in that file there have been 2
+'insertions'. Git keeps track of what has changed line-by-line, so these two
+insertions refer to the two lines of code we added in our script.
 
-5.  A quick aside: each Git **commit** is a record of what files have
-    changed since the previous commit. You can think of them as like
-    snapshots of your repo, which you take regularly to keep a tracked
-    history of how your repo has changed since it began. They form the
-    foundation of Git's 'version control', and allow you to go back to a
-    previous state of the repo by going back to a particular commit.
+So we've made our first commit! Next -- of course -- we try `git status`
+again. You will see something like this:
+```console
+$ git status
+ On branch master
+ Your branch is ahead of 'origin/master' by 1 commit.
+   (use "git push" to publish your local commits)
 
-6.  Back to our file: by adding it, the file is now in the Git 'staging
-    area'. The staging area is where we put the files that we wish to
-    commit. So the files listed under 'Changes to be committed:' when we
-    run `git status` are in the staging area.
-
-7.  Once we are happy with the new / changed files which are in the
-    staging area, we can make our commit. Type the following and you
-    should see some similar output:
-
-        $ git commit -m "Add a new welcome script"
-        [master 60d6d24] Add a new welcome script
-        Committer: Simon Webber <sw1850@it075705.wks.bris.ac.uk>
-        1 file changed, 2 insertions(+)
-        create mode 100644 welcome.py
-
-    The string after the `-m` flag is the commit message. It can
-    be whatever you like, but it should be short, informative and
-    usually worded like a command (e.g. starting with "Add \... \",
-    "Change \... \", "Fix \... \"). When you look back at your commits
-    the message will be included, so you should be able to understand
-    what state your repo was in just by lokoing through recent commit
-    messages. Notice also how Git gives a summary of what has changed:
-    it tells us one file has been changed, and that in that file there
-    have been 2 'insertions'. Git keeps track of what has changed
-    line-by-line, so these two insertions refer to the two lines of code
-    we added in our script.
-
-8.  So we've made our first commit! Next -- of course -- we try
-    `git status` again. You will see something like this:
-
-        $ git status
-         On branch master
-         Your branch is ahead of 'origin/master' by 1 commit.
-           (use "git push" to publish your local commits)
-        
-        nothing to commit, working directory clean
-
-    This tells us two important things: firstly that our local repo is
-    now ahead of our online repo (which by default is called
-    `origin/master`) by the one commit we just made; and also
-    that our working directory is once again 'clean'. This means there
-    are no further new changes which require committing as we haven't
-    changed anything since our most recent commit.
+nothing to commit, working directory clean
+```
+This tells us two important things: firstly that our local repo is
+now ahead of our online repo (which by default is called
+`origin/master`) by the one commit we just made; and also
+that our working directory is once again 'clean'. This means there
+are no further new changes which require committing as we haven't
+changed anything since our most recent commit.
 
 So the current state of our GitHub (remote) repo and our local repo are
 different: our local one contains our new welcome script and the remote one
@@ -252,107 +244,99 @@ but first we take a look at a few more important Git commands.
 
 # Viewing diffs and logs
 
-1.  Let's make some changes to our `welcome.py` script, and see
-    what Git can tell us about those changes. I updated mine to include
-    another print line following the previous one. Entering
-    `git status` we can see Git has seen the new changes, and
-    tells us there is a modified file which is not in the staging area.
+Let's make some changes to our `welcome.py` script, and see what Git can tell
+us about those changes. I updated mine to include another print line following
+the previous one. Entering `git status` we can see Git has seen the new
+changes, and tells us there is a modified file which is not in the staging
+area.
 
-2.  Now enter `git diff` and you should see output which looks
-    something like this:
+Now enter `git diff` and you should see output which looks something like
+this:
+```console
+$ git diff
+diff --git a/welcome.py b/welcome.py
+index 04b3760..2748ae8 100644
+--- a/welcome.py
++++ b/welcome.py
+@@ -1,2 +1,3 @@
+ #! /usr/bin/venv/python
+ print("Welcome to my repository")
++print("There isn't much here yet")
+```
+That's quite a lot of output even for a small file! The first line, starting
+with `diff` tells us the two files which the diff command is comparing:
+`a/welcome.py` and `b/welcome.py`. These are the two different versions of our
+script. Don't worry too much about the second line. The next two lines
+starting with `+++` and `---` are giving us a key to identify either file by.
+So changes to `a/welcome.py` will be marked with a plus symbol, and changes to
+`b/welcome.py` will be marked with a minus symbol. Next comes the main part of
+the diff, the 'diff chunks'. These tell us what is different between the two
+versions, and where the difference occurs.  The line with the `@` symbols is
+like a summary, and the lines after are the actual changes. Here, we can see
+that version `a/welcome.py` has an additional line, denoted by the `+` and the
+contents of the line.
 
-        $ git diff
-        diff --git a/welcome.py b/welcome.py
-        index 04b3760..2748ae8 100644
-        --- a/welcome.py
-        +++ b/welcome.py
-        @@ -1,2 +1,3 @@
-         #! /usr/bin/venv/python
-         print("Welcome to my repository")
-        +print("There isn't much here yet")
+**Exercise**: Try changing the file more and viewing the diff each time. What
+happens when you modify an existing line and run diff?
 
-    That's quite a lot of output even for a small file! The first line,
-    starting with `diff` tells us the two files which the diff
-    command is comparing: `a/welcome.py` and
-    `b/welcome.py`. These are the two different versions of our
-    script. Don't worry too much about the second line. The next two
-    lines starting with `+++` and `---` are giving us a
-    key to identify either file by. So changes to `a/welcome.py`
-    will be marked with a plus symbol, and changes to
-    `b/welcome.py` will be marked with a minus symbol. Next comes
-    the main part of the diff, the 'diff chunks'. These tell us what is
-    different between the two versions, and where the difference occurs.
-    The line with the `@` symbols is like a summary, and the
-    lines after are the actual changes. Here, we can see that version
-    `a/welcome.py` has an additional line, denoted by the
-    `+` and the contents of the line.
+The purpose of diffs will become clearer as your projects grow in size and as
+you begin to collaborate on code. It gives you an instant way of seeing, for
+example, changes a peer has made to a file since a previous commit -- even if
+that file is buried among hundreds of other files and folder in your repo. For
+now, concentrate on understanding the output it gives you!
 
-3.  **Exercise**: Try changing the file more and viewing the diff each
-    time. What happens when you modify an existing line and run diff?
+Also always make sure to run diff *before* making a commit, to make sure you
+aren't accidentally committing silly changes!
 
-4.  The purpose of diffs will become clearer as your projects grow in
-    size and as you begin to collaborate on code. It gives you an
-    instant way of seeing, for example, changes a peer has made to a
-    file since a previous commit -- even if that file is buried among
-    hundreds of other files and folder in your repo. For now,
-    concentrate on understanding the output it gives you!
+**Exercise:** Try changing an existing line and viewing the diff.  Can you see
+what I mean by Git working 'line-by-line'?
 
-5.  Also always make sure to run diff *before* making a commit, to make
-    sure you aren't accidentally committing silly changes!
+**Exercise:** Add a new file to your repo (it can be anything -- another
+Python script, or just a txt file). Then add and commit your changes, with a
+suitable commit message. Make sure you `git status` regularly, and ensure you
+understand *all* of what Git is telling you! Once you have committed these
+changes, try editing both files and then running `git diff`. Interpret this
+output. Also try `git diff welcome.py` to only see the diff for that file.
 
-6.  **Exercise:** Try changing an existing line and viewing the diff.
-    Can you see what I mean by Git working 'line-by-line'?
+Note, diffs are opened in a special terminal mode. If you have a line with
+just a colon on it that means there is more output to see, just hit enter to
+see it. To exit press the Q key.
 
-7.  **Exercise:** Add a new file to your repo (it can be anything --
-    another Python script, or just a txt file). Then add and commit your
-    changes, with a suitable commit message. Make sure you
-    `git status` regularly, and ensure you understand *all* of
-    what Git is telling you! Once you have committed these changes, try
-    editing both files and then running `git diff`. Interpret
-    this output. Also try `git diff welcome.py` to only see the
-    diff for that file.
-
-8.  Note, diffs are opened in a special terminal mode. If you have a
-    line with just a colon on it that means there is more output to see,
-    just hit enter to see it. To exit press the Q key.
-
-9.  Now you have made a few commits, try running the command
-    `git log`. This shows all of your previous commits, with the
-    commit message, who made the commit and when. If you make regular
-    commits the log should look like a timeline of changes to your repo.
-    In the future, we will look at how you can change which commit Git
-    is looking at, allowing you to go back in the timeline to the state
-    of the repo at previous commits in your code's log.
+Now you have made a few commits, try running the command `git log`. This shows
+all of your previous commits, with the commit message, who made the commit and
+when. If you make regular commits the log should look like a timeline of
+changes to your repo.  In the future, we will look at how you can change which
+commit Git is looking at, allowing you to go back in the timeline to the state
+of the repo at previous commits in your code's log.
 
 Now we have a repo with a bunch of new commits and changes on it. Let's look
 at how we now get those changes to our GitHub remote repo.
 
 ## Pushing our commits to github
 
-1.  Finally we are ready to push our commits up to our online repo.
-    Ensure your working tree is clean when you run `git status`,
-    and that it informs you that you are a few commits ahead of
-    `origin/master`.
+Finally we are ready to push our commits up to our online repo.  Ensure your
+working tree is clean when you run `git status`, and that it informs you that
+you are a few commits ahead of `origin/master`.
 
-2.  Run the command `git push`, and you will see some output
-    giving information on the upload.
+Run the command `git push`, and you will see some output giving information on
+the upload.
 
-3.  Check all of your commits have been pushed by running
-    `git status`, you should now see:
+Check all of your commits have been pushed by running `git status`, you should
+now see:
+```console
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
 
-        $ git status
-        On branch master
-        Your branch is up to date with 'origin/master'.
-        
-        nothing to commit, working tree clean
+nothing to commit, working tree clean
+```
+Now have a look at the changes online by going back to your repo's webpage.
+You will see your new files, and next to their filenames, the commit message
+belonging to the commit that they were last edited in. So if you did not
+change the README.md, it should still say 'Initial commit'. You can also click
+on the Commits tab and see all of your commits, similar to running the log
+command in the terminal.
 
-4.  Now have a look at the changes online by going back to your repo's
-    webpage. You will see your new files, and next to their filenames,
-    the commit message belonging to the commit that they were last
-    edited in. So if you did not change the README.md, it should still
-    say 'Initial commit'. You can also click on the Commits tab and see
-    all of your commits, similar to running the log command in the
-    terminal.
+So now both of your repos are up-to-date with each other.
 
-5.  So now both of your repos are up-to-date with each other.
-
+# That's all
