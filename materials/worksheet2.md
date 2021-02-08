@@ -339,7 +339,7 @@ command in the terminal.
 
 So now both of your repos are up-to-date with each other.
 
-# That's all
+## Round up
 
 At this point try playing around with it. Make changes to your code, commit
 the changes, push them etc. Check `git log`, `git status` etc. Try to
@@ -349,3 +349,13 @@ Check to see if you can see the changes on github.
 Try starting again: create a new repo on github, clone the repo, add files,
 commit them and push the commits up to github. Can you see your changes on
 github?
+
+Look at your repos on github. Explore the information that github has to show
+about them. Take a look at a more complicated repo like the
+[matplotlib repo](https://github.com/matplotlib/matplotlib).
+
+Finally share your repo with your TA (you will need to know their github
+username to do this). Go to your repo and click "settings" and then "manage
+access" and then "invite a collaborator".
+
+# That's all!
