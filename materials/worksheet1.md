@@ -467,8 +467,43 @@ function in `foo.py` will not run on that import line.)
 Essentially this allows your script to be either ran by itself, or imported
 elsewhere for its functions. This is another convention you should get used to
 doing yourself! Here's an example of a Python script which uses all of the
-above conventions. The code is in a file called `upper-lower.py` on
-Blackboard. Once you fully understand how it works, move on to the final task.
+above conventions. Once you fully understand how it works, move on to the
+final task.
+```python
+#!/usr/bin/env python3
+
+# A program which converts strings entered at the command line to upper or
+# lower case when the -upper or -lower are the
+
+import sys
+USAGE_MESSAGE = "Usage: ./upper-lower.py --mode word. Where --mode is either" \
+                "-upper, -lower or -capitalise"
+
+def print_usage():
+    print(USAGE_MESSAGE)
+    quit()
+
+# Make the first letter a capital, and all of the rest lower case
+def capitalise(msg):
+    return(msg[0].upper() + msg[1:].lower())
+
+def main(args):
+    if len(args) != 2:
+        print_usage()
+    mode = args[0]
+    message = args[1]
+    if mode == '-upper':
+        print("Converted to upper case: ", message.upper())
+    elif mode == '-lower':
+        print("Converted to lower case: ", message.lower())
+    elif mode == '-capitalise':
+        print("Capitalised: ", capitalise(message))
+    else:
+        print_usage()
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
+```
 
 # Task: Writing a program using command line arguments
 
