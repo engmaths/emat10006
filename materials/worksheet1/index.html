@@ -170,7 +170,7 @@ foo
 
 <span class=hljs-keyword >import</span> sys
 USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode word. Where --mode is either&quot;</span> \
-                <span class=hljs-string >&quot;-upper, -lower or -capitalise&quot;</span>
+                <span class=hljs-string >&quot;--upper, --lower or --capitalise&quot;</span>
 
 <span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >print_usage</span>():</span>
     print(USAGE_MESSAGE)
@@ -185,11 +185,11 @@ USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode wo
         print_usage()
     mode = args[<span class=hljs-number >0</span>]
     message = args[<span class=hljs-number >1</span>]
-    <span class=hljs-keyword >if</span> mode == <span class=hljs-string >&#x27;-upper&#x27;</span>:
+    <span class=hljs-keyword >if</span> mode == <span class=hljs-string >&#x27;--upper&#x27;</span>:
         print(<span class=hljs-string >&quot;Converted to upper case: &quot;</span>, message.upper())
-    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;-lower&#x27;</span>:
+    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;--lower&#x27;</span>:
         print(<span class=hljs-string >&quot;Converted to lower case: &quot;</span>, message.lower())
-    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;-capitalise&#x27;</span>:
+    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;--capitalise&#x27;</span>:
         print(<span class=hljs-string >&quot;Capitalised: &quot;</span>, capitalise(message))
     <span class=hljs-keyword >else</span>:
         print_usage()
