@@ -477,7 +477,7 @@ final task.
 
 import sys
 USAGE_MESSAGE = "Usage: ./upper-lower.py --mode word. Where --mode is either" \
-                "-upper, -lower or -capitalise"
+                "--upper, --lower or --capitalise"
 
 def print_usage():
     print(USAGE_MESSAGE)
@@ -492,11 +492,11 @@ def main(args):
         print_usage()
     mode = args[0]
     message = args[1]
-    if mode == '-upper':
+    if mode == '--upper':
         print("Converted to upper case: ", message.upper())
-    elif mode == '-lower':
+    elif mode == '--lower':
         print("Converted to lower case: ", message.lower())
-    elif mode == '-capitalise':
+    elif mode == '--capitalise':
         print("Capitalised: ", capitalise(message))
     else:
         print_usage()
