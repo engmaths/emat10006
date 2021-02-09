@@ -477,7 +477,7 @@ final task.
 
 import sys
 USAGE_MESSAGE = "Usage: ./upper-lower.py --mode word. Where --mode is either" \
-                "--upper, --lower or --capitalise"
+                " --upper, --lower or --capitalise"
 
 def print_usage():
     print(USAGE_MESSAGE)
