@@ -162,7 +162,40 @@ foo
 	main()</code></pre>
 <p>This says that the function called <code>main</code> will only be ran if a variable called <code>__name__</code> has the value <code>&#39;main&#39;</code>. Note that since this is the only code in the script not in a function, if <code>__name__</code> does not equal <code>&#39;main&#39;</code> then no further code will be executed.</p>
 <p>The primary reason for doing this will become clearer a bit later in the course, when we cover importing modules. But for those of you who can&#39;t wait until then here is a brief description: when the Python interpreter reads a source file it sets up a few variables first, before executing all the code. One of those variables is called <code>__name__</code>. If your module &#40;script&#41; is being ran as the main program &#40;e.g. <code>python foo.py</code> then this variable is set to <code>__name__ &#61; &#39;__main__&#39;</code>. Whereas if your module is being imported by another script, e.g. <code>bar.py</code> contains the line <code>import foo.py</code>, then the <code>__name__</code> is set to something else for <code>foo.py</code>. Therefore the conditional statement at the end only executes when your module is the one being ran. Only then will the main function in <code>foo.py</code> be ran. Otherwise the functions and stuff in <code>foo.py</code> will be callable in <code>bar.py</code> once it has been imported, but the main function in <code>foo.py</code> will not run on that import line.&#41;</p>
-<p>Essentially this allows your script to be either ran by itself, or imported elsewhere for its functions. This is another convention you should get used to doing yourself&#33; Here&#39;s an example of a Python script which uses all of the above conventions. The code is in a file called <code>upper-lower.py</code> on Blackboard. Once you fully understand how it works, move on to the final task.</p>
+<p>Essentially this allows your script to be either ran by itself, or imported elsewhere for its functions. This is another convention you should get used to doing yourself&#33; Here&#39;s an example of a Python script which uses all of the above conventions. Once you fully understand how it works, move on to the final task.</p>
+<pre><code class="python hljs"><span class=hljs-comment >#!/usr/bin/env python3</span>
+
+<span class=hljs-comment ># A program which converts strings entered at the command line to upper or</span>
+<span class=hljs-comment ># lower case when the -upper or -lower are the</span>
+
+<span class=hljs-keyword >import</span> sys
+USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode word. Where --mode is either&quot;</span> \
+                <span class=hljs-string >&quot;-upper, -lower or -capitalise&quot;</span>
+
+<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >print_usage</span>():</span>
+    print(USAGE_MESSAGE)
+    quit()
+
+<span class=hljs-comment ># Make the first letter a capital, and all of the rest lower case</span>
+<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >capitalise</span>(<span class=hljs-params >msg</span>):</span>
+    <span class=hljs-keyword >return</span>(msg[<span class=hljs-number >0</span>].upper() + msg[<span class=hljs-number >1</span>:].lower())
+
+<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >main</span>(<span class=hljs-params >args</span>):</span>
+    <span class=hljs-keyword >if</span> <span class=hljs-built_in >len</span>(args) != <span class=hljs-number >2</span>:
+        print_usage()
+    mode = args[<span class=hljs-number >0</span>]
+    message = args[<span class=hljs-number >1</span>]
+    <span class=hljs-keyword >if</span> mode == <span class=hljs-string >&#x27;-upper&#x27;</span>:
+        print(<span class=hljs-string >&quot;Converted to upper case: &quot;</span>, message.upper())
+    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;-lower&#x27;</span>:
+        print(<span class=hljs-string >&quot;Converted to lower case: &quot;</span>, message.lower())
+    <span class=hljs-keyword >elif</span> mode == <span class=hljs-string >&#x27;-capitalise&#x27;</span>:
+        print(<span class=hljs-string >&quot;Capitalised: &quot;</span>, capitalise(message))
+    <span class=hljs-keyword >else</span>:
+        print_usage()
+
+<span class=hljs-keyword >if</span> __name__ == <span class=hljs-string >&#x27;__main__&#x27;</span>:
+    main(sys.argv[<span class=hljs-number >1</span>:])</code></pre>
 <h1 id=task_writing_a_program_using_command_line_arguments ><a href="#task_writing_a_program_using_command_line_arguments">Task: Writing a program using command line arguments</a></h1>
 <p>Now for your first actual programming task of the unit&#33; Unlike with the Intro to Programming unit, your assignments on this unit will require you to adhere very closely to an assignment specification. This means, for example, that your file names should be exactly as specified, and the arguments your program takes and outputs it gives must be precisely as they are asked for. This is how it would be for a real software engineer. This short task lets you practice this, as well as the topics we&#39;ve covered this week before your first assignment next week.</p>
 <p>Write a program called <code>averages.py</code> that can calculate the mean, median and mode of some data.</p>
@@ -198,7 +231,7 @@ foo
 <p>Before you start writing, think carefully about the control flow of your program, and how to deal with the variety of different combinations of inputs. You should also make sure you use functions to organise the code. As a <em>minimum</em> it should have a main function then one function each for the mean, median and mode calculations. Use this to help with efficiency: e.g. if the user specifies only the mode, don&#39;t bother calculating the mean or median.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: February 08, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: February 09, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
