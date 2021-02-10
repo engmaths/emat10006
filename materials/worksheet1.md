@@ -32,7 +32,7 @@ might look like:
 ```
 That means that in the terminal I should run:
 ```console
-$ export PATH="PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin"
+$ export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin"
 ```
 That will ensure that when I run `python` in the terminal it runs Python 3.
 
