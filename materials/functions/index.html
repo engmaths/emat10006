@@ -1,0 +1,151 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/katex/katex.min.css"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Functions &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=functions ><a href="#functions">Functions</a></h1> <h2 id=what_is_a_function ><a href="#what_is_a_function">What is a function?</a></h2> <p>Mathematically we understand the idea of a function like \(f(x) = x^2\). Here a function associates each element of the &quot;input&quot; set with an element from the &quot;output&quot; set, like \(f(2) = 4\) or \(f(3) = 9\). In Python we can create functions like this as well:</p> <pre><code class=language-python >def square&#40;x&#41;:
+    return x**2
+
+y &#61; square&#40;3&#41;
+
+print&#40;y&#41;  # prints 9</code></pre> <p>In the mathematical concept of a function all that matters is its &quot;output&quot;. However in programming we have a different concept of a function where the function can also <em>do</em> things. The statements in the function are <em>executed</em> and can have effects e.g.:</p> <pre><code class=language-python >def show_information&#40;&#41;:
+    print&#40;&quot;Important information&quot;&#41;
+
+show_information&#40;&#41;  # prints output</code></pre> <p>Here the function has no inputs or outputs. When we &quot;call&quot; the function information is printed out on the screen. A function like this with no &quot;output&quot; is obviously not like the mathematical concept of a function. In some programming languages this kind of function has a different name and is known as a &quot;procedure&quot; or &quot;subroutine&quot;. However in Python these are all just functions. A function that does not return anything is just considered to be a function that returns the special value <code>None</code> e.g.:</p> <pre><code class=language-python >&gt;&gt;&gt; z &#61; show_information&#40;&#41;
+Important information
+&gt;&gt;&gt; print&#40;z&#41;
+None</code></pre> <p>So the definition of a function in Python is really just that it is:</p> <ul> <li><p>A named block of code that can be called from elsewhere</p> <li><p>Has one or more parameters &#40;&quot;inputs&quot;&#41;</p> <li><p>Returns a value &#40;possibly <code>None</code>&#41; or raises an exception</p> </ul> <p>&#40;We will discuss exceptions later&#41;</p> <h2 id=why_functions ><a href="#why_functions">Why functions?</a></h2> <p>There are several reasons why functions are good:</p> <ul> <li><p>Modularisation: break up program into small pieces</p> <li><p>Good function names improve readability</p> <li><p>Reuse code</p> <li><p>Don&#39;t repeat yourself &#40;DRY&#41;</p> <li><p>One place to fix bugs</p> <li><p>Separation of concerns</p> </ul> <p>Let&#39;s consider each of these ideas in turn</p> <h2 id=example ><a href="#example">Example</a></h2> <p>Using functions makes it possible to break a large program into small pieces that are easier to understand separately. If I have a 1000 line program and there is a bug in the output of the function called <code>square</code> I know that I only need to look at the function <code>square</code> and any other functions it calls. I should not need to look through all of the code to find the problem.</p> <p>Breaking up parts of the program into functions also makes it possible to give each part a name and well-defined expected behaviour. Here is some code that calculates the factorial of <code>x</code>:</p> <pre><code class=language-python >x &#61; 3
+
+xfact &#61; 1
+while x &#33;&#61; 0:
+    xfact *&#61; x
+    x -&#61; 1
+
+print&#40;xfact&#41;</code></pre> <p>At the end of this loop <code>xfact</code> will be equal to the factorial of <code>x</code>. However if you saw that code on its own would you understand what it was?</p> <p>We can put this code into a function to make the intention clearer:</p> <pre><code class=language-python >def factorial&#40;x&#41;:
+    &quot;&quot;&quot;Computes x&#33; for any nonnegative integer x&quot;&quot;&quot;
+    xfact &#61; 1
+    while x &#33;&#61; 0:
+        xfact *&#61; x
+        x -&#61; 1
+    return xfact
+
+x &#61; 3
+xfact &#61; factorial&#40;x&#41;
+print&#40;xfact  # prints 6</code></pre> <p>Now that we have a function we can give it a name. Hopefully someone who sees <code>xfact &#61; factorial&#40;x&#41;</code> will know what that means without needing to actually go and look at the code <em>inside</em> the function. That makes the code that <em>uses</em> the function simpler and clearer.</p> <p><strong>NOTE</strong> It&#39;s important to focus on this point. The big advantage of using a function is that it makes the code easier to understand at the point where the function is <em>called</em>.</p> <p>If someone does go to look at the code for the <code>factorial</code> function then they will see that its scope is clearly defined: it is for integers and they must not be negative. In fact if you try the function above with <code>factorial&#40;-1&#41;</code> it will go into an infinite loop &#40;use Ctrl-C to interrupt Python from an infinite loop&#41;.</p> <p>Going into an infinite loop is not nice so we might try to improve that but the main point is that we should be clear what each function is designed for and what is intended to do. Here if someone writes <code>factorial&#40;-1&#41;</code> then we can say that it is a mistake to do that because the function is not designed for negative inputs.</p> <p>Compartmentalising the code in this way makes it possible to explain what each part is for, what it does and how it should be used.</p> <h2 id=dry_dont_repeat_yourself ><a href="#dry_dont_repeat_yourself">DRY: Don&#39;t repeat yourself</a></h2> <p>The DRY acronym is used often by programmers. The idea is that if you have the same code in multiple places throughout your program then problems can emerge. Let&#39;s consider an example:</p> <pre><code class=language-julia >x &#61; 3
+xfact &#61; 1
+while x &#33;&#61; 0:
+    xfact *&#61; x
+    x -&#61; 1
+
+z &#61; 5
+zfact &#61; 1
+while z &#33;&#61; 0:
+    zfact *&#61; z
+    z -&#61; 1</code></pre> <p>Here I&#39;ve copied the same code twice because I wanted to do the same thing twice. Now though what happens if I find a bug in that code? I will have to fix the bug in two places. That doesn&#39;t sound so hard except that I might not know all the places where the same code is being used throughout my codebase. If there is a bug in a function then I know that there will be only one place where that function is defined. I can fix the bug there and then all the places that call the function will get fixed at the same time.</p> <p>Clearly it would be much nicer to have a function and do:</p> <pre><code class=language-python >x &#61; 3
+xfact &#61; factorial&#40;x&#41;
+z &#61; 5
+zfact &#61; factorial&#40;z&#41;</code></pre> <p>Another point is that it is easier to check whether or not a function has a bug then it is for an arbitrary block of code. I can just call the function with different inputs:</p> <pre><code class=language-python >&gt;&gt;&gt; factorial&#40;3&#41;
+6
+&gt;&gt;&gt; factorial&#40;4&#41;
+24
+&gt;&gt;&gt; factorial&#40;2&#41;
+2
+&gt;&gt;&gt; factorial&#40;1&#41;
+1
+&gt;&gt;&gt; factorial&#40;0&#41;
+1</code></pre> <p>A pure function like this is defined only by what its inputs and outputs are. Nothing else needs to be considered.</p> <h2 id=types_of_functions ><a href="#types_of_functions">Types of functions</a></h2> <p>The simplest kind of function to reason about is a function like <code>factorial</code> above which is a <em>pure</em> function. We say that a function is pure if</p> <ul> <li><p>It will always return the same output when given the same input.</p> <li><p>Calling the function has no observable effect apart from returning the output.</p> </ul> <p>An example of a non-pure function would be the <code>show_information</code> function that I referred to above. Since that prints information on the screen it has an observable effect. If we were to call the function twice then it would result in the message being printed twice. With a pure function I never need to call it more than once with the same inputs.</p> <p>An example of a function that gives different outputs for the same inputs would be the <code>time</code> function. This function returns the current time as a number of seconds since Jan 1st 1970:</p> <pre><code class=language-python >&gt;&gt;&gt; from time import time
+&gt;&gt;&gt; time&#40;&#41;
+1613506295.333666
+&gt;&gt;&gt; time&#40;&#41;
+1613506296.163819</code></pre> <p>This is not a pure function since I can call it with the &quot;same&quot; inputs &#40;it has no inputs&#41; but I get different values as output. This kind of function is also more complicated to use. You have to think about exactly where in your program you want to call this function because it would e.g. give a different value at the beginning of your program than if it was called at the end.</p> <p>It is not possible to use only pure functions throughout a programme but you should try to put as much code as possible into pure functions. Of course every programme will need to have some output &#40;e.g. printing to the screen&#41; and that can not happen in a pure function. Generally it makes sense to separate the functions in your program into:</p> <ul> <li><p>Input functions</p> <li><p>Output functions</p> <li><p>Pure functions</p> </ul> <p>Here&#39;s an example program:</p> <pre><code class=language-python ># The main function often has to mix input and output
+def main&#40;infile, outfile&#41;:
+    &quot;&quot;&quot;
+    Read numbers from infile, double them and write the results to outfile.
+    &quot;&quot;&quot;
+    # input
+    numbers &#61; read_input_file&#40;infile&#41;
+    # processing
+    numbers &#61; double&#40;numbers&#41;
+    # output
+    write_output_file&#40;outfile&#41;
+
+# input function
+def read_input_file&#40;filename&#41;:
+    with open&#40;filename&#41; as inputfile:
+        numbers &#61; &#91;int&#40;line&#41; for line in inputfile&#93;
+    return numbers
+
+# output function
+def write_output_file&#40;filename, numbers&#41;:
+    with open&#40;filename, &#39;w&#39;&#41; as outputfile:
+        for number in numbers:
+            outputfile.write&#40;str&#40;number&#41; &#43; &#39;\n&#39;&#41;
+
+# pure function
+def double_numbers&#40;numbers&#41;:
+    return &#91;2*number for number in numbers&#93;
+
+
+if __name__ &#61;&#61; &quot;__main__&quot;:
+    import sys
+    args &#61; sys.argv&#91;1:&#93;
+    main&#40;*args&#41;</code></pre> <h2 id=naming_functions ><a href="#naming_functions">Naming functions</a></h2> <p>Function names should be considered carefully. Coming up with good names is hard in general but it is something that can improve your code more than anything else. The most important thing to think about a function name is whether someone will be able to understand what it does when looking at the function call:</p> <pre><code class=language-python ># Call func1
+var1 &#61; func1&#40;var2&#41;</code></pre> <p>Can you understand what that line of code does? Of course not&#33; The variable names <code>var1</code> and <code>var2</code> could refer to anything. The function name <code>func1</code> suggests that <code>func1</code> is a function but otherwise tells us nothing about what it does or what it returns or why it would be used.</p> <p>Now try reading this:</p> <pre><code class=language-python ># All components are equally weighted
+unit_mark &#61; average&#40;component_marks&#41;</code></pre> <p>Can you understand what this line of code does? It is at least possible with good variable and function names to extract some meaning from the code. Try reading your code out load: &quot;unit marks equals average of component marks&quot; reads almost like a meaningful sentence in English.</p> <p>Another point to note is about the way that comments can improve the readability of your code. Comments should not be used to make up for poorly written code:</p> <pre><code class=language-python ># x is the name and y is the number
+x &#61; f&#40;y&#41;</code></pre> <p>Rather than a comment give these better names and use comments to explain something that is important but not obvious from the code itself:</p> <pre><code class=language-julia ># Preferred name &#40;not the legal name&#41;
+name &#61; get_customer_name&#40;customer_number&#41;</code></pre> <h2 id=style_of_function_names ><a href="#style_of_function_names">Style of function names</a></h2> <p>The convention in Python is to used snake-case for function names e.g. <code>get_customer_name</code> rather than <code>getCustomerName</code> as is used in some other languages. In general function names should be long unless the function is very common. Core functions in a programming language often have short names because they are used a lot. For example we have names like <code>print</code>, <code>sum</code>, <code>len</code>, <code>str</code>, <code>int</code> etc. It makes sense to make these names short because:</p> <ul> <li><p>Everyone knows these functions &#40;every Python programmer has to learn them&#41;</p> <li><p>These functions are used a lot so giving them long names would make our code verbose.</p> </ul> <p>However these conditions are almost never met by a function that <em>you</em> will write in e.g. a student project. If a function only exists in one program and is only called in one or two places then it should definitely have a name that is long enough to make it clear what the function is doing.</p> <p>It&#39;s also important to think about the name grammatically:</p> <ul> <li><p>Function names can be nouns like <code>sum</code> which returns &quot;the sum&quot; of its inputs:</p> <pre><code>&gt;&gt;&gt; numbers &#61; &#91;1, 2, 3&#93;
+&gt;&gt;&gt; sum&#40;numbers&#41;
+6</code></pre> <li><p>Function names can be verbs like <code>print</code> which prints its inputs to the screen.</p> <pre><code>&gt;&gt;&gt; print&#40;&quot;hello&quot;&#41;
+hello</code></pre> <p>where the function name is a verb it should usually be in the imperative tense. It is a command from you the programmer to the computer so it should be <code>print</code> and <em>not</em> <code>prints</code> or <code>printing</code>.</p> <li><p>Function names can also be adjectives consider the difference here:</p> <pre><code>&gt;&gt;&gt; mylist &#61; &#91;3, 2, 1&#93;
+&gt;&gt;&gt; mylist.sort&#40;&#41;
+&gt;&gt;&gt; mylist
+&#91;1, 2, 3&#93;
+&gt;&gt;&gt; mylist2 &#61; sorted&#40;mylist&#41;</code></pre> <p>The <code>sort</code> method of lists sorts the list in place and does not return anything. It is therefore an action so we command the list to &quot;sort&quot; itself in the imperative tense. The <code>sorted</code> function returns a &quot;sorted&quot; version of the input list. The adjective <code>sorted</code> describes the object that is returned.</p> <li><p>Function names can be questions. It is common to make functions that return only either <code>True</code> or <code>False</code>. Such functions are very useful and the convention is to give them a name that resembles a question like:</p> <pre><code>def is_positive&#40;x&#41;:
+    &quot;&quot;&quot;True if x is positive, False otherwise&quot;&quot;&quot;
+    if x &gt; 0:
+        return True
+    else:
+        return False</code></pre> <p>Here we read this as &quot;is x positive&quot;? Other question names can begin with other words like <code>has_values</code>, <code>can_compute</code> and many more.</p> </ul> <h2 id=docstrings ><a href="#docstrings">Docstrings</a></h2> <p>When writing a function it is good practice to write a docstring. This is a string, usually written with triple quotes <code>&quot;&quot;&quot;</code> that is immediately after the function signature. This is used to</p> <ul> <li><p>explain what the function does</p> <li><p>explain what its parameters are</p> <li><p>explain what it returns</p> <li><p>show examples of usage</p> </ul> <p>Example:</p> <pre><code class=language-julia >def average&#40;numbers&#41;:
+    &quot;&quot;&quot;Returns average of numbers
+
+    &gt;&gt;&gt; average&#40;&#91;1, 2, 3&#93;&#41;
+    2.0
+
+    Parameters
+        numbers: a list of numbers &#40;e.g. &#96;int&#96; or &#96;float&#96;&#41;
+    Returns
+        average: mean of the numbers
+    &quot;&quot;&quot;
+    return sum&#40;numbers&#41; / len&#40;numbers&#41;</code></pre> <p>In real code it is quote common to have a docstring that is longer than the actual code in the function itself. If the docstring is well written then it should not be necessary to look at the actual code in order to understand what the function does and how to use it. An example of usage showing both input and output is extremely useful for helping someone to understand how to use it.</p> <h1 id=exceptions ><a href="#exceptions">Exceptions</a></h1> <p>Sometimes it isn&#39;t possible for a function to return anything reasonable given the inputs e.g. <code>factorial&#40;-1&#41;</code> or <code>int&#40;&quot;qwe&quot;&#41;</code>. Let&#39;s see what happens:</p> <pre><code class=language-python >&gt;&gt;&gt; number_string &#61; &quot;123&quot;
+&gt;&gt;&gt; number &#61; int&#40;number_string&#41;
+&gt;&gt;&gt; number
+123
+&gt;&gt;&gt; number_string &#61; &quot;hello&quot;
+&gt;&gt;&gt; number &#61; int&#40;number_string&#41;
+Traceback &#40;most recent call last&#41;:
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ValueError: invalid literal for int&#40;&#41; with base 10: &#39;hello&#39;</code></pre> <p>Here we use the <code>int</code> &quot;function&quot; to convert a string of digits into an integer. However if we pass in a string like <code>&quot;hello&quot;</code> then it isn&#39;t possible for <code>int</code> to return anything reasonable. It could return e.g. <code>None</code> but then we would have to check whether it returns <code>None</code> every time we call it e.g.:</p> <pre><code class=language-python >number &#61; int&#40;number_string&#41;
+if number is None:
+    print&#40;&#39;Bad input&#39;&#41;
+else:
+    # do something useful</code></pre> <p>We don&#39;t have to check because instead <code>int</code> refuses to return anything. It raises an exception instead. In this case the exception is of a particular type <code>ValueError</code> indicating that an incorrect value was passed to the function. This is useful because it means that we can write code that doesn&#39;t check the output of <code>int&#40;number_string&#41;</code>: it either returns a valid integer or it raises an exception.</p> <p>The exception stops our program altogether. If we do want to catch the exception then we can do that with <code>try/except</code> e.g.:</p> <pre><code class=language-python >while True:
+    # Ask the user to type in a string
+    string &#61; input&#40;&#39;Enter a number: &#39;&#41;
+    try:
+        number &#61; int&#40;string&#41;
+    except ValueError:
+        print&#40;&#39;That is not a number&#33;&#39;&#41;
+        continue  # goes back to the start of the loop
+    # If we got here then no exception was raised.
+    # Now number is a valid integer so exit the loop
+    break</code></pre> <p>Usually though it is better not to catch exceptions like this. Just let the program crash&#33; The exception is either because of a bug in your code or because your program has been run with invalid input. The simplest way to handle that is just for the program to crash and the error message to be printed out.</p> <p>While I would caution against trying to catch exceptions most of the time it is definitely good to raise exceptions for bad inputs. We can do that with <code>raise</code>. Let&#39;s use that to improve the <code>factorial</code> function:</p> <pre><code class=language-python >def factorial&#40;x&#41;:
+    &quot;&quot;&quot;Computes x&#33; for any nonnegative integer x&quot;&quot;&quot;
+    if not isinstance&#40;x, int&#41;:
+        raise TypeError&#40;&quot;x should be of type int&quot;&#41;
+    if x &lt; 0:
+        raise ValueError&#40;&quot;x should be nonnegative&quot;&#41;
+    xfact &#61; 1
+    while x &#33;&#61; 0:
+        xfact *&#61; x
+        x -&#61; 1
+    return xfact</code></pre> <p>Now if we try to compute <code>factorial&#40;-1&#41;</code> we will see:</p> <pre><code class=language-python >&gt;&gt;&gt; factorial&#40;-1&#41;
+Traceback &#40;most recent call last&#41;:
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;t.py&quot;, line 6, in factorial
+    raise ValueError&#40;&quot;x should be nonnegative&quot;&#41;
+ValueError: x should be nonnegative</code></pre> <p>An immediate error message is much nicer than an infinite loop&#33;</p> <p>What is printed out with the <code>ValueError</code> is called the &quot;stack trace&quot;. It shows what functions were being called when the error occurred. It shows that the error is raised from line 6 of the file <code>t.py</code> in the <code>factorial</code> function. This is useful information that allows me to investigate the cause of an error message like this if my program crashes.</p> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: February 17, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div> <script src="/emat10006/libs/katex/katex.min.js"></script> <script src="/emat10006/libs/katex/auto-render.min.js"></script> <script>renderMathInElement(document.body)</script> <script src="/emat10006/libs/highlight/highlight.pack.js"></script> <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: ' '});</script>
