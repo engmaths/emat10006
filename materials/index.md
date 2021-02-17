@@ -23,3 +23,9 @@ worksheet).
     https://web.microsoftstream.com/video/1138576c-6a80-4bb0-ad8d-c97dcef917ad)
 
 (See also the recording of the live session which will be on Blackboard)
+
+# Week 3 - Functions, exceptions and testing
+
+1. [Slides](slides3/)
+2. [Functions](functions/) - explanation of how to write good functions
+3. [Worksheet](worksheet3/)
