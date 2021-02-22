@@ -216,7 +216,7 @@ separate the functions in your program into:
 * Output functions
 * Pure functions
 
-Here's an example program:
+Here's a simple program showing this separation:
 ```python
 # The main function often has to mix input and output
 def main(infile, outfile):
@@ -228,7 +228,7 @@ def main(infile, outfile):
     # processing
     numbers = double(numbers)
     # output
-    write_output_file(outfile)
+    write_output_file(outfile, numbers)
 
 # input function
 def read_input_file(filename):
