@@ -1,6 +1,6 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Version control with git and github &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=version_control_with_git ><a href="#version_control_with_git">Version control with git</a></h1> <h2 id=outline ><a href="#outline">Outline</a></h2> <p>Topics:</p> <ul> <li><p>Version control</p> <li><p>Using git</p> <li><p>Github</p> </ul> <h1 id=git ><a href="#git">Git</a></h1> <ul> <li><p>Version control system</p> <li><p>Useful for collaborating on large codebases</p> <li><p>Originally for Linux code &#40;30 million lines&#41;</p> <li><p>Created by <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a></p> <li><p><a href="http://lkml.iu.edu/hypermail/linux/kernel/1707.3/02367.html">Rant</a></p> </ul> <h2 id=github ><a href="#github">Github</a></h2> <ul> <li><p>Provides a remote git server for free</p> <li><p>Has a web front-end for navigating the code</p> <li><p>Makes it easy to fork and open pull requests</p> <li><p>More on this later...</p> </ul> <h2 id=example_-_cpython ><a href="#example_-_cpython">Example - CPython</a></h2> <p>The code for Python itself is kept under version control using git and hosted on github:</p> <p><a href="https://github.com/python/cpython">https://github.com/python/cpython</a></p> <h2 id=start_a_git_project ><a href="#start_a_git_project">Start a git project</a></h2> <ul> <li><p>Create repo on Github</p> <li><p>Clone the repo</p> </ul> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git <span class=hljs-built_in >clone</span> https://github.com/myname/myrepo.git</span>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Version control with git and github &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=version_control_with_git ><a href="#version_control_with_git" class=header-anchor >Version control with git</a></h1> <h2 id=outline ><a href="#outline" class=header-anchor >Outline</a></h2> <p>Topics:</p> <ul> <li><p>Version control</p> <li><p>Using git</p> <li><p>Github</p> </ul> <h1 id=git ><a href="#git" class=header-anchor >Git</a></h1> <ul> <li><p>Version control system</p> <li><p>Useful for collaborating on large codebases</p> <li><p>Originally for Linux code &#40;30 million lines&#41;</p> <li><p>Created by <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a></p> <li><p><a href="http://lkml.iu.edu/hypermail/linux/kernel/1707.3/02367.html">Rant</a></p> </ul> <h2 id=github ><a href="#github" class=header-anchor >Github</a></h2> <ul> <li><p>Provides a remote git server for free</p> <li><p>Has a web front-end for navigating the code</p> <li><p>Makes it easy to fork and open pull requests</p> <li><p>More on this later...</p> </ul> <h2 id=example_-_cpython ><a href="#example_-_cpython" class=header-anchor >Example - CPython</a></h2> <p>The code for Python itself is kept under version control using git and hosted on github:</p> <p><a href="https://github.com/python/cpython">https://github.com/python/cpython</a></p> <h2 id=start_a_git_project ><a href="#start_a_git_project" class=header-anchor >Start a git project</a></h2> <ul> <li><p>Create repo on Github</p> <li><p>Clone the repo</p> </ul> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git <span class=hljs-built_in >clone</span> https://github.com/myname/myrepo.git</span>
 <span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >cd</span> myrepo</span>
-<span class=hljs-meta >$</span><span class=bash > git status</span></code></pre> <h2 id=change_the_code ><a href="#change_the_code">Change the code</a></h2> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git status       <span class=hljs-comment ># Check all clean</span></span>
+<span class=hljs-meta >$</span><span class=bash > git status</span></code></pre> <h2 id=change_the_code ><a href="#change_the_code" class=header-anchor >Change the code</a></h2> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git status       <span class=hljs-comment ># Check all clean</span></span>
 <span class=hljs-meta >$</span><span class=bash > gedit README.md  <span class=hljs-comment ># Make changes and save</span></span>
 <span class=hljs-meta >$</span><span class=bash > git status       <span class=hljs-comment ># Shows changed files</span></span>
 <span class=hljs-meta >$</span><span class=bash > git diff         <span class=hljs-comment ># Shows the changes</span></span></code></pre> <pre><code class="python hljs">diff --git a/t.py b/t.py
@@ -14,12 +14,12 @@ index c5d61cf..fbcc63c <span class=hljs-number >100644</span>
 -    <span class=hljs-keyword >return</span> y + z - x
 +    <span class=hljs-keyword >return</span> [y + z - x]
 
- <span class=hljs-comment ># here is some code</span></code></pre> <h2 id=commit_the_changes ><a href="#commit_the_changes">Commit the changes</a></h2> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git status</span>
+ <span class=hljs-comment ># here is some code</span></code></pre> <h2 id=commit_the_changes ><a href="#commit_the_changes" class=header-anchor >Commit the changes</a></h2> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git status</span>
 <span class=hljs-meta >$</span><span class=bash > git diff</span>
 <span class=hljs-meta >$</span><span class=bash > git add README.md   <span class=hljs-comment ># Tell git you want to commit</span></span>
-<span class=hljs-meta >$</span><span class=bash > git commit -m <span class=hljs-string >&quot;Add installation instructions in README&quot;</span></span></code></pre> <h2 id=commit_history ><a href="#commit_history">Commit history</a></h2> <p>Commits represent the history of your work</p> <pre><code class="julia hljs">initial commit -- A -- B -- C -- HEAD</code></pre>
+<span class=hljs-meta >$</span><span class=bash > git commit -m <span class=hljs-string >&quot;Add installation instructions in README&quot;</span></span></code></pre> <h2 id=commit_history ><a href="#commit_history" class=header-anchor >Commit history</a></h2> <p>Commits represent the history of your work</p> <pre><code class="julia hljs">initial commit -- A -- B -- C -- HEAD</code></pre>
 <p>Use <code>git log</code> to see the history &#40;or look on github&#41;</p>
-<h2 id=committing ><a href="#committing">Committing</a></h2>
+<h2 id=committing ><a href="#committing" class=header-anchor >Committing</a></h2>
 <ul>
 <li><p>Always check &#40;<code>status/diff</code>&#41; before committing.</p>
 
@@ -30,7 +30,7 @@ index c5d61cf..fbcc63c <span class=hljs-number >100644</span>
 <li><p>Use good commit messages</p>
 
 </ul>
-<h2 id=pushpull ><a href="#pushpull">Push/pull</a></h2>
+<h2 id=pushpull ><a href="#pushpull" class=header-anchor >Push/pull</a></h2>
 <ul>
 <li><p>Git stores commits in the <code>.git</code> folder.</p>
 
@@ -42,7 +42,7 @@ index c5d61cf..fbcc63c <span class=hljs-number >100644</span>
 <span class=hljs-meta >$</span><span class=bash > git push</span></code></pre>
 <p>Get changes <em>from</em> github:</p>
 <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git pull</span></code></pre>
-<h2 id=pushpull__2 ><a href="#pushpull__2">Push/pull</a></h2>
+<h2 id=pushpull__2 ><a href="#pushpull__2" class=header-anchor >Push/pull</a></h2>
 <p>Send commits to and from github</p>
 <pre><code class="julia hljs">push/pull
                                push
@@ -50,7 +50,7 @@ index c5d61cf..fbcc63c <span class=hljs-number >100644</span>
           your computer                    github
                            &lt;-----------
                                pull</code></pre>
-<h2 id=git__2 ><a href="#git__2">Git</a></h2>
+<h2 id=git__2 ><a href="#git__2" class=header-anchor >Git</a></h2>
 <ul>
 <li><p>Stores every commit forever</p>
 
@@ -61,10 +61,10 @@ index c5d61cf..fbcc63c <span class=hljs-number >100644</span>
 <li><p>Use <code>git checkout master</code> to get to latest commit</p>
 
 </ul>
-<h1 id=thats_all ><a href="#thats_all">That&#39;s all</a></h1>
+<h1 id=thats_all ><a href="#thats_all" class=header-anchor >That&#39;s all</a></h1>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: February 17, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: February 22, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
