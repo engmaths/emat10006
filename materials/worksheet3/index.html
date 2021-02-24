@@ -189,13 +189,15 @@ False</code></pre>
 
 <li><p>The <code>integer_roots&#40;p&#41;</code> function returns the integer roots of the polynomial \(p(x)\). This works using the <a href="https://en.wikipedia.org/wiki/Rational_root_theorem">rational root theorem</a>. A simple observation is that given e.g. a polynomial \(ax^3 + bx^2 + cx + d\) then any integer root must satisfy \(|x| \le |d|\). So if for example \(d\) is 4 then the only possibilities for integer roots are \(\{-4,-3,-2,-1,0,1,2,3,4\}\). We can test each of these possibilities in a loop to see if any is a root &#40;using the <code>is_root</code> function&#41;.</p>
 
+<li><p>Some of the tests check that a particular exception is being raised by a function for particular inputs. To make those tests pass you will need to add <code>raise BadPolynomialError</code> in those functions.</p>
+
 </ul>
 <p>See the tests for more examples. Add the code for those functions so that the tests pass. Some of the tests use the <code>pyest</code> function <code>raises</code>. This is used to check that calling the function with those arguments raises a particular error. You will need to test for those cases and use something like</p>
 <pre><code class=language-julia >raise BadPolynomialError&#40;&quot;Polynomial should be a list of coefficients&quot;&#41;</code></pre>
 <p>The final program should be able to find the integer roots of a polynomial when run from the command line.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: February 22, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: February 24, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
