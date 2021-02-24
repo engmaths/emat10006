@@ -327,6 +327,9 @@ functions need to be implemented:
   only possibilities for integer roots are $\{-4,-3,-2,-1,0,1,2,3,4\}$. We can
   test each of these possibilities in a loop to see if any is a root (using
   the `is_root` function).
+* Some of the tests check that a particular exception is being raised by a
+  function for particular inputs. To make those tests pass you will need to
+  add `raise BadPolynomialError` in those functions.
 
 See the tests for more examples. Add the code for those functions so that the
 tests pass. Some of the tests use the `pyest` function `raises`. This is used

@@ -28,4 +28,5 @@ worksheet).
 
 1. [Slides](slides3/)
 2. [Functions](functions/) - explanation of how to write good functions
+2. [Exceptions](exceptions/) - using exceptions
 3. [Worksheet](worksheet3/)
