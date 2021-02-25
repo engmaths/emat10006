@@ -326,6 +326,50 @@ $ python plot_sin.py
 You should see a window like this appear:
 ![Sin plot](plot_sin.svg)
 
+Using numpy arrays
+==================
+
+Above creating the lists of `x` and `y` values is awkward. We can use `numpy`
+to make that more convenient. Numpy gives us an array class that we can use to
+quickly apply mathematical functions to lost of values e.g.:
+```python
+>>> import numpy as np
+>>> x = np.array([1, 2, 3, 4])
+>>> x
+array([1, 2, 3, 4])
+>>> x + x
+array([2, 4, 6, 8])
+```
+Numpy also gives as mathematical functions that can operate on the elements of
+arrays:
+```python
+>>> y = np.sin(x)
+>>> y
+array([ 0.84147098,  0.90929743,  0.14112001, -0.7568025 ])
+```
+The `arange` function is like the Python `range` function but it gives us an
+array. Here we can create an array of numbers from `0` to `10` in steps of
+`1.5`:
+```python
+>>> np.arange(0, 10, 1.5)
+array([0. , 1.5, 3. , 4.5, 6. , 7.5, 9. ])
+```
+The `linspace` function can be used to get an array with a fixed number of
+points between two values. Here we create an array of 9 values from `0` to
+`10`:
+```python
+>>> np.linspace(0, 10, 9)
+array([ 0.  ,  1.25,  2.5 ,  3.75,  5.  ,  6.25,  7.5 ,  8.75, 10.  ])
+```
+Using all these the plotting example above can be just:
+```python
+x = np.linspace(0, 20, 300)
+y = np.sin(x)
+plt.plot(x, y)
+```
+You can find plenty more information about `numpy` arrays here:
+<https://numpy.org/doc/stable/user/quickstart.html>
+
 More advanced plotting
 ======================
 
@@ -366,7 +410,8 @@ plt.show()
 You should see a window like this appear:
 ![Sin/cos plot](axplot.svg)
 
-## More plotting!
+More plotting!
+==============
 
 Here's another program that creates four plots:
 ```python
@@ -405,4 +450,4 @@ If you run this you should see:
 **Exercise**: play around with these examples and try out different kinds of
 plots. You can find many more examples here:
 <https://matplotlib.org/stable/tutorials/introductory/sample_plots.html>
-(Many of the examples use numpy functions that we will discuss more later...)
+(Click on any of the images to see the code that makes the plot.)
