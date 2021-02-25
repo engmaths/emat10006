@@ -34,3 +34,8 @@ worksheet).
 # Week 4 - Push/pull and matplotlib
 
 1. [Worksheet](worksheet4/)
+
+External links (for more information - you don't need to read everything!):
+
+1. [matplotlib](https://matplotlib.org/stable/gallery/index.html)
+2. [numpy](https://numpy.org/doc/stable/user/quickstart.html)
