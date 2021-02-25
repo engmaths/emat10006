@@ -361,7 +361,8 @@ points between two values. Here we create an array of 9 values from `0` to
 >>> np.linspace(0, 10, 9)
 array([ 0.  ,  1.25,  2.5 ,  3.75,  5.  ,  6.25,  7.5 ,  8.75, 10.  ])
 ```
-Using all these the plotting example above can be just:
+We can use numpy arrays directly with matplotlib. Using all these the plotting
+example above can be just:
 ```python
 x = np.linspace(0, 20, 300)
 y = np.sin(x)
@@ -375,12 +376,13 @@ More advanced plotting
 
 When we use `plt.plot` what happens is that a "figure" with an "axes" is
 created implicitly. For more advanced plotting it is better to create these
-explicitly yourself e.g.:
+explicitly yourself. That makes it possible to create a figure with multiple
+axes e.g.:
 ```python
 # axplot.py
 
 import matplotlib.pyplot as plt
-from math import sin, cos
+import numpy as np
 
 #
 # Create a figure (a window)
@@ -393,9 +395,9 @@ ax_left = fig.add_subplot(1, 2, 1)
 ax_right = fig.add_subplot(1, 2, 2)
 
 # x values [0, 0.05, 0.10, ...]
-x = [i*0.05 for i in range(300)]
-sinx = [sin(xi) for xi in x]
-cosx = [cos(xi) for xi in x]
+x = np.linspace(0, 15, 300)
+sinx = np.sin(xi)
+cosx = np.cos(xi)
 
 # Plot sinx on the left
 ax_left.plot(x, sinx, color='green', linewidth=3)
@@ -418,7 +420,7 @@ Here's another program that creates four plots:
 # axplot2.py
 
 import matplotlib.pyplot as plt
-from math import exp
+import numpy as np
 
 fig = plt.figure(figsize=(6, 6))
 ax_upper_left = fig.add_subplot(2, 2, 1)
@@ -427,8 +429,8 @@ ax_lower_left = fig.add_subplot(2, 2, 3)
 ax_lower_right = fig.add_subplot(2, 2, 4)
 
 # x values [0, 0.05, 0.10, ...]
-x = [i*0.5 for i in range(20)]
-expx = [exp(xi) for xi in x]
+x = np.linspace(0, 10, 21)
+expx = np.exp(x)  # exponential function
 
 # line plot
 ax_upper_left.plot(x, expx)
