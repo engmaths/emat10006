@@ -133,17 +133,17 @@ array([<span class=hljs-number >0.</span> , <span class=hljs-number >1.5</span>,
 <p>The <code>linspace</code> function can be used to get an array with a fixed number of points between two values. Here we create an array of 9 values from <code>0</code> to <code>10</code>:</p>
 <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >9</span>)
 array([ <span class=hljs-number >0.</span>  ,  <span class=hljs-number >1.25</span>,  <span class=hljs-number >2.5</span> ,  <span class=hljs-number >3.75</span>,  <span class=hljs-number >5.</span>  ,  <span class=hljs-number >6.25</span>,  <span class=hljs-number >7.5</span> ,  <span class=hljs-number >8.75</span>, <span class=hljs-number >10.</span>  ])</code></pre>
-<p>Using all these the plotting example above can be just:</p>
+<p>We can use numpy arrays directly with matplotlib. Using all these the plotting example above can be just:</p>
 <pre><code class="python hljs">x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >20</span>, <span class=hljs-number >300</span>)
 y = np.sin(x)
 plt.plot(x, y)</code></pre>
 <p>You can find plenty more information about <code>numpy</code> arrays here: <a href="https://numpy.org/doc/stable/user/quickstart.html">https://numpy.org/doc/stable/user/quickstart.html</a></p>
 <h1>More advanced plotting</h1>
-<p>When we use <code>plt.plot</code> what happens is that a &quot;figure&quot; with an &quot;axes&quot; is created implicitly. For more advanced plotting it is better to create these explicitly yourself e.g.:</p>
+<p>When we use <code>plt.plot</code> what happens is that a &quot;figure&quot; with an &quot;axes&quot; is created implicitly. For more advanced plotting it is better to create these explicitly yourself. That makes it possible to create a figure with multiple axes e.g.:</p>
 <pre><code class="python hljs"><span class=hljs-comment ># axplot.py</span>
 
 <span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
-<span class=hljs-keyword >from</span> math <span class=hljs-keyword >import</span> sin, cos
+<span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
 
 <span class=hljs-comment >#</span>
 <span class=hljs-comment ># Create a figure (a window)</span>
@@ -156,9 +156,9 @@ ax_left = fig.add_subplot(<span class=hljs-number >1</span>, <span class=hljs-nu
 ax_right = fig.add_subplot(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >2</span>)
 
 <span class=hljs-comment ># x values [0, 0.05, 0.10, ...]</span>
-x = [i*<span class=hljs-number >0.05</span> <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-built_in >range</span>(<span class=hljs-number >300</span>)]
-sinx = [sin(xi) <span class=hljs-keyword >for</span> xi <span class=hljs-keyword >in</span> x]
-cosx = [cos(xi) <span class=hljs-keyword >for</span> xi <span class=hljs-keyword >in</span> x]
+x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >15</span>, <span class=hljs-number >300</span>)
+sinx = np.sin(xi)
+cosx = np.cos(xi)
 
 <span class=hljs-comment ># Plot sinx on the left</span>
 ax_left.plot(x, sinx, color=<span class=hljs-string >&#x27;green&#x27;</span>, linewidth=<span class=hljs-number >3</span>)
@@ -175,7 +175,7 @@ plt.show()</code></pre>
 <pre><code class="python hljs"><span class=hljs-comment ># axplot2.py</span>
 
 <span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
-<span class=hljs-keyword >from</span> math <span class=hljs-keyword >import</span> exp
+<span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
 
 fig = plt.figure(figsize=(<span class=hljs-number >6</span>, <span class=hljs-number >6</span>))
 ax_upper_left = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >1</span>)
@@ -184,8 +184,8 @@ ax_lower_left = fig.add_subplot(<span class=hljs-number >2</span>, <span class=h
 ax_lower_right = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >4</span>)
 
 <span class=hljs-comment ># x values [0, 0.05, 0.10, ...]</span>
-x = [i*<span class=hljs-number >0.5</span> <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-built_in >range</span>(<span class=hljs-number >20</span>)]
-expx = [exp(xi) <span class=hljs-keyword >for</span> xi <span class=hljs-keyword >in</span> x]
+x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >21</span>)
+expx = np.exp(x)  <span class=hljs-comment ># exponential function</span>
 
 <span class=hljs-comment ># line plot</span>
 ax_upper_left.plot(x, expx)
