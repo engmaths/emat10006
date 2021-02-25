@@ -1,4 +1,4 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>More plotting&#33; &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><p>EMAT10006: Further Computer Programming</p> <p>Week 4 – Git in Pairs, Matplotlib and Numpy</p> <hr /> <p>For this week&#39;s worksheet, and the second assignment, you will need to work with one or two partners which should be someone from your TA group.</p> <p>In this worksheet we will</p> <ol> <li><p>learning how to work with a partner with git</p> <li><p>learn how to do plotting with matplotlib</p> </ol> <h1>Quick demo of plotting</h1> <p>We&#39;ll get more on to plotting in the second half of the worksheet. Here is a quick demonstration though. This should give you a starting piece of code that you can use while working through the push/pull exercises below.</p> <p>If you have matplotlib and numpy installed &#40;install them with pip if you don&#39;t&#41; then you can use the following to create a plot that you can see on the screen:</p> <pre><code class="python hljs"><span class=hljs-comment ># plot.py</span>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title> &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><p>EMAT10006: Further Computer Programming</p> <p>Week 4 – Git in Pairs, Matplotlib and Numpy</p> <hr /> <p>For this week&#39;s worksheet, and the second assignment, you will need to work with one or two partners which should be someone from your TA group.</p> <p>In this worksheet we will</p> <ol> <li><p>learning how to work with a partner with git</p> <li><p>learn how to do plotting with matplotlib</p> </ol> <h1>Quick demo of plotting</h1> <p>We&#39;ll get more on to plotting in the second half of the worksheet. Here is a quick demonstration though. This should give you a starting piece of code that you can use while working through the push/pull exercises below.</p> <p>If you have matplotlib and numpy installed &#40;install them with pip if you don&#39;t&#41; then you can use the following to create a plot that you can see on the screen:</p> <pre><code class="python hljs"><span class=hljs-comment ># plot.py</span>
 
 <span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
 
@@ -115,6 +115,29 @@ plt.show()</code></pre>
 <p>You can run that with</p>
 <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python plot_sin.py</span></code></pre>
 <p>You should see a window like this appear: <img src=plot_sin.svg  alt="Sin plot" /></p>
+<h1>Using numpy arrays</h1>
+<p>Above creating the lists of <code>x</code> and <code>y</code> values is awkward. We can use <code>numpy</code> to make that more convenient. Numpy gives us an array class that we can use to quickly apply mathematical functions to lost of values e.g.:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
+<span class=hljs-meta >&gt;&gt;&gt; </span>x = np.array([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>])
+<span class=hljs-meta >&gt;&gt;&gt; </span>x
+array([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>])
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + x
+array([<span class=hljs-number >2</span>, <span class=hljs-number >4</span>, <span class=hljs-number >6</span>, <span class=hljs-number >8</span>])</code></pre>
+<p>Numpy also gives as mathematical functions that can operate on the elements of arrays:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>y = np.sin(x)
+<span class=hljs-meta >&gt;&gt;&gt; </span>y
+array([ <span class=hljs-number >0.84147098</span>,  <span class=hljs-number >0.90929743</span>,  <span class=hljs-number >0.14112001</span>, -<span class=hljs-number >0.7568025</span> ])</code></pre>
+<p>The <code>arange</code> function is like the Python <code>range</code> function but it gives us an array. Here we can create an array of numbers from <code>0</code> to <code>10</code> in steps of <code>1.5</code>:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>np.arange(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >1.5</span>)
+array([<span class=hljs-number >0.</span> , <span class=hljs-number >1.5</span>, <span class=hljs-number >3.</span> , <span class=hljs-number >4.5</span>, <span class=hljs-number >6.</span> , <span class=hljs-number >7.5</span>, <span class=hljs-number >9.</span> ])</code></pre>
+<p>The <code>linspace</code> function can be used to get an array with a fixed number of points between two values. Here we create an array of 9 values from <code>0</code> to <code>10</code>:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >9</span>)
+array([ <span class=hljs-number >0.</span>  ,  <span class=hljs-number >1.25</span>,  <span class=hljs-number >2.5</span> ,  <span class=hljs-number >3.75</span>,  <span class=hljs-number >5.</span>  ,  <span class=hljs-number >6.25</span>,  <span class=hljs-number >7.5</span> ,  <span class=hljs-number >8.75</span>, <span class=hljs-number >10.</span>  ])</code></pre>
+<p>Using all these the plotting example above can be just:</p>
+<pre><code class="python hljs">x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >20</span>, <span class=hljs-number >300</span>)
+y = np.sin(x)
+plt.plot(x, y)</code></pre>
+<p>You can find plenty more information about <code>numpy</code> arrays here: <a href="https://numpy.org/doc/stable/user/quickstart.html">https://numpy.org/doc/stable/user/quickstart.html</a></p>
 <h1>More advanced plotting</h1>
 <p>When we use <code>plt.plot</code> what happens is that a &quot;figure&quot; with an &quot;axes&quot; is created implicitly. For more advanced plotting it is better to create these explicitly yourself e.g.:</p>
 <pre><code class="python hljs"><span class=hljs-comment ># axplot.py</span>
@@ -147,7 +170,7 @@ ax_right.set_title(<span class=hljs-string >&#x27;Plot of cos(x)&#x27;</span>)
 
 plt.show()</code></pre>
 <p>You should see a window like this appear: <img src=axplot.svg  alt="Sin/cos plot" /></p>
-<h2 id=more_plotting ><a href="#more_plotting" class=header-anchor >More plotting&#33;</a></h2>
+<h1>More plotting&#33;</h1>
 <p>Here&#39;s another program that creates four plots:</p>
 <pre><code class="python hljs"><span class=hljs-comment ># axplot2.py</span>
 
@@ -178,7 +201,7 @@ ax_lower_right.scatter(x, expx)
 
 plt.show()</code></pre>
 <p>If you run this you should see: <img src=axplot2.svg  alt="Exp plot" /></p>
-<p><strong>Exercise</strong>: play around with these examples and try out different kinds of plots. You can find many more examples here: <a href="https://matplotlib.org/stable/tutorials/introductory/sample_plots.html">https://matplotlib.org/stable/tutorials/introductory/sample_plots.html</a> &#40;Many of the examples use numpy functions that we will discuss more later...&#41;</p>
+<p><strong>Exercise</strong>: play around with these examples and try out different kinds of plots. You can find many more examples here: <a href="https://matplotlib.org/stable/tutorials/introductory/sample_plots.html">https://matplotlib.org/stable/tutorials/introductory/sample_plots.html</a> &#40;Click on any of the images to see the code that makes the plot.&#41;</p>
 <div class=page-foot >
   <div class=copyright >
     &copy; Oscar Benjamin. Last modified: February 25, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
