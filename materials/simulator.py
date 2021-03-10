@@ -6,7 +6,7 @@ Oscar Benjamin
 March 2021
 
 This script runs simulations of an epidemic (e.g. coronavirus) spreading
-around a 2-dimensional grid. The script can be used to:
+around people on a 2-dimensional grid. The script can be used to:
 
     1. Show an animation of the simulation on screen
     2. Create a video of a simulation
@@ -48,10 +48,6 @@ def main(*args):
     $ python simulator.py --plot                 # show plot on screen
     $ python simulator.py --plot --file=plot.pdf # save plot to pdf
 
-    For other options see
-
-    $ python simulator.py --help
-
     """
     #
     # Use argparse to handle parsing the command line arguments.
@@ -76,7 +72,7 @@ def main(*args):
                         help='Filename to save to instead of showing on screen')
     args = parser.parse_args(args)
 
-    # Parameters of the simulation:
+    # Set up the simulation
     simulation = Simulation(args.size, args.size,
                             args.recovery, args.infection, args.death)
     simulation.infect_randomly(args.cases)
@@ -202,6 +198,7 @@ class Simulation:
 
     """
 
+    # Status codes to store in the numpy array representing the state.
     SUSCEPTIBLE = 0
     INFECTED = 1
     RECOVERED = 2
@@ -227,24 +224,32 @@ class Simulation:
     }
 
     def __init__(self, width, height, recovery, infection, death):
+        # Basic simulation parameters:
         self.day = 0
         self.width = width
         self.height = height
         self.recovery_probability = recovery
         self.infection_probability = infection
         self.death_probability = death
+
+        # Initial state (everyone susceptible)
         self.state = np.zeros((width, height), int)
         self.state[:, :] = self.SUSCEPTIBLE
 
     def infect_randomly(self, num):
-        """Chose num people randomly and make them infected"""
+        """Choose num people randomly and make them infected"""
         for n in range(num):
+            # Choose a random x, y coordinate and make that person infected
+            # NOTE: This might select the same person twice...
             i = randint(self.width)
             j = randint(self.height)
             self.state[i, j] = self.INFECTED
 
     def update(self):
         """Advance the simulation by one day"""
+        # Use a copy of the old state to store the new state so that e.g. if
+        # someone recovers but was infected yesterday their neighbours might
+        # still become infected today.
         old_state = self.state
         new_state = old_state.copy()
         for i in range(self.width):
@@ -256,31 +261,44 @@ class Simulation:
     def get_new_status(self, state, i, j):
         """Compute new status for person at i, j in the grid"""
         status = state[i, j]
+
+        # Update infected person
         if status == self.INFECTED:
             if self.recovery_probability > random():
                 return self.RECOVERED
             elif self.death_probability > random():
                 return self.DEAD
+
+        # Update susceptible person
         elif status == self.SUSCEPTIBLE:
             num = self.num_infected_around(state, i, j)
             if num * self.infection_probability > random():
                 return self.INFECTED
+
+        # Return the old status (e.g. DEAD/RECOVERED)
         return status
 
     def num_infected_around(self, state, i, j):
         """Count the number of infected people around person i, j"""
+
+        # Need to be careful about people at the edge of the grid.
+        # ivals and jvals are the coordinates of neighbours around i, j
         ivals = range(max(i-1, 0), min(i+2, self.width))
         jvals = range(max(j-1, 0), min(j+2, self.height))
         number = 0
         for ip in ivals:
             for jp in jvals:
+                # Don't count self as a neighbour
                 if (ip, jp) != (i, j):
                     if state[ip, jp] == self.INFECTED:
                         number += 1
+
         return number
 
     def get_percentage_status(self):
         """Dict giving percentage of people in each statue"""
+
+        # NOTE: Maybe it's better to return counts rather than percentages...
         simgrid = self.state
         total = self.width * self.height
         percentages = {}
@@ -352,6 +370,8 @@ class Animation:
 
     def save(self, filename):
         """Run the animation and save to a video"""
+
+        # NOTE: needs ffmpeg installed and on PATH
         animation = FuncAnimation(self.figure, self.update, frames=range(100),
                 init_func = self.init, blit=True, interval=300)
         animation.save(filename, fps=30, extra_args=['-vcodec', 'libx264'])
@@ -359,6 +379,8 @@ class Animation:
 
     def init(self):
         """Initialise the animation (called by FuncAnimation)"""
+        # We could generalise this to a loop and then it would work for any
+        # numer of *animation objects.
         actors = []
         actors += self.gridanimation.init()
         actors += self.lineanimation.init()
@@ -440,13 +462,21 @@ def plot_simulation(simulation, duration):
     >>> plt.show()
 
     """
+    # NOTE: Maybe this should be configurable e.g. could be W and H or (W, H)
+    # arguments to plot_simulation.
     W, H = 5, 3
     N = W*H
+
     fig = plt.figure()
     axes = fig.subplots(nrows=H, ncols=W).flat
+
+    # Fix the spacing between subplots:
     fig.subplots_adjust(wspace=0.1, hspace=0.4)
 
+    # Try to find days that are approximately equally spaced although N might
+    # not divide duration exactly.
     days = [(duration * i) // (N - 1) for i in range(N)]
+
     for ax, day in zip(axes, days):
         while simulation.day < day:
             simulation.update()
@@ -456,6 +486,8 @@ def plot_simulation(simulation, duration):
         ax.set_xticks([])
         ax.set_yticks([])
 
+    # Return the figure. The caller of this function can decide whether to use
+    # show (screen) or savefig (file).
     return fig
 
 
