@@ -396,8 +396,8 @@ ax_right = fig.add_subplot(1, 2, 2)
 
 # x values [0, 0.05, 0.10, ...]
 x = np.linspace(0, 15, 300)
-sinx = np.sin(xi)
-cosx = np.cos(xi)
+sinx = np.sin(x)
+cosx = np.cos(x)
 
 # Plot sinx on the left
 ax_left.plot(x, sinx, color='green', linewidth=3)
