@@ -171,9 +171,8 @@ for how good your figures (or linked videos etc) are.
 
 # Reflective Report
 
-A template will be provided for the individual reflective report:
-
-(ADD TEMPLATE HERE...)
+The template for the individual reflective report can be found
+[here](reflection_report_template.docx)
 
 Each of you should submit an individual reflective report explaining your own
 contributions and how you and your team have collaborated. This information
