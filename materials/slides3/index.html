@@ -4,9 +4,9 @@
     <span class=hljs-string >&quot;&quot;&quot;Doubles the thing&quot;&quot;&quot;</span>
     <span class=hljs-keyword >return</span> thing + thing
 
-print(double(<span class=hljs-number >2</span>))
-print(double([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>]))
-print(double(<span class=hljs-string >&quot;foo&quot;</span>))</code></pre> <p>Run in the terminal:</p> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > python myscript.py</span>
+<span class=hljs-built_in >print</span>(double(<span class=hljs-number >2</span>))
+<span class=hljs-built_in >print</span>(double([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>]))
+<span class=hljs-built_in >print</span>(double(<span class=hljs-string >&quot;foo&quot;</span>))</code></pre> <p>Run in the terminal:</p> <pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > python myscript.py</span>
 4
 [1, 2, 1, 2]
 &#x27;foofoo&#x27;</code></pre> <h2 id=functions_in_a_module ><a href="#functions_in_a_module" class=header-anchor >Functions in a module</a></h2> <pre><code class="python hljs"><span class=hljs-comment ># mymodule.py</span>
@@ -46,4 +46,4 @@ FileNotFoundError: [Errno <span class=hljs-number >2</span>] No such file <span 
 <span class=hljs-keyword >try</span>:
     number = <span class=hljs-built_in >int</span>(number_string)
 <span class=hljs-keyword >except</span> ValueError:
-    print(<span class=hljs-string >&quot;Not a valid number. Found &#x27;%s&#x27;&quot;</span> % number_string)</code></pre> <ul> <li><p>Catch exception to handle failure &#40;if expected&#33;&#41;</p> <li><p>Usually best not to catch the exception</p> <li><p>Catch <em>only</em> the exception you expect</p> </ul> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: March 12, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>
+    <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;Not a valid number. Found &#x27;%s&#x27;&quot;</span> % number_string)</code></pre> <ul> <li><p>Catch exception to handle failure &#40;if expected&#33;&#41;</p> <li><p>Usually best not to catch the exception</p> <li><p>Catch <em>only</em> the exception you expect</p> </ul> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>

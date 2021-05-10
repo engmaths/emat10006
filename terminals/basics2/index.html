@@ -1,12 +1,12 @@
 <!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/katex/katex.min.css"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Loops, conditionals, and functions &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=loops_conditionals_and_functions ><a href="#loops_conditionals_and_functions" class=header-anchor >Loops, conditionals, and functions</a></h1> <p>Like all programming languages Python has loops, conditionals and functions. I will briefly write about these here but I don&#39;t want to repeat what&#39;s already written better in other places. For more please refer to the <a href="https://docs.python.org/3/tutorial/controlflow.html">official python.org tutorial</a>.</p> <p>There are some <a href="#exercises">exercises</a> below to test your understanding of these concepts.</p> <h2 id=loops ><a href="#loops" class=header-anchor >Loops</a></h2> <p>Python has <code>while</code> statements which are more or less the same as in all programming languages. It also has <code>for</code> loops and these are potentially different from what you would be used to coming from other languages. The key thing to understand about <code>for</code> loops in Python is that we loop over an <em>object</em>:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>stuff = [<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, -<span class=hljs-number >1</span>, <span class=hljs-number >3</span>]
 <span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> stuff:
-<span class=hljs-meta >... </span>    print(x)
+<span class=hljs-meta >... </span>    <span class=hljs-built_in >print</span>(x)
 ...
 <span class=hljs-number >1</span>
 <span class=hljs-number >2</span>
 -<span class=hljs-number >1</span>
 <span class=hljs-number >3</span></code></pre> <p>In this example the object we loop over a <code>list</code> but we can also loop over many other kinds of objects such as <code>strings</code>, <code>tuples</code>, <code>dicts</code>, <code>sets</code>, etc. If you just want to loop over the numbers say from 0 to 3 we use the <code>range</code> function:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> <span class=hljs-built_in >range</span>(<span class=hljs-number >4</span>):
-<span class=hljs-meta >... </span>    print(x)
+<span class=hljs-meta >... </span>    <span class=hljs-built_in >print</span>(x)
 ...
 <span class=hljs-number >0</span>
 <span class=hljs-number >1</span>
@@ -17,8 +17,8 @@
     <span class=hljs-keyword >else</span>:
         <span class=hljs-keyword >return</span> -n
 
-print(f(<span class=hljs-number >1</span>)) <span class=hljs-comment ># returns int (-1)</span>
-print(f(-<span class=hljs-number >1</span>)) <span class=hljs-comment ># Returns a string (&#x27;a string&#x27;)</span></code></pre> <p>This is due to the dynamic nature of Python and in <em>some</em> situations is useful. In general though you should not do this. Functions should always return the same type. For example, a function <code>f&#40;n&#41;</code> could be understood as always taking an integer &#40;<code>n</code>&#41; and return an integer. Doc-strings are useful and can be used to explain the types:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >absolute_value</span>(<span class=hljs-params >n</span>):</span>
+<span class=hljs-built_in >print</span>(f(<span class=hljs-number >1</span>)) <span class=hljs-comment ># returns int (-1)</span>
+<span class=hljs-built_in >print</span>(f(-<span class=hljs-number >1</span>)) <span class=hljs-comment ># Returns a string (&#x27;a string&#x27;)</span></code></pre> <p>This is due to the dynamic nature of Python and in <em>some</em> situations is useful. In general though you should not do this. Functions should always return the same type. For example, a function <code>f&#40;n&#41;</code> could be understood as always taking an integer &#40;<code>n</code>&#41; and return an integer. Doc-strings are useful and can be used to explain the types:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >absolute_value</span>(<span class=hljs-params >n</span>):</span>
     <span class=hljs-string >&#x27;&#x27;&#x27;absolute_value(n) -&gt; absolute value of number n&#x27;&#x27;&#x27;</span>
     <span class=hljs-keyword >if</span> n &lt; <span class=hljs-number >0</span>:
         <span class=hljs-keyword >return</span> -n
@@ -154,7 +154,7 @@ zero_students2.py  zero_students3.py  zero_students.py</code></pre>
 <p>If you&#39;re happy with these you can move on to <a href="../structures/">data structures</a>.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: March 12, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
