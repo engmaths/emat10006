@@ -1,4 +1,4 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Exceptions &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=exceptions_and_tracebacks ><a href="#exceptions_and_tracebacks" class=header-anchor >Exceptions and tracebacks</a></h1> <h2 id=what_is_an_exception ><a href="#what_is_an_exception" class=header-anchor >What is an exception</a></h2> <p>Programming languages like Python have the use of exceptions as an alternative method of flow control. Most functions will have the possibility of exceptional cases where they can not return something meaningful. For example a <code>sqrt</code> function that is expected to return a real number will not be able to return a correct real number when given a negative input. In programming languages that don&#39;t have exceptions it is common to use a special return value to indicate a failure:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >isqrt</span>(<span class=hljs-params >y</span>):</span>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Exceptions &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=exceptions_and_tracebacks ><a href="#exceptions_and_tracebacks" class=header-anchor >Exceptions and tracebacks</a></h1> <h2 id=what_is_an_exception ><a href="#what_is_an_exception" class=header-anchor >What is an exception</a></h2> <p>Programming languages like Python have the use of exceptions as an alternative method of flow control. Most functions will have the possibility of exceptional cases where they can not return something meaningful. For example a <code>sqrt</code> function that is expected to return a real number will not be able to return a correct real number when given a negative input. In programming languages that don&#39;t have exceptions it is common to use a special return value to indicate a failure:</p> <pre><code class="python hljs"><span class=hljs-keyword >def</span> <span class="hljs-title function_">isqrt</span>(<span class=hljs-params >y</span>):
     <span class=hljs-string >&quot;&quot;&quot;Compute the integer square root of y.
 
     The *integer* square root of y is defined as the largest positive integer
@@ -27,21 +27,21 @@ square_root = isqrt(number)
 <span class=hljs-keyword >if</span> square_root == -<span class=hljs-number >1</span>:
     <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;Please enter a valid positive integer!&quot;</span>)
 <span class=hljs-keyword >else</span>:
-    <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;Integer square root of&quot;</span>, number, <span class=hljs-string >&quot;is&quot;</span>, square_root)</code></pre> <p>Using return values to indicate a failure can be awkward when there are many functions that call each other e.g.:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func1</span>(<span class=hljs-params >x</span>):</span>
+    <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;Integer square root of&quot;</span>, number, <span class=hljs-string >&quot;is&quot;</span>, square_root)</code></pre> <p>Using return values to indicate a failure can be awkward when there are many functions that call each other e.g.:</p> <pre><code class="python hljs"><span class=hljs-keyword >def</span> <span class="hljs-title function_">func1</span>(<span class=hljs-params >x</span>):
     result = func2(x)
     <span class=hljs-keyword >if</span> result == -<span class=hljs-number >1</span>:
         <span class=hljs-comment ># handle error</span>
     <span class=hljs-keyword >else</span>:
         <span class=hljs-comment ># do something useful</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func2</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func2</span>(<span class=hljs-params >x</span>):
     result = func3(x)
     <span class=hljs-keyword >if</span> result == -<span class=hljs-number >1</span>:
         <span class=hljs-comment ># handle error</span>
     <span class=hljs-keyword >else</span>:
         <span class=hljs-comment ># do something useful</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func3</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func3</span>(<span class=hljs-params >x</span>):
     result = func4(x)
     <span class=hljs-keyword >if</span> result == -<span class=hljs-number >1</span>:
         <span class=hljs-comment ># handle error</span>
@@ -50,24 +50,24 @@ square_root = isqrt(number)
 
 <span class=hljs-comment ># And so on</span></code></pre> <p>Here because each function returns a special value to indicate a failure we see that to handle the failure robustly we have to check for the special failure value every time we call any of the functions. This is in fact necessary in many programming languages but not in Python because we can use exceptions. We can raise an exception using the <code>raise</code> statement like this:</p> <pre><code class="python hljs"><span class=hljs-comment ># raise.py</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func1</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func1</span>(<span class=hljs-params >x</span>):
     result = func2(x)
     <span class=hljs-comment ># do something useful</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func2</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func2</span>(<span class=hljs-params >x</span>):
     result = func3(x)
     <span class=hljs-comment ># do something useful</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func3</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func3</span>(<span class=hljs-params >x</span>):
     result = func4(x)
     <span class=hljs-comment ># do something useful</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func4</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func4</span>(<span class=hljs-params >x</span>):
     <span class=hljs-keyword >if</span> x &lt; <span class=hljs-number >0</span>:
         <span class=hljs-keyword >raise</span> ValueError(<span class=hljs-string >&quot;Negative numbers are not allowed!&quot;</span>)
     <span class=hljs-comment ># do something useful</span>
 
-value = func1(-<span class=hljs-number >10</span>)</code></pre> <p>If we run the above we see:</p> <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python raise.py</span>
+value = func1(-<span class=hljs-number >10</span>)</code></pre> <p>If we run the above we see:</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python raise.py</span>
 Traceback (most recent call last):
   File &quot;raise.py&quot;, line 20, in &lt;module&gt;
     value = func1(-10)
@@ -93,7 +93,7 @@ Traceback (most recent call last):
     raise ValueError(<span class=hljs-string >&quot;Negative numbers are not allowed!&quot;</span>)
 ValueError: Negative numbers are not allowed!</code></pre> <p>You will have likely seen this kind of output when writing your own code. It is worth noting how useful the information in the traceback is. It tells us that at the moment the error was detected execution was at line 20 of the file <code>raise.py</code> which was calling <code>func1</code> &#40;at line 4 of <code>raise.py</code>&#41; which was calling <code>func2</code> etc. It also shows us the lines of code that were being executed and shows us the exact line that raised the error &#40;line 17 in <code>func4</code>&#41;. This is very useful when you are writing your code and it does not yet work because it shows you exactly where to look in your code to see what the problem might be. If you have thousands of lines of code knowing exactly where to look is extremely helpful.</p> <h2 id=catching_exceptions ><a href="#catching_exceptions" class=header-anchor >Catching exceptions</a></h2> <p>We can also prevent our program from crashing out by &quot;catching&quot; the exception that was &quot;raised&quot;. For this we use <code>try/except</code> like this:</p> <pre><code class="python hljs"><span class=hljs-comment ># catch.py</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func1</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func1</span>(<span class=hljs-params >x</span>):
     <span class=hljs-keyword >if</span> x &lt; <span class=hljs-number >0</span>:
         <span class=hljs-keyword >raise</span> ValueError(<span class=hljs-string >&quot;Negative numbers not allowed&quot;</span>)
     <span class=hljs-keyword >return</span> x**<span class=hljs-number >2</span>
@@ -105,14 +105,14 @@ ValueError: Negative numbers are not allowed!</code></pre> <p>You will have like
     <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;An error was found&quot;</span>)
 <span class=hljs-keyword >else</span>:
     <span class=hljs-comment ># This line is executed if an exception was not raised:</span>
-    <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;the result is&quot;</span>, result)</code></pre> <p>Now because we catch the exception using <code>except</code> our program does not crash. Instead when we run the above program we will see:</p> <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python catch.py</span>
+    <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;the result is&quot;</span>, result)</code></pre> <p>Now because we catch the exception using <code>except</code> our program does not crash. Instead when we run the above program we will see:</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python catch.py</span>
 An error was found</code></pre> <p>It is tempting to use <code>try/except</code> like this so that you get a &quot;nice&quot; error message rather than the nasty looking traceback that Python prints out be default. Note though how much less useful this output is for identifying a problem in your code: the traceback has much more information about what the problem might be&#33;</p> <h2 id=types_of_exceptions ><a href="#types_of_exceptions" class=header-anchor >Types of exceptions</a></h2> <p>There are many different types of exceptions such as <code>ValueError</code>, <code>TypeError</code>, <code>OSError</code>. You can find a more complete list here: <a href="https://docs.python.org/3/library/exceptions.html">https://docs.python.org/3/library/exceptions.html</a></p> <p>Both the <code>raise</code> and <code>except</code> statements specify the type of exception to be raised or caught and these have to match or the exception will not be caught. For example if you <code>raise ValueError&#40;&#41;</code> and then try to catch with <code>except Typerror</code> then exception will not be caught. The program will crash out and print the traceback just as if you had not used <code>try/except</code>.</p> <p>A type of exception is a class and specifically it should be a subclass of <code>Exception</code>. We can define our own kind of exception like this:</p> <pre><code class="python hljs"><span class=hljs-comment ># exception.py</span>
 
-<span class=hljs-class ><span class=hljs-keyword >class</span> <span class=hljs-title >NegativeException</span>(<span class=hljs-params >Exception</span>):</span>
+<span class=hljs-keyword >class</span> <span class="hljs-title class_">NegativeException</span>(<span class="hljs-title class_ inherited__">Exception</span>):
     <span class=hljs-string >&quot;&quot;&quot;Raised when input was negatve&quot;&quot;&quot;</span>
     <span class=hljs-keyword >pass</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >func1</span>(<span class=hljs-params >x</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">func1</span>(<span class=hljs-params >x</span>):
     <span class=hljs-keyword >if</span> x &lt; <span class=hljs-number >0</span>:
         <span class=hljs-keyword >raise</span> NegativeException(<span class=hljs-string >&quot;Need positive number!&quot;</span>)
     <span class=hljs-keyword >return</span> x**<span class=hljs-number >2</span>
@@ -122,4 +122,4 @@ An error was found</code></pre> <p>It is tempting to use <code>try/except</code>
 <span class=hljs-keyword >except</span> NegativeException:
     <span class=hljs-built_in >print</span>(<span class=hljs-string >&quot;We found a negative number&quot;</span>)
 <span class=hljs-keyword >else</span>:
-    <span class=hljs-built_in >print</span>(result)</code></pre> <p>It is generally good practice to use a new exception type rather than reusing the standard exception types to make sure that you don&#39;t catch the wrong exception. Many bugs in your own code will lead to exceptions like <code>ValueError</code> being raised and you want to be able to see the useful traceback and error messages so that you can fix those bugs.</p> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>
+    <span class=hljs-built_in >print</span>(result)</code></pre> <p>It is generally good practice to use a new exception type rather than reusing the standard exception types to make sure that you don&#39;t catch the wrong exception. Many bugs in your own code will lead to exceptions like <code>ValueError</code> being raised and you want to be able to see the useful traceback and error messages so that you can fix those bugs.</p> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: January 18, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>

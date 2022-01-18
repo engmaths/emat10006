@@ -1,6 +1,6 @@
 <!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Terminals worksheet &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=terminals ><a href="#terminals" class=header-anchor >Terminals</a></h1> <p>Week 1 – using Python from the command line</p> <h2 id=getting_started ><a href="#getting_started" class=header-anchor >Getting started</a></h2> <p>Please read through the following bits of housekeeping before attempting the remaining worksheet tasks.</p> <h2 id=setting_up_your_computer ><a href="#setting_up_your_computer" class=header-anchor >Setting up your computer</a></h2> <p>This worksheet has been written assuming you have set up your computer first. You will need to first make sure you have:</p> <ol> <li><p>A bash shell installed,</p> <li><p>Python 3.X installed,</p> <li><p>Python 3 on your computer&#39;s PATH variable.</p> </ol> <p>If you are running <strong>Linux</strong> or <strong>OSX</strong>, they come with a bash terminal as standard. So all you need to do is download the correct version of Python &#40;3.X&#41;, and add it to your PATH after opening a terminal by typing <code>export PATH&#61;&quot;PATH:your_python_path&quot;</code>, where <code>your_python_path</code> is replaced with the location of your Python3 installation. You can find the location of your Python3 installation from within Python itself. For example on OSX it might look like:</p> <pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> sys
 <span class=hljs-meta >&gt;&gt;&gt; </span>sys.executable
-<span class=hljs-string >&#x27;/Library/Frameworks/Python.framework/Versions/3.8/bin/python3&#x27;</span></code></pre> <p>That means that in the terminal I should run:</p> <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >export</span> PATH=<span class=hljs-string >&quot;<span class=hljs-variable >$PATH</span>:/Library/Frameworks/Python.framework/Versions/3.8/bin&quot;</span></span></code></pre>
+<span class=hljs-string >&#x27;/Library/Frameworks/Python.framework/Versions/3.8/bin/python3&#x27;</span></code></pre> <p>That means that in the terminal I should run:</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >export</span> PATH=<span class=hljs-string >&quot;<span class=hljs-variable >$PATH</span>:/Library/Frameworks/Python.framework/Versions/3.8/bin&quot;</span></span></code></pre>
 <p>That will ensure that when I run <code>python</code> in the terminal it runs Python 3.</p>
 <p>If you are running <strong>Windows</strong> it is recommended to install git for windows which comes with a &quot;git bash&quot; terminal that uses the same commands as the terminals on OSX or Linux. Many of the example commands below will not work in the standard Windows &quot;DOS&quot; terminal.</p>
 <h2 id=using_the_terminal ><a href="#using_the_terminal" class=header-anchor >Using the terminal</a></h2>
@@ -8,19 +8,19 @@
 <h2 id=basic_terminal_commands ><a href="#basic_terminal_commands" class=header-anchor >Basic terminal commands</a></h2>
 <p>First open up a terminal. A terminal window will open, with some stuff followed by a line that reads <code>bash-4.2&#36;</code> telling you the computer is running version 4.2 of bash, and the <code>&#36;</code> is the bash prompt, indicating you can enter bash commands.</p>
 <p>So let&#39;s try our first bash commands&#33; Type <code>ls</code> and hit enter. You should see something like this:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > ls</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 Desktop  Documents  Downloads</code></pre>
 <p>The <code>ls</code> command is a special terminal command that means list the contents of the current directory. In this case the directory is my user directory and it shows all of the folders that are contained within it. After you hit enter the terminal will run the <code>ls</code> command and the <code>ls</code> command will print out a list of the files and folders in the current directory: this appears on the second and third lines &#40;bin, Desktop etc.&#41;.</p>
 <p>Note that from now on that shaded section above is how you can expect to see terminal commands demonstrated. I&#39;ve omitted the stuff before the prompt, but what comes immediately after the prompt is the command you should type before hitting enter. Also because we are on different machines, you can expect the output to sometimes look a little different, as you will have different folders and files to me&#33;</p>
 <p>The next two commands we want to learn in addition to <code>ls</code> are <code>pwd</code> and <code>cd</code>. The <code>pwd</code> command is short for &quot;print working directory&quot; and will print out the current working directory. This is the folder that you are currently working in. The <code>cd</code> command is short for &quot;change directory&quot; and is used to change to a new working directory. You can then use <code>ls</code> to see what is in the new working directory:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >pwd</span></span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >pwd</span></span>
 /home/sw1850
-<span class=hljs-meta >$</span><span class=bash > ls</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 Desktop  Documents  current
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >cd</span> current/emat10006</span>
-<span class=hljs-meta >$</span><span class=bash > ls</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> current/emat10006</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 index.html Makfile src/
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >pwd</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >pwd</span></span>
 /home/sw1850/current/emat10006</code></pre>
 <p>In the session above I use <code>pwd</code> to show that I am currently in the directory <code>/home/sw1850</code> &#40;this is the name of my user directory on this computer&#41;. Within my user directory is a folder called <code>current</code> which contains things I am currently working on. In there is a folder called <code>emat10006web</code> which contains the files used for working on this unit. If I want to work in that directory I can change to it by typing <code>cd current/emat10006web</code>. Afterwards my current working directory is <code>/home/sw1850/current/emat10006web</code> and if I run <code>ls</code> it will show me the contents of this new directory.</p>
 <ul>
@@ -38,40 +38,40 @@ Directory&#39;</code>.</p>
 </ul>
 <p>If you&#39;re unsure what they do, try checking their help function by typing the command followed by <code>--help</code>, for example <code>cp --help</code> &#40;you should only need to read the top of the help&#41;.</p>
 <p>Lines starting with a <code>#</code> are comments, which you don&#39;t need to enter, but contain extra questions or tips.</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > mkdir new-work</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >cd</span> new-work</span>
-<span class=hljs-meta >$</span><span class=bash > touch foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># make sure to ls after each command!</span></span>
-<span class=hljs-meta >$</span><span class=bash > touch ../bar.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># where is bar.txt?</span></span>
-<span class=hljs-meta >$</span><span class=bash > gedit foo.txt</span></code></pre>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mkdir</span> new-work</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> new-work</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >touch</span> foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-comment ># make sure to ls after each command!</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >touch</span> ../bar.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-comment ># where is bar.txt?</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >gedit foo.txt</span></code></pre>
 <p><strong>Note</strong> The command <code>gedit</code> above runs a program that is often installed on Linux computer but won&#39;t be available on OSX or Windows. For OSX run <code>open
 foo.txt</code>. On Windows you could use <code>notepad foo.txt</code>. Basically the command just runs a text editor that opens the file <code>foo.txt</code> but there are different text editors installed on different computers. For example if you use <code>vscode</code> you could run <code>code foo.txt</code>.</p>
 <p>At this point gedit &#40;or whichever editor you ran&#41; should open, and you should add some text &#40;use multiple lines, and some tab characters too&#41;, save it then close the window. Note that the prompt will not appear in the terminal while gedit is still open.</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > cat foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > cat foo.txt -A</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># what do you think those extra characters represent?</span></span>
-<span class=hljs-meta >$</span><span class=bash > cp foo.txt foo2.txt</span>
-<span class=hljs-meta >$</span><span class=bash > mv foo2.txt new-foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > cat foo.txt new-foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > mv ../bar.txt bar.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >echo</span> hello there</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >echo</span> hello there &gt; bar.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># now try looking at the contents of bar.txt</span></span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >echo</span> foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-comment ># is this what you expected to see?</span></span>
-<span class=hljs-meta >$</span><span class=bash > rm foo.txt</span>
-<span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >cd</span> ..</span>
-<span class=hljs-meta >$</span><span class=bash > rm -r new-work</span></code></pre>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cat</span> foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cat</span> foo.txt -A</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-comment ># what do you think those extra characters represent?</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cp</span> foo.txt foo2.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mv</span> foo2.txt new-foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cat</span> foo.txt new-foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mv</span> ../bar.txt bar.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >echo</span> hello there</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >echo</span> hello there &gt; bar.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-comment ># now try looking at the contents of bar.txt</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >echo</span> foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-comment ># is this what you expected to see?</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >rm</span> foo.txt</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> ..</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >rm</span> -r new-work</span></code></pre>
 <p>Below are some useful tips and shortcuts to make you super-speedy when using the terminal:</p>
 <p>&quot;Tab auto complete&quot; helps avoid typing out lengthy file / directory names, and reduces typos. Whenever you start typing the name of a file or directory, hit the Tab key and the terminal will try and automatically complete what you are typing based on what&#39;s in the directory. E.g. say I enter <code>ls</code> in my current directory and see 3 folders:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > ls</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 lecture_notes/  homework_questions/ homework_solutions/</code></pre>
 <p>If I type <code>cd l</code> and hit tab it completes to <code>cd lecture_notes</code>. If I type <code>cd
 ho</code> and hit tab multiple times, it cycles between <code>cd homework_questions</code> and <code>cd homework_solutions</code>. Hitting enter runs the command as usual. Navigate to somewhere with lots of folders / files and play around with this. Try just typing <code>cd</code> &#40;with a space&#41; and hitting tab twice – what happens? Try accessing a folder within a folder, e.g. <code>cd lecture_notes/week1/</code> using tab to autocomplete both parts of the path.</p>
 <p>You can cycle through old commands using the arrow keys. Try hitting the up arrow key a few times, then hit enter to run the displayed command.</p>
 <p>Try typing the command <code>history</code> and hitting enter. You&#39;ll see a list of previously entered command with numbers next to them, e.g.</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > <span class=hljs-built_in >history</span></span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >history</span></span>
   121 rm some_rubbish.txt
   122 cd homework_solutions
   123 ls
@@ -90,7 +90,7 @@ ho</code> and hit tab multiple times, it cycles between <code>cd homework_questi
 <p>Save it as <code>hello.py</code><em>taking careful note of where you save it&#33;</em> &#40;If you&#39;re getting confident with the terminal, try just entering: <code>gedit hello.py</code>, this will create a new file and open it for editing straight away, write your script and save and quit and the terminal will be ready to go again. Hopefully you&#39;re starting to see benefits of using the terminal&#33;&#41;</p>
 <p>Open the terminal, and using the commands you learned above, navigate to the folder where your <code>hello.py</code> script is saved.</p>
 <p>To run the <code>hello.py</code> Python script we run the <code>python</code> command and give it the name of the script we want it to run:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python hello.py</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python hello.py</span>
 Hello World!</code></pre>
 <p>There&#39;s our expected output&#33; Here the <code>python</code> command tells the computer to run <code>python.exe</code> &#40;the Python interpreter&#41; with the path of our script <code>hello.py</code> as an argument &#40;more on this below&#41;. Python then knows to execute this Python script.  Note, that since we first navigated to the directory where <code>hello.py</code> is located, the relative path was just the name of the file; but in general we could provide a path to a script in a different directory, or use an absolute path.</p>
 <p>But how does the terminal know to understand the <code>python</code> command? It isn&#39;t a standard bash command, like <code>pwd</code> or <code>cd</code>. The answer is because <code>python</code> is on the computer&#39;s PATH environment variable. This variable specifies a set of directories which contain executable programs which you might frequently want to run. Python is one such program and so when you type <code>python</code> into the terminal, the computer looks through the directories in its PATH variable, looking for one called <code>python.exe</code> which it then runs. This saves you having to remember and type out the absolute paths of commonly used executables.The same goes for all of the terminal commands you are using, they stored in some directory on the PATH. Look at what&#39;s on your PATH variable using <code>echo &#36;PATH</code> &#40;the <code>&#36;</code> here tells the terminal that <code>PATH</code> is a variable, try to run it without the <code>&#36;</code>. The terminal now sees the word <code>PATH</code> as a plain old string&#41;.</p>
@@ -119,12 +119,12 @@ Hello World!</code></pre>
 <p>Shebangs are used because it allows the person who wrote the script to control how the script is run on a user&#39;s computer, rather than the other way around. In our case for example, we have specified that our script should be run with <code>python3</code>, rather than any other version of Python. This is useful because if we released our script and a user runs it from the terminal as <code>python
 hello.py</code>, then they might be running it with the wrong version of Python and the behaviour might not be as we intended.</p>
 <p>After adding the shebang to your script and saving it, run the following commands:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > ls -l</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> -l</span>
 -rw-r--r-- 1 sw1850 1049089     46  Jan 29 16:46 hello.py
-<span class=hljs-meta >$</span><span class=bash > chmod +x hello.py</span>
-<span class=hljs-meta >$</span><span class=bash > ls -l</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >chmod</span> +x hello.py</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> -l</span>
 -rwxr-xr-x 1 sw1850 1049089     46 Jan 29 16:58 hello.py*
-<span class=hljs-meta >$</span><span class=bash > ./hello.py</span>
+<span class=hljs-meta >$ </span><span class=language-bash >./hello.py</span>
 Hello World</code></pre>
 <p>The <code>ls -l</code> command works like <code>ls</code> but shows more information. The first 10 characters of the line with the file information are the permissions the file has. Notice how some of the dashes turn to <code>x</code> after the second command is ran. The <code>chmod</code> command is short for &quot;change mode&quot;, and it changes the mode &#40;or permissions&#41; of the file. So <code>chmod &#43;x hello.py</code> file has changed the permission of the script to be executable &#40;it can also change read and write permissions, for example&#41;, and this is what the <code>x</code> is telling us. Changing this &#39;bit&#39; basically lets the operating system know this file is an executable, and you should now find you can run your script by simply typing <code>./hello.py</code> without explicitly invoking the Python interpreter. Try it&#33;</p>
 <p>It may seem like a minor addition, but shebangs are used universally by real programmers when writing scripts to make them robust across platforms. You should always use them from now on&#33; Don&#39;t forget to change the executable permission bit using <code>chmod &#43;x filename.py</code> for each new script you write.</p>
@@ -142,8 +142,8 @@ number_of_args = <span class=hljs-built_in >len</span>(sys.argv)
 <span class=hljs-keyword >for</span> arg <span class=hljs-keyword >in</span> sys.argv:
     <span class=hljs-built_in >print</span>(arg)</code></pre>
 <p>Here&#39;s an example of executing this program from the command line:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > chmod +x cl-arguments.py</span>
-<span class=hljs-meta >$</span><span class=bash > ./cl-arguments.py 10 foo 87.4</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >chmod</span> +x cl-arguments.py</span>
+<span class=hljs-meta >$ </span><span class=language-bash >./cl-arguments.py 10 foo 87.4</span>
 4 command line argument(s) inputted:
 cl_arguments.py
 10
@@ -172,15 +172,15 @@ foo
 USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode word. Where --mode is either&quot;</span> \
                 <span class=hljs-string >&quot; --upper, --lower or --capitalise&quot;</span>
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >print_usage</span>():</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">print_usage</span>():
     <span class=hljs-built_in >print</span>(USAGE_MESSAGE)
     quit()
 
 <span class=hljs-comment ># Make the first letter a capital, and all of the rest lower case</span>
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >capitalise</span>(<span class=hljs-params >msg</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">capitalise</span>(<span class=hljs-params >msg</span>):
     <span class=hljs-keyword >return</span>(msg[<span class=hljs-number >0</span>].upper() + msg[<span class=hljs-number >1</span>:].lower())
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >main</span>(<span class=hljs-params >args</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">main</span>(<span class=hljs-params >args</span>):
     <span class=hljs-keyword >if</span> <span class=hljs-built_in >len</span>(args) != <span class=hljs-number >2</span>:
         print_usage()
     mode = args[<span class=hljs-number >0</span>]
@@ -215,23 +215,23 @@ USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode wo
 
 </ul>
 <p>Some example inputs and outputs:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python averages.py 1 2 3 4 5</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python averages.py 1 2 3 4 5</span>
   Mean: 3
   Median: 3
   Mode: 1, 2, 3, 4, 5</code></pre>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python averages.py --median --mode 1 1 1 1 1 2 2 2</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python averages.py --median --mode 1 1 1 1 1 2 2 2</span>
   Median: 1
   Mode: 1</code></pre>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python averages.py --mean --file my-data.txt</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python averages.py --mean --file my-data.txt</span>
   Mean: 43.5</code></pre>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python averages.py --mean --mode --file my-data.txt 4 5 24</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python averages.py --mean --mode --file my-data.txt 4 5 24</span>
   Error: expected one non-flag input when -file is specified</code></pre>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python averages.py --mode 1 4 5 1 4 5 6 7 7 7 7 7</span>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python averages.py --mode 1 4 5 1 4 5 6 7 7 7 7 7</span>
   Error: expected max 8 integer data points</code></pre>
 <p>Before you start writing, think carefully about the control flow of your program, and how to deal with the variety of different combinations of inputs. You should also make sure you use functions to organise the code. As a <em>minimum</em> it should have a main function then one function each for the mean, median and mode calculations. Use this to help with efficiency: e.g. if the user specifies only the mode, don&#39;t bother calculating the mean or median.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: January 18, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

@@ -16,7 +16,7 @@ fig.savefig(<span class=hljs-string >&#x27;sine.svg&#x27;</span>)</code></pre> <
 <span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
 <span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >main</span>(<span class=hljs-params >filename=<span class=hljs-literal >None</span></span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">main</span>(<span class=hljs-params >filename=<span class=hljs-literal >None</span></span>):
     <span class=hljs-string >&#x27;&#x27;&#x27;Plot sine function and show on screen or save to file&#x27;&#x27;&#x27;</span>
 
     <span class=hljs-comment ># Set the figure size in inches</span>
@@ -34,7 +34,7 @@ fig.savefig(<span class=hljs-string >&#x27;sine.svg&#x27;</span>)</code></pre> <
         fig.savefig(filename) <span class=hljs-comment ># Format chosen by extension</span>
 
 
-<span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >plot_sine</span>(<span class=hljs-params >ax</span>):</span>
+<span class=hljs-keyword >def</span> <span class="hljs-title function_">plot_sine</span>(<span class=hljs-params >ax</span>):
     numpoints = <span class=hljs-number >100</span>
     x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >2</span>*np.pi, numpoints)
     y = np.sin(x)
@@ -85,7 +85,7 @@ fig.savefig(<span class=hljs-string >&#x27;sine.svg&#x27;</span>)</code></pre> <
 </ol>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: January 18, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

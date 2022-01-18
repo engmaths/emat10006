@@ -12,7 +12,7 @@ plt.plot(x, y)
 <span class=hljs-comment ># Creating the plot with plt.plot does not mean that we can see the plot!</span>
 <span class=hljs-comment ># We need to &quot;show&quot; the plot:</span>
 plt.savefig(<span class=hljs-string >&#x27;plot1.svg&#x27;</span>)
-plt.show()</code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python plot.py</span></code></pre>
+plt.show()</code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python plot.py</span></code></pre>
 <p>You should see a window open with something looking like this: <img src=plot1.svg  alt="Simple quadratic plot" /></p>
 <p>We will look more at how to use matplotlib later in the worksheet but for now you can use this simple program as an example while practising pushing and pulling with your partner.</p>
 <h1>Pushing and pulling</h1>
@@ -47,7 +47,7 @@ plt.show()</code></pre> <p>You can run that with</p> <pre><code class="console h
 <p>From now on I&#39;ll refer to the person that made the repo as the &#39;owner&#39; and the other person in the pair as the &#39;collaborator&#39;. Notice that in the following guide, although I get either the owner or collaborator to do certain tasks, these could be accomplished by either – it&#39;s just an easy way of distinguishing between you both &#40;see the N.B. at the bottom of this section for more info on being the &#39;owner&#39; of a repo&#41;.</p>
 <p>The owner should go to the settings tab on their new repo and go to &#39;Manage access&#39;. From here click the &#39;Invite a collaborator&#39; button, and add the collaborator to the project by finding them via their GitHub username. The collaborator should then get an email, asking them to accept the invitation. Now both the owner and the collaborator should be able to see the new repo online, despite it being private.</p>
 <p>You should now both clone the repo onto your computers. Again, if you can&#39;t remember how to do this, check back in with the worksheet from week 13. Essentially you just need to get the URL from the &#39;Code&#39; button on GitHub, then – in a suitable directory on your machine – run the terminal command:</p>
-<pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/week4-push-pull</span></code></pre>
+<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/week4-push-pull</span></code></pre>
 <p>with the correct URL. You now both have <em>local</em> repos which are clones of the GitHub repo. If you both run <code>git remote -v</code> it should show you both have the same &#39;origin&#39;, which is a URL to the remote GitHub repo. So although you have local different copies of the repo, the remote repo that you push commits to and pull commits from is <em>the same</em> for both of you.</p>
 <p>The owner should now add some stuff to the local repo. Add a simple Python script that does something. Copy a file &#40;or create a new one&#41; into the directory of your local repo. Then use <code>git add</code>, <code>git commit</code> and <code>git push</code> to send that file to GitHub. &#40;Refer to previous git exercises&#41; Both of you can now look on the GitHub repo webpage, and see the new file.</p>
 <p>If the collaborator runs <code>git status</code> it still shows up-to-date, but they actually need to pull down the changes now. If they tried to push their own changes up, Git wouldn&#39;t let them before they&#39;ve pulled. More on this in a moment. For now, the collaborator should run <code>git pull</code> to pull down the changes to their local repo to work on.</p>
@@ -65,7 +65,7 @@ plt.show()</code></pre> <p>You can run that with</p> <pre><code class="console h
 <p>Now both change <em>the same line in different ways</em>&#33; Both <code>git diff</code> before you push to make sure you have changed the same line&#33; Only change one line for now. Both add and commit the change.</p>
 <p>Owner: push up your change to the online repo. Collaborator: run <code>git pull</code> once the owner has pushed their changes.</p>
 <p>Uh-oh, Git is now telling us we have a merge conflict. This is where there is a conflict between the changes and Git can&#39;t sort out the merge by itself. You should see something like:</p>
-<pre><code class="shell hljs"><span class=hljs-meta >$</span><span class=bash > git pull</span>
+<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git pull</span>
 remote: Enumerating objects: 14, done.
 remote: Counting objects: 100% (13/13), done.
 remote: Compressing objects: 100% (7/7), done.
@@ -113,7 +113,7 @@ y = [math.sin(xi) <span class=hljs-keyword >for</span> xi <span class=hljs-keywo
 plt.plot(x, y)
 plt.show()</code></pre>
 <p>You can run that with</p>
-<pre><code class="console hljs"><span class=hljs-meta >$</span><span class=bash > python plot_sin.py</span></code></pre>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python plot_sin.py</span></code></pre>
 <p>You should see a window like this appear: <img src=plot_sin.svg  alt="Sin plot" /></p>
 <h1>Using numpy arrays</h1>
 <p>Above creating the lists of <code>x</code> and <code>y</code> values is awkward. We can use <code>numpy</code> to make that more convenient. Numpy gives us an array class that we can use to quickly apply mathematical functions to lost of values e.g.:</p>
@@ -204,7 +204,7 @@ plt.show()</code></pre>
 <p><strong>Exercise</strong>: play around with these examples and try out different kinds of plots. You can find many more examples here: <a href="https://matplotlib.org/stable/tutorials/introductory/sample_plots.html">https://matplotlib.org/stable/tutorials/introductory/sample_plots.html</a> &#40;Click on any of the images to see the code that makes the plot.&#41;</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: May 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: January 18, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
