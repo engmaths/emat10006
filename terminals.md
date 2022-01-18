@@ -2,6 +2,4 @@
 
 This part of the unit will cover
 
-asdasdasdasd
-
 * [Terminals](terminals/)
