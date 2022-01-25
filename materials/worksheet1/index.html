@@ -6,7 +6,7 @@
 <h2 id=using_the_terminal ><a href="#using_the_terminal" class=header-anchor >Using the terminal</a></h2>
 <p>The terminal &#40;or command line&#41; is an essential part of any operating system. It&#39;s an efficient way to navigate a file system, open files, run executables and make time-saving scripts. Pretty much anything you do by clicking around on a GUI &#40;Graphical User Interface&#41; can be done in the terminal, often more efficiently&#33;</p>
 <h2 id=basic_terminal_commands ><a href="#basic_terminal_commands" class=header-anchor >Basic terminal commands</a></h2>
-<p>First open up a terminal. A terminal window will open, with some stuff followed by a line that reads <code>bash-4.2&#36;</code> telling you the computer is running version 4.2 of bash, and the <code>&#36;</code> is the bash prompt, indicating you can enter bash commands.</p>
+<p>First open up a terminal. A terminal window will open, with some stuff followed by a line that reads something like<code>bash-4.2&#36;</code> &#40;the actual text might be different&#41;, and the <code>&#36;</code> is the bash prompt, indicating you can enter bash commands.</p>
 <p>So let&#39;s try our first bash commands&#33; Type <code>ls</code> and hit enter. You should see something like this:</p>
 <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 Desktop  Documents  Downloads</code></pre>
@@ -22,7 +22,7 @@ Desktop  Documents  current
 index.html Makfile src/
 <span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >pwd</span></span>
 /home/sw1850/current/emat10006</code></pre>
-<p>In the session above I use <code>pwd</code> to show that I am currently in the directory <code>/home/sw1850</code> &#40;this is the name of my user directory on this computer&#41;. Within my user directory is a folder called <code>current</code> which contains things I am currently working on. In there is a folder called <code>emat10006web</code> which contains the files used for working on this unit. If I want to work in that directory I can change to it by typing <code>cd current/emat10006web</code>. Afterwards my current working directory is <code>/home/sw1850/current/emat10006web</code> and if I run <code>ls</code> it will show me the contents of this new directory.</p>
+<p>In the session above I use <code>pwd</code> to show that I am currently in the directory <code>/home/sw1850</code> &#40;this is the name of my user directory on this computer&#41;. Within my user directory is a folder called <code>current</code> which contains things I am currently working on. In there is a folder called <code>emat10006</code> which contains the files used for working on this unit. If I want to work in that directory I can change to it by typing <code>cd current/emat10006</code>. Afterwards my current working directory is <code>/home/sw1850/current/emat10006</code> and if I run <code>ls</code> it will show me the contents of this new directory.</p>
 <ul>
 <li><p><strong>Exercise:</strong> Try these commands out yourself. Get comfortable moving between directories, looking at files and the working directory as you go.</p>
 
@@ -33,7 +33,7 @@ index.html Makfile src/
 Directory&#39;</code>.</p>
 <p>You can do all of things you might do in a formal file browser in the terminal&#33; Below I&#39;ve demonstrated lots of new commands.</p>
 <ul>
-<li><p><strong>Exercise</strong>: Try all of these commands for yourself. Work out what they each do by checking your directory with <code>ls</code> before moving onto the next command.</p>
+<li><p><strong>Exercise</strong>: Try all of these commands for yourself. Work out what they each do by checking your directory with <code>ls</code> before moving onto the next command. You might also find it helpful to have a file browser open so that you can &quot;see&quot; what is happening to the files.</p>
 
 </ul>
 <p>If you&#39;re unsure what they do, try checking their help function by typing the command followed by <code>--help</code>, for example <code>cp --help</code> &#40;you should only need to read the top of the help&#41;.</p>
@@ -78,7 +78,7 @@ ho</code> and hit tab multiple times, it cycles between <code>cd homework_questi
   124 cd engmaths/week13</code></pre>
 <p>Then typing e.g. <code>&#33;122</code> and hitting enter will run <code>cd homework_solutions</code>.</p>
 <p>The previously typed command can always be referred to as <code>&#33;&#33;</code>. This can be useful is you forgot something at the end or start of your previous command.</p>
-<p>You may have noticed that you cannot move the terminal cursor using the mouse. To move to the start of the line we use <code>Ctrl-a</code>, to move the end of the line we use <code>Ctrl-e</code>. To move forward and backward by character use <code>Ctrl-f</code>, and <code>Ctrl-b</code>.  You should never really use arrow keys.</p>
+<p>You may have noticed that you cannot move the terminal cursor using the mouse. To move to the start of the line we use <code>Ctrl-a</code>, to move the end of the line we use <code>Ctrl-e</code>. To move forward and backward by character use <code>Ctrl-f</code>, and <code>Ctrl-b</code>.  You can use the arrow keys.</p>
 <ul>
 <li><p><strong>Exercise:</strong> try all of these out&#33;</p>
 
@@ -127,7 +127,7 @@ hello.py</code>, then they might be running it with the wrong version of Python 
 <span class=hljs-meta >$ </span><span class=language-bash >./hello.py</span>
 Hello World</code></pre>
 <p>The <code>ls -l</code> command works like <code>ls</code> but shows more information. The first 10 characters of the line with the file information are the permissions the file has. Notice how some of the dashes turn to <code>x</code> after the second command is ran. The <code>chmod</code> command is short for &quot;change mode&quot;, and it changes the mode &#40;or permissions&#41; of the file. So <code>chmod &#43;x hello.py</code> file has changed the permission of the script to be executable &#40;it can also change read and write permissions, for example&#41;, and this is what the <code>x</code> is telling us. Changing this &#39;bit&#39; basically lets the operating system know this file is an executable, and you should now find you can run your script by simply typing <code>./hello.py</code> without explicitly invoking the Python interpreter. Try it&#33;</p>
-<p>It may seem like a minor addition, but shebangs are used universally by real programmers when writing scripts to make them robust across platforms. You should always use them from now on&#33; Don&#39;t forget to change the executable permission bit using <code>chmod &#43;x filename.py</code> for each new script you write.</p>
+<p>It may seem like a minor addition, but shebangs are widely used by programmers when writing scripts to make them robust across platforms. You should always use them from now on&#33; Don&#39;t forget to change the executable permission bit using <code>chmod &#43;x filename.py</code> for each new script you write.</p>
 <h1 id=command_line_arguments ><a href="#command_line_arguments" class=header-anchor >Command line arguments</a></h1>
 <p>Command line arguments are the usual way in which a user tells a program how they want it to run. You have heard the word &#39;arguments&#39; before when talking about functions in Python. Arguments are the inputs you give to a function, and might paths to specify: how the function should run; provide some data; provide files, etc.. It is a similar idea when we give a program arguments from the command line, they are the inputs the program runs with, meaning a user can specify how they want the program to run at the time of execution.</p>
 <p>In fact we have already seen this several times – you have been using command line arguments all along&#33; When entering the command <code>cd my_directory</code> into the terminal, <code>my_directory</code> is an argument that is passed to <code>cd</code> specifying which directory it should open. When we run <code>python hello.py</code>, we are passing the path of our python script &#40;in this case just <code>python.py</code>&#41; to the interpreter as an argument. Some of the commands you used earlier took two arguments, such as <code>mv</code> which took a source and a destination. In actual fact nearly all of these commands can take a variable number of arguments.</p>
@@ -159,7 +159,7 @@ foo
 <h2 id=using__name_ ><a href="#using__name_" class=header-anchor >Using <code>__name__</code></a></h2>
 <p>Lastly we are going to cover another convention used by programmers when writing Python scripts. As you should have noticed, when Python scripts are ran, the interpreter seems to start by running the lines of code it finds which are <em>not</em> in a function. The convention in Python is that &#40;usually&#41; the only code not in a function is inside a strange looking conditional statement, like this:</p>
 <pre><code class="console hljs">if __name__ == &#x27;__main__&#x27;:
-	main()</code></pre>
+    main()</code></pre>
 <p>This says that the function called <code>main</code> will only be ran if a variable called <code>__name__</code> has the value <code>&#39;main&#39;</code>. Note that since this is the only code in the script not in a function, if <code>__name__</code> does not equal <code>&#39;main&#39;</code> then no further code will be executed.</p>
 <p>The primary reason for doing this will become clearer a bit later in the course, when we cover importing modules. But for those of you who can&#39;t wait until then here is a brief description: when the Python interpreter reads a source file it sets up a few variables first, before executing all the code. One of those variables is called <code>__name__</code>. If your module &#40;script&#41; is being ran as the main program &#40;e.g. <code>python foo.py</code> then this variable is set to <code>__name__ &#61; &#39;__main__&#39;</code>. Whereas if your module is being imported by another script, e.g. <code>bar.py</code> contains the line <code>import foo.py</code>, then the <code>__name__</code> is set to something else for <code>foo.py</code>. Therefore the conditional statement at the end only executes when your module is the one being ran. Only then will the main function in <code>foo.py</code> be ran. Otherwise the functions and stuff in <code>foo.py</code> will be callable in <code>bar.py</code> once it has been imported, but the main function in <code>foo.py</code> will not run on that import line.&#41;</p>
 <p>Essentially this allows your script to be either ran by itself, or imported elsewhere for its functions. This is another convention you should get used to doing yourself&#33; Here&#39;s an example of a Python script which uses all of the above conventions. Once you fully understand how it works, move on to the final task.</p>
@@ -231,7 +231,7 @@ USAGE_MESSAGE = <span class=hljs-string >&quot;Usage: ./upper-lower.py --mode wo
 <p>Before you start writing, think carefully about the control flow of your program, and how to deal with the variety of different combinations of inputs. You should also make sure you use functions to organise the code. As a <em>minimum</em> it should have a main function then one function each for the mean, median and mode calculations. Use this to help with efficiency: e.g. if the user specifies only the mode, don&#39;t bother calculating the mean or median.</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: January 18, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: January 25, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

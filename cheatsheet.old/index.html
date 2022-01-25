@@ -29,4 +29,31 @@ $ </span><span class=language-bash ><span class=hljs-built_in >cp</span> oldname
 <span class=hljs-meta >$ </span><span class=language-bash >python3 myscript.py   <span class=hljs-comment ># run script with python3</span></span>
 <span class=hljs-meta >
 $ </span><span class=language-bash ><span class=hljs-built_in >chmod</span> +x myscript.py  <span class=hljs-comment ># make executable (need shebang)</span></span>
-<span class=hljs-meta >$ </span><span class=language-bash >./myscript.py         <span class=hljs-comment ># run myscript.py</span></span></code></pre> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: January 25, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>
+<span class=hljs-meta >$ </span><span class=language-bash >./myscript.py         <span class=hljs-comment ># run myscript.py</span></span></code></pre> <h2 id=git_commands_-_creating_a_repo ><a href="#git_commands_-_creating_a_repo" class=header-anchor >Git commands - creating a repo</a></h2> <p>Before we can use git commands we need to have a local repo and we need to <code>cd</code> into the repo. We create a repo either by cloning from github or by using <code>git init</code>.</p> <p>Clone a repo:</p> <pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/myusername/myrepo.git</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> myrepo           <span class=hljs-comment ># go into the directory</span></span></code></pre> <p>Create a new repo locally:</p> <pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mkdir</span> myrepo        <span class=hljs-comment ># make an empty directory</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> myrepo           <span class=hljs-comment ># go into the directory</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git init            <span class=hljs-comment ># initialise repo (creates .git dir)</span></span></code></pre> <h2 id=git_commands ><a href="#git_commands" class=header-anchor >Git commands</a></h2> <pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git status          <span class=hljs-comment ># show current state (e.g. files changed)</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >log</span>             <span class=hljs-comment ># show past commits</span></span>
+<span class=hljs-meta >
+$ </span><span class=language-bash >git diff            <span class=hljs-comment ># show unstaged changes</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git diff script.py  <span class=hljs-comment ># show changes for script.py</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git diff --cached   <span class=hljs-comment ># show stated changes</span></span>
+<span class=hljs-meta >
+$ </span><span class=language-bash >git add script.py   <span class=hljs-comment ># add script.py / stage changes</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git commit -m <span class=hljs-string >&quot;My commit message&quot;</span> <span class=hljs-comment ># commit staged changes</span></span>
+<span class=hljs-meta >
+$ </span><span class=language-bash >git push            <span class=hljs-comment ># send commits to github</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git pull            <span class=hljs-comment ># get commits from github</span></span></code></pre> <h2 id=git_workflows ><a href="#git_workflows" class=header-anchor >Git workflows</a></h2> <p>Make changes and push to github:</p> <pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >cd</span> myrepo           <span class=hljs-comment ># cd to your local repo</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git status          <span class=hljs-comment ># check working directory is clean</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git pull            <span class=hljs-comment ># make sure up to date with github</span></span>
+
+&lt;edit files, test changes are correct, etc&gt;
+<span class=hljs-meta >
+$ </span><span class=language-bash >git status          <span class=hljs-comment ># check which files have been changed</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git diff            <span class=hljs-comment ># see what the changes are</span></span>
+
+&lt;more editing after reviewing the diff?&gt;
+<span class=hljs-meta >
+$ </span><span class=language-bash >git add myfile1.py  <span class=hljs-comment ># stage changes ready for commit</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git commit -m <span class=hljs-string >&quot;Description of changes made&quot;</span></span>
+<span class=hljs-meta >$ </span><span class=language-bash >git push            <span class=hljs-comment ># push the commit(s) to github</span></span></code></pre> <div class=page-foot > <div class=copyright > &copy; Oscar Benjamin. Last modified: January 25, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>
