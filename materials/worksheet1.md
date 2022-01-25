@@ -51,10 +51,10 @@ terminal, often more efficiently!
 
 ## Basic terminal commands
 
-First open up a terminal. A terminal window will open, with some stuff
-followed by a line that reads `bash-4.2$` telling you the computer is running
-version 4.2 of bash, and the `$` is the bash prompt, indicating you can enter
-bash commands.
+First open up a terminal. A terminal window will open, with some stuff followed
+by a line that reads something like`bash-4.2$` (the actual text might be
+different), and the `$` is the bash prompt, indicating you can enter bash
+commands.
 
 So let's try our first bash commands! Type `ls` and hit enter. You should see
 something like this:
@@ -100,11 +100,11 @@ $ pwd
 In the session above I use `pwd` to show that I am currently in the directory
 `/home/sw1850` (this is the name of my user directory on this computer).
 Within my user directory is a folder called `current` which contains things I
-am currently working on. In there is a folder called `emat10006web` which
-contains the files used for working on this unit. If I want to work in that
-directory I can change to it by typing `cd current/emat10006web`. Afterwards
-my current working directory is `/home/sw1850/current/emat10006web` and if I
-run `ls` it will show me the contents of this new directory.
+am currently working on. In there is a folder called `emat10006` which contains
+the files used for working on this unit. If I want to work in that directory I
+can change to it by typing `cd current/emat10006`. Afterwards my current
+working directory is `/home/sw1850/current/emat10006` and if I run `ls` it will
+show me the contents of this new directory.
 
 - **Exercise:** Try these commands out yourself. Get comfortable moving
   between directories, looking at files and the working directory as you go.
@@ -124,7 +124,8 @@ terminal! Below I've demonstrated lots of new commands.
 
 - **Exercise**: Try all of these commands for yourself. Work out what they
   each do by checking your directory with `ls` before moving onto the next
-  command.
+  command. You might also find it helpful to have a file browser open so that
+  you can "see" what is happening to the files.
 
 If you're unsure what they do, try checking their help function by typing the
 command followed by `--help`, for example `cp --help` (you should only need to
@@ -217,7 +218,7 @@ useful is you forgot something at the end or start of your previous command.
 You may have noticed that you cannot move the terminal cursor using the mouse.
 To move to the start of the line we use `Ctrl-a`, to move the end of the line
 we use `Ctrl-e`. To move forward and backward by character use `Ctrl-f`, and
-`Ctrl-b`.  You should never really use arrow keys.
+`Ctrl-b`.  You can use the arrow keys.
 
 - **Exercise:** try all of these out!
 
@@ -354,10 +355,10 @@ this 'bit' basically lets the operating system know this file is an
 executable, and you should now find you can run your script by simply typing
 `./hello.py` without explicitly invoking the Python interpreter. Try it!
 
-It may seem like a minor addition, but shebangs are used universally by real
-programmers when writing scripts to make them robust across platforms. You
-should always use them from now on! Don't forget to change the executable
-permission bit using `chmod +x filename.py` for each new script you write.
+It may seem like a minor addition, but shebangs are widely used by programmers
+when writing scripts to make them robust across platforms. You should always
+use them from now on! Don't forget to change the executable permission bit
+using `chmod +x filename.py` for each new script you write.
 
 # Command line arguments
 
@@ -442,7 +443,7 @@ like this:
 
 ```console
 if __name__ == '__main__':
-	main()	
+    main()
 ```
 
 This says that the function called `main` will only be ran if a variable
