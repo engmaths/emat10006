@@ -179,6 +179,14 @@ that there is nothing to commit, and our working directory is clean.  This is
 Git telling us that all is well -- we have not made any changes to the
 contents of our new repo.
 
+**Note about editors** In the instructions below I suggest using `gedit` which
+is a text editor found on most Linux machines. If you are using the lab
+machines then you can use `gedit`. Wherever you see an instruction like `gedit
+somefile.py` it just means that you should edit the file in any code editor
+that you want. For example if you normally use `vscode` or `spyder` you could
+you could use that. You also don't need to open the file from the terminal at
+all as you can just do it in your editor.
+
 Let's add a simple Python script to our repo. When inside your repo directory,
 type `gedit welcome.py` and copy this very simple script in there and save it:
 ```console
