@@ -63,7 +63,9 @@ well as share code publicly.
 1. In a web browser go to [github.com](https://github.com/). You can sign up
    to GitHub directly from the homepage. Enter an appropriate username, your
    university email address (e.g. ab12345\@bristol.ac.uk) and use a suitably
-   strong password and click 'Sign up for GitHub'.
+   strong password and click 'Sign up for GitHub'. Note that for some reason
+   creating a GitHub account doesn't work if you use the Safari browser on OSX:
+   use e.g. Chrome instead.
 
 2.  **An important note on usernames:** usernames on GitHub are public.
     So while you can use whatever pseudonym you like, it will be visible
@@ -109,8 +111,8 @@ store all the files for a particular project. Repos on GitHub have a unique
 URL associated with them. If they are public, this means anyone can use this
 URL to make their own clone of the code. The user can even make changes and,
 if they think other users might also benefit from these changes, they can
-  request that the owner incorporates the changes into the repo (a 'pull
-  request').
+request that the owner incorporates the changes into the repo (a 'pull
+request').
 
 Let's create our first repo, but we will keep ours private for now!
 
@@ -138,12 +140,19 @@ them on the repo.
 From the repo page, click the green 'Code' button, and copy the
 link that it gives you. Then in a terminal window, navigate to a suitable
 place to create a new local repo, such as Documents.  Then type `git clone`
-followed by a space and the URL you just copied.
+followed by a space and the URL you just copied e.g. it should look something
+like
+```
+$ git clone https://github.com/myusername/myrepo.git
+```
+but with `myusername` being *your* GitHub account name and `myrepo` being the
+name you chose for the repo.
 
 Note at this stage you might find that `git clone` fails saying something like
 `authentication failed`. I found that this happened the first time I tried to
 clone a repo using a new github account. Running the exact same command again
-a second time fixed the problem (no idea why that works!).
+a second time fixed the problem (no idea why that works!). If authenticiation
+still fails it means that you need to create a personal access token.
 
 If you are in Windows or OSX then in a strange pop-up window you will be asked
 to enter your GitHub username and password. You might also need to click
@@ -153,7 +162,8 @@ If you are using the lab machines you will see an error at this point if you
 did not previously create a personal access token. If you have created the
 token then after running `git clone` you will be asked for your username and
 password. The username is your GitHub username and the password should be your
-personal access token.
+personal access token. Again you might need to run this command twice to get it
+to work...
 
 Once you have done that you should see something like this:
 ```console
