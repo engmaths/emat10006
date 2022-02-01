@@ -16,6 +16,18 @@ Unpacking objects: 100\% (3/3), done.</code></pre>
 <p>Okay, so we now have an exact copy of our online repo on our local machine. These two instances of the repo do not &#39;sync&#39; automatically like Google Drive or Microsoft&#39;s OneDrive. If we make changes locally, they won&#39;t appear in our online GitHub repo until we explicitly &#39;push&#39; them there. Equally, if a collaborator made changes to the GitHub repo, the changes won&#39;t appear locally until we &#39;pull&#39; them down. This gives us complete control over when and how the contents of our repo changes.  Let&#39;s explore how we push changes from the computer up to GitHub using Git now. This takes us through a few of the fundamental Git commands and concepts. First up: making a commit.</p>
 <h1 id=making_your_first_commit ><a href="#making_your_first_commit" class=header-anchor >Making your first commit</a></h1>
 <p>When you have <code>cd</code>&#39;ed into your repo, type <code>git status</code> and hit enter. Git tells us that we are on the master branch &#40;more on this in future weeks&#41; and that there is nothing to commit, and our working directory is clean.  This is Git telling us that all is well – we have not made any changes to the contents of our new repo.</p>
+<p>The basic sequence of steps to make a commit and send it to GitHub is</p>
+<ol>
+<li><p>Edit some files</p>
+
+<li><p>Use <code>git add</code> to tell git which files you want to commit</p>
+
+<li><p>Use <code>git commit</code> to make a commit</p>
+
+<li><p>Use <code>git push</code> to send the commits to GitHub</p>
+
+</ol>
+<p>We are going to follow through those steps slowly below but using <code>git status</code> and checking that we understand what is happening at each stage.</p>
 <p><strong>Note about editors</strong> In the instructions below I suggest using <code>gedit</code> which is a text editor found on most Linux machines. If you are using the lab machines then you can use <code>gedit</code>. Wherever you see an instruction like <code>gedit
 somefile.py</code> it just means that you should edit the file in any code editor that you want. For example if you normally use <code>vscode</code> or <code>spyder</code> you could you could use that. You also don&#39;t need to open the file from the terminal at all as you can just do it in your editor.</p>
 <p>Let&#39;s add a simple Python script to our repo. When inside your repo directory, type <code>gedit welcome.py</code> and copy this very simple script in there and save it:</p>
@@ -31,8 +43,9 @@ print(&quot;Welcome to my repository&quot;)</code></pre>
 nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
 <p>This essentially says that Git has noticed we have made a new file, but until we add it using <code>git add</code>, Git is not going to do anything with it.</p>
 <p>Get used to running <code>git status</code> after nearly every new command you enter to check what Git is seeing, as it tracks changes to files, new files, etc.</p>
-<p>So let&#39;s take Git&#39;s advice and &#39;add&#39; our new file. Enter the command <code>git add
-welcome.py</code>. Then try <code>git status</code> again. The output from Git now says there is one new file, welcome.py, which comes under &#39;Changes to be committed&#39;.</p>
+<p>So let&#39;s take Git&#39;s advice and &#39;add&#39; our new file. Enter the command</p>
+<pre><code class="julia hljs">$ git add welcome.py</code></pre>
+<p>Then try <code>git status</code> again. The output from Git now says there is one new file, welcome.py, which comes under &#39;Changes to be committed&#39;.</p>
 <p>A quick aside: each Git <strong>commit</strong> is a record of what files have changed since the previous commit. You can think of them as like snapshots of your repo, which you take regularly to keep a tracked history of how your repo has changed since it began. They form the foundation of Git&#39;s &#39;version control&#39;, and allow you to go back to a previous state of the repo by going back to a particular commit.</p>
 <p>Back to our file: by adding it, the file is now in the Git &#39;staging area&#39;. The staging area is where we put the files that we wish to commit. So the files listed under &#39;Changes to be committed:&#39; when we run <code>git status</code> are in the staging area.</p>
 <p>Once we are happy with the new / changed files which are in the staging area, we can make our commit. Type the following and you should see some similar output:</p>
@@ -82,7 +95,12 @@ Your branch is up to date with &#x27;origin/master&#x27;.
 
 nothing to commit, working tree clean</code></pre>
 <p>Now have a look at the changes online by going back to your repo&#39;s webpage. You will see your new files, and next to their filenames, the commit message belonging to the commit that they were last edited in. So if you did not change the README.md, it should still say &#39;Initial commit&#39;. You can also click on the Commits tab and see all of your commits, similar to running the log command in the terminal.</p>
-<p>So now both of your repos are up-to-date with each other.</p>
+<p>So now both of your repos are up-to-date with each other. To summarise the full steps to add or change a file are:</p>
+<pre><code class="julia hljs">&lt;edit the files&gt;
+$ git add myfile.py
+$ git commit -m <span class=hljs-string >&quot;Add a cool new file&quot;</span>
+$ git push</code></pre>
+<p>In practice though you need to <code>git status</code> and probably other commands in between all of these.</p>
 <h2 id=round_up ><a href="#round_up" class=header-anchor >Round up</a></h2>
 <p>At this point try playing around with it. Make changes to your code, commit the changes, push them etc. Check <code>git log</code>, <code>git status</code> etc. Try to understand what all of the commands do and familiarise yourself with them. Check to see if you can see the changes on github.</p>
 <p>Try starting again: create a new repo on github, clone the repo, add files, commit them and push the commits up to github. Can you see your changes on github?</p>
