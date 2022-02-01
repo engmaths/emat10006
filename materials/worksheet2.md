@@ -203,6 +203,16 @@ that there is nothing to commit, and our working directory is clean.  This is
 Git telling us that all is well -- we have not made any changes to the
 contents of our new repo.
 
+The basic sequence of steps to make a commit and send it to GitHub is
+
+1. Edit some files
+2. Use `git add` to tell git which files you want to commit
+3. Use `git commit` to make a commit
+4. Use `git push` to send the commits to GitHub
+
+We are going to follow through those steps slowly below but using `git status`
+and checking that we understand what is happening at each stage.
+
 **Note about editors** In the instructions below I suggest using `gedit` which
 is a text editor found on most Linux machines. If you are using the lab
 machines then you can use `gedit`. Wherever you see an instruction like `gedit
@@ -234,9 +244,12 @@ until we add it using `git add`, Git is not going to do anything with it.
 Get used to running `git status` after nearly every new command you enter to
 check what Git is seeing, as it tracks changes to files, new files, etc.
 
-So let's take Git's advice and 'add' our new file. Enter the command `git add
-welcome.py`. Then try `git status` again. The output from Git now says there
-is one new file, welcome.py, which comes under 'Changes to be committed'.
+So let's take Git's advice and 'add' our new file. Enter the command
+```
+$ git add welcome.py
+```
+Then try `git status` again. The output from Git now says there is one new
+file, welcome.py, which comes under 'Changes to be committed'.
 
 A quick aside: each Git **commit** is a record of what files have changed
 since the previous commit. You can think of them as like snapshots of your
@@ -387,7 +400,16 @@ change the README.md, it should still say 'Initial commit'. You can also click
 on the Commits tab and see all of your commits, similar to running the log
 command in the terminal.
 
-So now both of your repos are up-to-date with each other.
+So now both of your repos are up-to-date with each other. To summarise the full
+steps to add or change a file are:
+```
+<edit the files>
+$ git add myfile.py
+$ git commit -m "Add a cool new file"
+$ git push
+```
+In practice though you need to `git status` and probably other commands in
+between all of these.
 
 ## Round up
 
