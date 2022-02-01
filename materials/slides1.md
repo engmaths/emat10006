@@ -25,10 +25,10 @@
 | 14   | Term     | worksheet       | Git and github    |
 | 15   | Term     | worksheet       |                   |
 | 16   | Term     | worksheet       |                   |
-| 17   | Consolidation | -          |                   |
-| 18   | Term     | worksheet       |                   |
-| 19   | Term     | Assignment released |               |
-| 20   | Term     | Group meetings  |                   |
+| 17   | Term     | worksheet       |                   |
+| 18   | Consolidation | -          |                   |
+| 19   | Term     | worksheet       |                   |
+| 20   | Term     | Assignment released |               |
 | 21   | Term     | Group meetings  |                   |
 | 22   | Term     | Group meetings  |                   |
 | E1   | Easter   | -               |                   |

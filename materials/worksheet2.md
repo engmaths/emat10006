@@ -214,7 +214,7 @@ The string after the `-m` flag is the commit message. It can be whatever you
 like, but it should be short, informative and usually worded like a command
 (e.g. starting with "Add \... \", "Change \... \", "Fix \... \"). When you
 look back at your commits the message will be included, so you should be able
-to understand what state your repo was in just by lokoing through recent
+to understand what state your repo was in just by looking through recent
 commit messages. Notice also how Git gives a summary of what has changed: it
 tells us one file has been changed, and that in that file there have been 2
 'insertions'. Git keeps track of what has changed line-by-line, so these two
@@ -354,8 +354,17 @@ Look at your repos on github. Explore the information that github has to show
 about them. Take a look at a more complicated repo like the
 [matplotlib repo](https://github.com/matplotlib/matplotlib).
 
-Finally share your repo with your TA (you will need to know their github
-username to do this). Go to your repo and click "settings" and then "manage
-access" and then "invite a collaborator".
+Try sharing a repo with someone else. You'll need to know their GitHub username
+for this. Go to your repo and click "settings" and then "manage access" and
+then "invite a collaborator". They will then get an email asking if they want
+to collaborate on your repository and if they accept then they should be able
+to see your repo on GitHub and they should be albe to clone it with `git
+clone`. The two (or more) of you could practice pushing and pulling to the same
+repo. If you create your repo as public in the first place then anyone on the
+internet will be able to see it but only collaborators will be able to make
+changes.
+
+Finally GitHub is a great place to back up all of your work. Why not store all
+of your previously created code in a new repo there?
 
 # That's all!
