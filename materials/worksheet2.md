@@ -31,7 +31,10 @@ then it is already installed. Otherwise it should open a messagebox asking if
 you want to install the "OSX command line tools": follow the instructions to
 install the tools. Then you will have git installed.
 
-**Linux users**: Install using your package manager e.g. `sudo apt install git`.
+**Lab machines** The Linux machines in the lab already have git so you do not
+need to install it.
+
+**Other Linux users**: Install using your package manager e.g. `sudo apt install git`.
 
 ## Getting a GitHub Account
 
@@ -74,6 +77,9 @@ well as share code publicly.
     From there, go to Emails, and make sure that the box that says 'Keep
     my email addresses private' is *checked*.
 
+9.  Create a personal access token:
+    [following the instructions here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
 9.  All sorted, you can now move on to making your first repository!
 
 # Our first Git repository
@@ -109,7 +115,7 @@ to our repo. First we're going to need a local 'clone' of the repo on our
 computer, so that we can add and edit files on our computer before putting
 them on the repo.
 
-From the repo page, click the green 'Clone or Download' button, and copy the
+From the repo page, click the green 'Code' button, and copy the
 link that it gives you. Then in a terminal window, navigate to a suitable
 place to create a new local repo, such as Documents.  Then type `git clone`
 followed by a space and the URL you just copied.
@@ -119,9 +125,15 @@ Note at this stage you might find that `git clone` fails saying something like
 clone a repo using a new github account. Running the exact same command again
 a second time fixed the problem (no idea why that works!).
 
-In a strange pop-up window you will be asked to enter your GitHub username and
-password. You might also need to click "Authorise credential manager" or
-something like that...
+If you are in Windows or OSX then in a strange pop-up window you will be asked
+to enter your GitHub username and password. You might also need to click
+"Authorise credential manager" or something like that...
+
+If you are using the lab machines you will see an error at this point if you
+did not previously create a personal access token. If you have created the
+token then after running `git clone` you will be asked for your username and
+password. The username is your GitHub username and the password should be your
+personal access token.
 
 Once you have done that you should see something like this:
 ```console
