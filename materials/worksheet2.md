@@ -36,6 +36,20 @@ need to install it.
 
 **Other Linux users**: Install using your package manager e.g. `sudo apt install git`.
 
+## Configuring git
+
+Whenever you make a commit with `git` your name and email address are stored in
+the commit. After installing `git` on a particular computer you should run
+these commands to ensure that git knows the correct name and email address. If
+your name is "Joe Bloggs" and your email is "joe@bloggs.com" then you would run
+```
+$ git config --global user.name "Joe Bloggs"
+$ git config --global user.email "joe@bloggs.com"
+```
+If you don't do this then `git` will try to guess your name and email address
+when you run `git commit` later in this worksheet and you will see a warning
+about this.
+
 ## Getting a GitHub Account
 
 For the remainder of this unit you will need a GitHub account. Here, we
