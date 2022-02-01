@@ -77,8 +77,14 @@ well as share code publicly.
     From there, go to Emails, and make sure that the box that says 'Keep
     my email addresses private' is *checked*.
 
-9.  Create a personal access token:
-    [following the instructions here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+9.  Create a personal access token. If you are on Windows or OSX this might not
+    be necessary because you might be able to use the GitHub credential manager
+    which might have been installed when you installed git. In some cases this
+    it will be necessary to create a personal access token which you use for
+    authenticating when running e.g. `git clone` in the instructions below. In
+    particular you will need to follow this step if you are using the Linux lab
+    machines. You can create a personal access token by [following the
+    instructions here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 9.  All sorted, you can now move on to making your first repository!
 
