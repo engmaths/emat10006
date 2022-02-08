@@ -1,0 +1,112 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title> &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1>Plotting in matplotlib</h1> <p>At the start of the worksheet we saw how to create a simple plot with matplotlib. In this section I show some example programs that make plots but your task is to run these and then change then and see if you can plot other things. Explore what you can do rather than just running the examples&#33;</p> <p>We saw a simple plot earlier but let&#39;s try something more complicated:</p> <pre><code class="python hljs"><span class=hljs-comment ># plot_sin.py</span>
+
+<span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
+<span class=hljs-keyword >import</span> math
+
+<span class=hljs-comment ># Create x as a list of 300 numbers equally spaced from 0 to 20</span>
+numpoints = <span class=hljs-number >300</span>
+xmin = <span class=hljs-number >0</span>
+xmax = <span class=hljs-number >20</span>
+delta_x = (xmax - xmin) / (numpoints - <span class=hljs-number >1</span>)
+x = [xmin + i*delta_x <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-built_in >range</span>(numpoints)]
+
+<span class=hljs-comment ># Create y as a list of corresponding y values for y = sin(x)</span>
+y = [math.sin(xi) <span class=hljs-keyword >for</span> xi <span class=hljs-keyword >in</span> x]
+
+<span class=hljs-comment ># Now plot them:</span>
+plt.plot(x, y)
+plt.show()</code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python plot_sin.py</span></code></pre>
+<p>You should see a window like this appear: <img src=plot_sin.svg  alt="Sin plot" /></p>
+<h1>Using numpy arrays</h1>
+<p>Above creating the lists of <code>x</code> and <code>y</code> values is awkward. We can use <code>numpy</code> to make that more convenient. Numpy gives us an array class that we can use to quickly apply mathematical functions to lost of values e.g.:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span><span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
+<span class=hljs-meta >&gt;&gt;&gt; </span>x = np.array([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>])
+<span class=hljs-meta >&gt;&gt;&gt; </span>x
+array([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>])
+<span class=hljs-meta >&gt;&gt;&gt; </span>x + x
+array([<span class=hljs-number >2</span>, <span class=hljs-number >4</span>, <span class=hljs-number >6</span>, <span class=hljs-number >8</span>])</code></pre>
+<p>Numpy also gives as mathematical functions that can operate on the elements of arrays:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>y = np.sin(x)
+<span class=hljs-meta >&gt;&gt;&gt; </span>y
+array([ <span class=hljs-number >0.84147098</span>,  <span class=hljs-number >0.90929743</span>,  <span class=hljs-number >0.14112001</span>, -<span class=hljs-number >0.7568025</span> ])</code></pre>
+<p>The <code>arange</code> function is like the Python <code>range</code> function but it gives us an array. Here we can create an array of numbers from <code>0</code> to <code>10</code> in steps of <code>1.5</code>:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>np.arange(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >1.5</span>)
+array([<span class=hljs-number >0.</span> , <span class=hljs-number >1.5</span>, <span class=hljs-number >3.</span> , <span class=hljs-number >4.5</span>, <span class=hljs-number >6.</span> , <span class=hljs-number >7.5</span>, <span class=hljs-number >9.</span> ])</code></pre>
+<p>The <code>linspace</code> function can be used to get an array with a fixed number of points between two values. Here we create an array of 9 values from <code>0</code> to <code>10</code>:</p>
+<pre><code class="python hljs"><span class=hljs-meta >&gt;&gt;&gt; </span>np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >9</span>)
+array([ <span class=hljs-number >0.</span>  ,  <span class=hljs-number >1.25</span>,  <span class=hljs-number >2.5</span> ,  <span class=hljs-number >3.75</span>,  <span class=hljs-number >5.</span>  ,  <span class=hljs-number >6.25</span>,  <span class=hljs-number >7.5</span> ,  <span class=hljs-number >8.75</span>, <span class=hljs-number >10.</span>  ])</code></pre>
+<p>We can use numpy arrays directly with matplotlib. Using all these the plotting example above can be just:</p>
+<pre><code class="python hljs">x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >20</span>, <span class=hljs-number >300</span>)
+y = np.sin(x)
+plt.plot(x, y)</code></pre>
+<p>You can find plenty more information about <code>numpy</code> arrays here: <a href="https://numpy.org/doc/stable/user/quickstart.html">https://numpy.org/doc/stable/user/quickstart.html</a></p>
+<h1>More advanced plotting</h1>
+<p>When we use <code>plt.plot</code> what happens is that a &quot;figure&quot; with an &quot;axes&quot; is created implicitly. For more advanced plotting it is better to create these explicitly yourself. That makes it possible to create a figure with multiple axes e.g.:</p>
+<pre><code class="python hljs"><span class=hljs-comment ># axplot.py</span>
+
+<span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
+<span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
+
+<span class=hljs-comment >#</span>
+<span class=hljs-comment ># Create a figure (a window)</span>
+<span class=hljs-comment ># Add two subplots in a 1x2 grid (one plot on the left and one on the right)</span>
+<span class=hljs-comment ># ax_left will be the left axes (number 1)</span>
+<span class=hljs-comment ># ax_right will be the right axes (number 2)</span>
+<span class=hljs-comment >#</span>
+fig = plt.figure(figsize=(<span class=hljs-number >6</span>, <span class=hljs-number >3</span>))
+ax_left = fig.add_subplot(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >1</span>)
+ax_right = fig.add_subplot(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >2</span>)
+
+<span class=hljs-comment ># x values [0, 0.05, 0.10, ...]</span>
+x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >15</span>, <span class=hljs-number >300</span>)
+sinx = np.sin(x)
+cosx = np.cos(x)
+
+<span class=hljs-comment ># Plot sinx on the left</span>
+ax_left.plot(x, sinx, color=<span class=hljs-string >&#x27;green&#x27;</span>, linewidth=<span class=hljs-number >3</span>)
+ax_left.set_title(<span class=hljs-string >&#x27;Plot of sin(x)&#x27;</span>)
+
+<span class=hljs-comment ># Plot cosx on the right</span>
+ax_right.plot(x, cosx, color=<span class=hljs-string >&#x27;red&#x27;</span>, linewidth=<span class=hljs-number >3</span>)
+ax_right.set_title(<span class=hljs-string >&#x27;Plot of cos(x)&#x27;</span>)
+
+plt.show()</code></pre>
+<p>You should see a window like this appear: <img src=axplot.svg  alt="Sin/cos plot" /></p>
+<h1>More plotting&#33;</h1>
+<p>Here&#39;s another program that creates four plots:</p>
+<pre><code class="python hljs"><span class=hljs-comment ># axplot2.py</span>
+
+<span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
+<span class=hljs-keyword >import</span> numpy <span class=hljs-keyword >as</span> np
+
+fig = plt.figure(figsize=(<span class=hljs-number >6</span>, <span class=hljs-number >6</span>))
+ax_upper_left = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >1</span>)
+ax_upper_right = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >2</span>)
+ax_lower_left = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>)
+ax_lower_right = fig.add_subplot(<span class=hljs-number >2</span>, <span class=hljs-number >2</span>, <span class=hljs-number >4</span>)
+
+<span class=hljs-comment ># x values [0, 0.05, 0.10, ...]</span>
+x = np.linspace(<span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >21</span>)
+expx = np.exp(x)  <span class=hljs-comment ># exponential function</span>
+
+<span class=hljs-comment ># line plot</span>
+ax_upper_left.plot(x, expx)
+
+<span class=hljs-comment ># line plot with logarithmic y axis</span>
+ax_upper_right.semilogy(x, expx)
+
+<span class=hljs-comment ># line plot with logarithmic x and y axes</span>
+ax_lower_left.loglog(x, expx)
+
+<span class=hljs-comment ># Scatter plot</span>
+ax_lower_right.scatter(x, expx)
+
+plt.show()</code></pre>
+<p>If you run this you should see: <img src=axplot2.svg  alt="Exp plot" /></p>
+<p><strong>Exercise</strong>: play around with these examples and try out different kinds of plots. You can find many more examples here: <a href="https://matplotlib.org/stable/tutorials/introductory/sample_plots.html">https://matplotlib.org/stable/tutorials/introductory/sample_plots.html</a> &#40;Click on any of the images to see the code that makes the plot.&#41;</p>
+<div class=page-foot >
+  <div class=copyright >
+    &copy; Oscar Benjamin. Last modified: February 08, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div>

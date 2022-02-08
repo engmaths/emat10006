@@ -8,6 +8,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://engmaths.github.io/emat10006/materials/plotting/index.html</loc>
+    <lastmod>2022-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://engmaths.github.io/emat10006/terminals/index.html</loc>
     <lastmod>2022-02-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -45,6 +51,12 @@
 </url>
 <url>
     <loc>https://engmaths.github.io/emat10006/terminals/outline/index.html</loc>
+    <lastmod>2022-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/materials/testing/index.html</loc>
     <lastmod>2022-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
