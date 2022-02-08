@@ -86,13 +86,19 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://engmaths.github.io/emat10006/terminals/settingup/index.html</loc>
+    <loc>https://engmaths.github.io/emat10006/materials/packages/index.html</loc>
     <lastmod>2022-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://engmaths.github.io/emat10006/cheatsheet.old/index.html</loc>
+    <lastmod>2022-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://engmaths.github.io/emat10006/terminals/settingup/index.html</loc>
     <lastmod>2022-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

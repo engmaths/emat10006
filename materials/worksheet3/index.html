@@ -137,6 +137,97 @@ GRAVITY = <span class=hljs-number >0.9812</span>
 <li><p>Do any of your functions look like a piece of code that could ever be reused as part of a future programming project?</p>
 
 </ul>
+<h1 id=modules ><a href="#modules" class=header-anchor >Modules</a></h1>
+<p>We are going to want to create larger codebases in which we have many functions that are organised into modules and packages. This is explained in more detail in the official Python tutorial: <a href="https://docs.python.org/3/tutorial/modules.html">https://docs.python.org/3/tutorial/modules.html</a></p>
+<p>For now try out the following</p>
+<ol>
+<li><p>Create a file called <code>mymodule.py</code> and add some code into it with a function e.g.</p>
+
+</ol>
+<pre><code class="python hljs"><span class=hljs-keyword >def</span> <span class="hljs-title function_">myfunction</span>(<span class=hljs-params >x</span>):
+   <span class=hljs-keyword >return</span> x ** <span class=hljs-number >2</span></code></pre>
+<ol start=2 >
+<li><p>In the terminal <code>cd</code> into the same directory where you saved the file and run python. Then import your function and call it:</p>
+
+</ol>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python</span>
+Python 2.7.12 (default, Mar  1 2021, 11:38:31) 
+[GCC 5.4.0 20160609] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+<span class=hljs-meta >&gt;</span><span class=language-bash >&gt;&gt; from mymodule import myfunction</span>
+<span class=hljs-meta >&gt;</span><span class=language-bash >&gt;&gt; myfunction(3)</span>
+9</code></pre>
+<ol start=3 >
+<li><p>Create another file in the same directory called <code>myscript.py</code> that imports your function and calls it e.g.:</p>
+
+</ol>
+<pre><code class="python hljs"><span class=hljs-keyword >from</span> mymodule <span class=hljs-keyword >import</span> myfunction
+
+<span class=hljs-built_in >print</span>(myfunction(<span class=hljs-number >3</span>))</code></pre>
+<ol start=4 >
+<li><p>Now run your script from the terminal</p>
+
+</ol>
+<pre><code class="julia hljs">$ python myscript.py
+<span class=hljs-number >9</span></code></pre>
+<p>This is the basic arrangement for how we can split our code into multiple files. We should usually distinguish between the <code>.py</code> files that are &quot;scripts&quot; and those that are &quot;modules&quot;. In a module we put things like functions that can be useful for many different things but running the module does not do anything except define those functions. Running a script like <code>python myscript.py</code> performs some action &#40;e.g. it shows a plot or prints some output or something&#41; and it does that using the functions that are defined in modules. In a larger Python project that would be many modules and then maybe a few short scripts that import the functions from the modules and perform some useful action.</p>
+<h1 id=packages ><a href="#packages" class=header-anchor >Packages</a></h1>
+<p>When we have many modules we want to organise them into packages. A package is basically a directory full of modules. We create a package by creating a directory and adding a file called <code>__init__.py</code>. Let&#39;s try this out:</p>
+<ol>
+<li><p>Create a directory called <code>mypackage</code> and move the <code>mymodule.py</code> file into it:</p>
+
+</ol>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mkdir</span> mypackage</span>
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mv</span> mymodule.py mypackage</span></code></pre>
+<ol start=2 >
+<li><p>We also need an <code>__init__.py</code> file but that file can be completely empty so we can just create it with the <code>touch</code> terminal command:</p>
+
+</ol>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >touch</span> mypackage/__init__.py</span></code></pre>
+<ol start=3 >
+<li><p>Let&#39;s now see what our files look like:</p>
+
+</ol>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
+mypackage
+myscript.py
+<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> mypackage</span>
+__init__.py  mymodule.py</code></pre>
+<p>Note that we can do this in one command with the <code>-R</code> &#40;recursive&#41; option to <code>ls</code>:</p>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> -R</span>
+.:
+mypackage
+myscript.py
+
+./mypackage:
+__init__.py  mymodule.py</code></pre>
+<ol start=4 >
+<li><p>Now change <code>myscript.py</code> to import from the module in the package:</p>
+
+</ol>
+<pre><code class="python hljs"><span class=hljs-keyword >from</span> mypackage.mymodule <span class=hljs-keyword >import</span> myfunction
+
+<span class=hljs-built_in >print</span>(myfunction(<span class=hljs-number >3</span>))</code></pre>
+<ol start=5 >
+<li><p>Check that the script still works:</p>
+
+</ol>
+<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python myscript.py</span>
+9</code></pre>
+<p>Now what we could do in a large project is make many modules in a package that define all of the complicated code. Then we can make many different scripts that do useful things with the functions defined in the package and its submodules. The different scripts can <em>share</em> the same code. It&#39;s much better to share the code using modules than to copy the code from one script to another. If you have a complicated function that does something useful then having only one version of that function means that you can fix all of its bugs in one place. When you make lots of copies then over time they will change and become different and you won&#39;t know whether the bugs have been fixed in all places.</p>
+<p><strong>Exercise</strong>: Play around with creating packages and modules and importing from them. Make a package with multiple modules and have the modules import from each other. Make multiple scripts that do different things with the same function. As an example, take the plotting script from the top of this worksheet. Reorganise the script to have a function like:</p>
+<pre><code class="python hljs"><span class=hljs-keyword >def</span> <span class="hljs-title function_">get_tractory</span>(<span class=hljs-params >theta, v0, x0, y0, T, numpoints=<span class=hljs-number >100</span></span>):
+    <span class=hljs-comment ># Add the code here</span>
+    <span class=hljs-comment ># t is a list of time points like [0,0.1,0.2,...] going from 0 to T</span>
+    <span class=hljs-comment ># x and y give the horizontal and vertical coordinates of the projectile</span>
+    <span class=hljs-keyword >return</span> t, x, y</code></pre>
+<p>Now put that into a package and make two different scripts:</p>
+<ol>
+<li><p>Make a script that imports the <code>get_trajectory</code> function and uses it to plot the trajectory as <code>y</code> against <code>x</code> as shown in the example script at the top of this sheet.</p>
+
+<li><p>Make a <em>different</em> script that uses the <em>same</em> function <code>get_trajectory</code> but instead plots <code>x</code> and <code>y</code> against time <code>t</code> as two different lines on the same plot so we can see how the positions change over time.</p>
+
+</ol>
 <div class=page-foot >
   <div class=copyright >
     &copy; Oscar Benjamin. Last modified: February 08, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
