@@ -4,5 +4,6 @@ franklin
 franklin.pub
 node_modules/
 emat10006
+*.pyc
 *.swp
 __pycache__

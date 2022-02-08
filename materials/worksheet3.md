@@ -348,3 +348,123 @@ consider the following:
   you show it to someone else can they understand it?
 * Do any of your functions look like a piece of code that could ever be reused
   as part of a future programming project?
+
+
+# Modules
+
+We are going to want to create larger codebases in which we have many functions that are organised into modules and packages. This is explained in more detail in the official Python tutorial:
+<https://docs.python.org/3/tutorial/modules.html>
+
+For now try out the following
+
+1. Create a file called `mymodule.py` and add some code into it with a function e.g.
+```python
+def myfunction(x):
+   return x ** 2
+```
+2. In the terminal `cd` into the same directory where you saved the file and run python. Then import your function and call it:
+```console
+$ python
+Python 2.7.12 (default, Mar  1 2021, 11:38:31) 
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from mymodule import myfunction
+>>> myfunction(3)
+9
+```
+3. Create another file in the same directory called `myscript.py` that imports your function and calls it e.g.:
+```python
+from mymodule import myfunction
+
+print(myfunction(3))
+```
+4. Now run your script from the terminal
+```
+$ python myscript.py
+9
+```
+This is the basic arrangement for how we can split our code into multiple
+files. We should usually distinguish between the `.py` files that are "scripts"
+and those that are "modules". In a module we put things like functions that can
+be useful for many different things but running the module does not do anything
+except define those functions. Running a script like `python myscript.py`
+performs some action (e.g. it shows a plot or prints some output or something)
+and it does that using the functions that are defined in modules. In a larger
+Python project that would be many modules and then maybe a few short scripts
+that import the functions from the modules and perform some useful action.
+
+# Packages
+
+When we have many modules we want to organise them into packages. A package is
+basically a directory full of modules. We create a package by creating a
+directory and adding a file called `__init__.py`. Let's try this out:
+
+1. Create a directory called `mypackage` and move the `mymodule.py` file into it:
+```console
+$ mkdir mypackage
+$ mv mymodule.py mypackage
+```
+2. We also need an `__init__.py` file but that file can be completely empty so we can just create it with the `touch` terminal command:
+```console
+$ touch mypackage/__init__.py
+```
+3. Let's now see what our files look like:
+```console
+$ ls
+mypackage
+myscript.py
+$ ls mypackage
+__init__.py  mymodule.py
+```
+Note that we can do this in one command with the `-R` (recursive) option to `ls`:
+```console
+$ ls -R
+.:
+mypackage
+myscript.py
+
+./mypackage:
+__init__.py  mymodule.py
+```
+4. Now change `myscript.py` to import from the module in the package:
+```python
+from mypackage.mymodule import myfunction
+
+print(myfunction(3))
+```
+5. Check that the script still works:
+```console
+$ python myscript.py
+9
+```
+
+Now what we could do in a large project is make many modules in a package that
+define all of the complicated code. Then we can make many different scripts
+that do useful things with the functions defined in the package and its
+submodules. The different scripts can *share* the same code. It's much better
+to share the code using modules than to copy the code from one script to
+another. If you have a complicated function that does something useful then
+having only one version of that function means that you can fix all of its bugs
+in one place. When you make lots of copies then over time they will change and
+become different and you won't know whether the bugs have been fixed in all
+places.
+
+**Exercise**: Play around with creating packages and modules and importing from
+them. Make a package with multiple modules and have the modules import from
+each other. Make multiple scripts that do different things with the same
+function. As an example, take the plotting script from the top of this
+worksheet. Reorganise the script to have a function like:
+```python
+def get_tractory(theta, v0, x0, y0, T, numpoints=100):
+    # Add the code here
+    # t is a list of time points like [0,0.1,0.2,...] going from 0 to T
+    # x and y give the horizontal and vertical coordinates of the projectile
+    return t, x, y
+```
+Now put that into a package and make two different scripts:
+1. Make a script that imports the `get_trajectory` function and uses it to plot
+   the trajectory as `y` against `x` as shown in the example script at the top
+   of this sheet.
+2. Make a *different* script that uses the *same* function `get_trajectory` but
+   instead plots `x` and `y` against time `t` as two different lines on the
+   same plot so we can see how the positions change over time.
