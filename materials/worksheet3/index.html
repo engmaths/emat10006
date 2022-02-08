@@ -1,212 +1,145 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/katex/katex.min.css"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Functions, exceptions and testing &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><h1 id=functions_exceptions_and_testing ><a href="#functions_exceptions_and_testing" class=header-anchor >Functions, exceptions and testing</a></h1> <p>This worksheet is about writing functions, using exceptions and also testing your code with <code>pytest</code>.</p> <h2 id=functions ><a href="#functions" class=header-anchor >Functions</a></h2> <p>The first part of this worksheet is about reading and critical reflection. I&#39;m assuming that you&#39;ve already read <a href="../functions">functions</a>. I&#39;m also assuming that you have written some code in the past e.g. for a previous project.</p> <p>It is often said among programmers that code is &quot;read more often than it is written&quot;. The point is that you should put effort into making code readable even if that takes a small amount of extra time when you are writing the code. That time will be repaid many times later when you end up having to read the code. A strange thing happens when programming though: it is quite easy to write code that makes sense to you in the exact moment that you are writing it but is actually impossible to understand. The code might &quot;work&quot; but a future reader &#40;including you in a month&#39;s time&#41; might have no chance of being able to understand it.</p> <p>You might say that as long as the code works it doesn&#39;t matter if any human can understand it but that makes it impossible to improve the code later. It&#39;s also impossible to fix bugs or take pieces of the code and reuse them for other things if no one understands it any more. Most importantly if you are a beginner at programming: if you learn how to write readable code then it is not much harder than writing unreadable code. This is a skill that once mastered means that everything you produce is naturally better.</p> <p><strong>Exercise</strong>: go back over the code that you have written in the past and consider the following:</p> <ul> <li><p>Have you been using functions in your code?</p> <li><p>Are there places where your code is repetitive that would benefit from using functions?</p> <li><p>What names have you given your functions?</p> <ul> <li><p>Do your functions names convey any meaning?</p> <li><p>Can you understand what your functions do from their names and the way that they are used without needing to look at the code inside the functions?</p> <li><p>What kinds of words are you using for your function names? Are they nouns, verbs, adjectives...?</p> </ul> <li><p>Are your functions pure or not? Have you been cleanly separating input, output and pure functions?</p> <li><p>Can you actually understand your own code that you wrote some time ago? If you show it to someone else can they understand it?</p> <li><p>Do any of your functions look like a piece of code that could ever be reused as part of a future programming project?</p> </ul> <h2 id=testing ><a href="#testing" class=header-anchor >Testing</a></h2> <p><strong>Note</strong>: You will need to have <code>pytest</code> installed to follow through the examples here. If you installed Python using Anaconda then you should already have <code>pytest</code> installed. If your <code>&#36;PATH</code> is set up correctly you should be able to run <code>pytest</code> in the terminal. The output looks something like this:</p> <pre><code class=language-julia >&#36; pytest
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; test session starts &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/sympy/sympy, configfile: pytest.ini
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 0 items</code></pre> <p>If the <code>pytest</code> command does not work but you do have <code>pytest</code> installed then one of the following should work:</p> <pre><code class=language-julia >&#36; python -m pytest
-&#36; python3 -m pytest
-&#36; py -m pytest</code></pre> <p>If you need to install <code>pytest</code> then you might be able to install it with</p> <pre><code class=language-julia >&#36; python -m pip install pytest</code></pre>
-<h1 id=using_pytest ><a href="#using_pytest" class=header-anchor >Using pytest</a></h1>
-<p>The <code>pytest</code> library is for <a href="https://en.wikipedia.org/wiki/Unit_testing">unit testing</a>. It is used to run tests that check if code works correctly. The documentation for <code>pytest</code> is <a href="https://docs.pytest.org/en/stable/">here</a>.</p>
-<p>To use <code>pytest</code> we just need to put some functions with names that begin with <code>test_</code> in our Python file. Here&#39;s a simple example of a Python script with a function that is tested with <code>pytest</code>:</p>
-<pre><code class=language-python ># square.py
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/emat10006/libs/highlight/github.min.css"> <link rel=stylesheet  href="/emat10006/css/franklin.css"> <link rel=stylesheet  href="/emat10006/css/basic.css"> <link rel=icon  href="/emat10006/assets/favicon.png"> <title>Functions &mdash; Further Computer Programming</title> <header> <div class=blog-name ><a href="">EMAT10006: Further Computer Programming</a></div> <nav> <ul> <li><a href="/emat10006/">Overview</a> <li><a href="/emat10006/materials/">Materials</a> <li><a href="/emat10006/cheatsheet/">Cheatsheet</a> <li><a href="/emat10006/assignment/">Assignment</a> </ul> <img src="/emat10006/assets/hamburger.svg" id=menu-icon > </nav> </header> <div class=franklin-content ><p>EMAT10006: Further Computer Programming</p> <p>Week 3 – Git in Pairs, functions and packages</p> <hr /> <p>For this week&#39;s worksheet, and the second assignment, you will need to work with one or two partners which should be someone from your TA group.</p> <p>In this worksheet we will</p> <ol> <li><p>learning how to work with a partner with git</p> <li><p>learn how to do plotting with matplotlib</p> </ol> <h1>Quick demo of plotting</h1> <p>We&#39;ll get more on to plotting in the second half of the worksheet. Here is a quick demonstration though. This should give you a starting piece of code that you can use while working through the push/pull exercises below.</p> <p>If you have matplotlib and numpy installed &#40;install them with pip if you don&#39;t&#41; then you can use the following to create a plot that you can see on the screen:</p> <pre><code class="python hljs"><span class=hljs-comment ># plot.py</span>
 
-def square&#40;x&#41;:
-    &quot;&quot;&quot;Returns the square of x&quot;&quot;&quot;
-    return x * x
+<span class=hljs-keyword >import</span> math
+<span class=hljs-keyword >import</span> matplotlib.pyplot <span class=hljs-keyword >as</span> plt
 
-def test_square&#40;&#41;:
-    assert square&#40;0&#41; &#61;&#61; 0
-    assert square&#40;2&#41; &#61;&#61; 4
-    assert square&#40;-2&#41; &#61;&#61; 4</code></pre>
-<p>If you save that code in a file <code>square.py</code> then you can use <code>pytest</code> to run the tests in the <code>test_square</code> function that check that the <code>square</code> function is working correctly:</p>
-<pre><code class=language-console >&#36; pytest square.py
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; test session starts &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 1 item
+<span class=hljs-comment ># SUVAT equations</span>
+<span class=hljs-comment >#</span>
+<span class=hljs-comment ># This will give the path of a projectile launched at angle theta and initial</span>
+<span class=hljs-comment ># speed v0</span>
 
-square.py .                                                                                             &#91;100&#37;&#93;
+GRAVITY = <span class=hljs-number >0.98</span> <span class=hljs-comment ># m/s^2</span>
 
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; 1 passed in 0.02s &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;</code></pre>
-<p>The key part of the output here is &quot;1 passed&quot; which means that 1 test was run and it passed as expected.</p>
-<p>Now put this into a file called <code>cube.py</code>:</p>
-<pre><code class=language-python ># cube.py
+theta = math.pi/<span class=hljs-number >4</span>    <span class=hljs-comment ># 45 deg - launch angle</span>
+v0 = <span class=hljs-number >1</span>          <span class=hljs-comment ># m/s    - initial speed</span>
 
-def cube&#40;x&#41;:
-    &quot;&quot;&quot;Returns the cube of x&quot;&quot;&quot;
-    return 0  # &lt;--- This obviously doesn&#39;t work correctly
+uy = v0*math.sin(theta) <span class=hljs-comment ># m/s - initial vertical velocity</span>
+ux = v0*math.cos(theta) <span class=hljs-comment ># m/s - horizontal velocity</span>
+ay = -GRAVITY      <span class=hljs-comment ># m/s^2 - vertical acceleration</span>
 
-def test_square&#40;&#41;:
-    assert cube&#40;0&#41; &#61;&#61; 0
-    assert cube&#40;2&#41; &#61;&#61; 8
-    assert cube&#40;-2&#41; &#61;&#61; 8</code></pre>
-<p>This time we have a function <code>cube</code> that does not actually work because it always returns 0 instead of computing \(x^3\). If we run <code>pytest</code> now then it the tests will fail:</p>
-<pre><code class=language-console >&#36; pytest cube.py
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; test session starts &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 1 item
+t = [<span class=hljs-number >0.01</span>*n <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> <span class=hljs-built_in >range</span>(<span class=hljs-number >100</span>)]
+y = [uy*ti + <span class=hljs-number >1</span>/<span class=hljs-number >2</span>*ay*ti**<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> ti <span class=hljs-keyword >in</span> t]  <span class=hljs-comment ># constant acceleration</span>
+x = [ux*ti <span class=hljs-keyword >for</span> ti <span class=hljs-keyword >in</span> t]                 <span class=hljs-comment ># constand speed</span>
 
-cube.py F                                                                                              &#91;100&#37;&#93;
+<span class=hljs-comment ># Create a plot of y against x</span>
+plt.plot(x, y, linewidth=<span class=hljs-number >3</span>, color=<span class=hljs-string >&#x27;black&#x27;</span>)
+plt.xlabel(<span class=hljs-string >r&#x27;$x\,(\mathrm{m})$&#x27;</span>)
+plt.ylabel(<span class=hljs-string >r&#x27;$y\,(\mathrm{m})$&#x27;</span>, rotation=<span class=hljs-number >0</span>)
+plt.title(<span class=hljs-string >&#x27;Trajectory of projectile&#x27;</span>)
+plt.xlim([<span class=hljs-number >0</span>, <span class=hljs-number >0.7</span>])
+plt.ylim([<span class=hljs-number >0</span>, <span class=hljs-number >0.3</span>])
 
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; FAILURES &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-________________________________________________ test_square _________________________________________________
-
-    def test_square&#40;&#41;:
-        assert cube&#40;0&#41; &#61;&#61; 0
-&gt;       assert cube&#40;2&#41; &#61;&#61; 8
-E       assert 0 &#61;&#61; 8
-E        &#43;  where 0 &#61; cube&#40;2&#41;
-
-cube.py:9: AssertionError
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; short test summary info &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-FAILED cube.py::test_square - assert 0 &#61;&#61; 8
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; 1 failed in 0.19s &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;</code></pre>
-<p>Now <code>pytest</code> shows that the tests have failed. It says &quot;1 failed&quot; meaning that 1 test was run and it failed.</p>
-<p><strong>Exercise</strong>: Fix the cube function so that it works and so that <code>pytest</code> shows the tests passing.</p>
-<h1 id=test_driven_development ><a href="#test_driven_development" class=header-anchor >Test driven development</a></h1>
-<p>The idea of test driven development &#40;TDD&#41; is that the process of writing code takes place like this:</p>
+<span class=hljs-comment ># Creating the plot with plt.plot does not mean that we can see the plot!</span>
+<span class=hljs-comment ># We need to &quot;show&quot; the plot:</span>
+plt.savefig(<span class=hljs-string >&#x27;plot1.svg&#x27;</span>) <span class=hljs-comment ># save to a file</span>
+plt.show()							 <span class=hljs-comment ># show on screen</span></code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python plot.py</span></code></pre>
+<p>You should see a window open with something looking like this: <img src=plot1.svg  alt="Simple quadratic plot" /></p>
+<p>We will look more at how to use matplotlib later in the unit but for now you can use this simple program as an example while practising pushing and pulling with your partner.</p>
+<h1>Pushing and pulling</h1>
+<p>This exercise requires you to work in your pairs. We will walk through how to push and pull to a remote repo that you share. Along the way you should get a better idea of why Git is so useful when collaborating on projects, as well as some of the complications that it brings&#33;</p>
+<p>Firstly here&#39;s a diagram showing roughly how the different git commands work together and how where they move changes from and to:</p>
+<p><img src=git-commands.svg  alt="A schematic of your local and remote repositories, showing how changes can be pushed and pulled around." /></p>
+<p>The normal workflow is to:</p>
 <ol>
-<li><p>Decide what functions you will have in your program.</p>
+<li><p>Make changes to the code &#40;the &quot;workspace&quot; or &quot;workeing tree&quot;&#41;. This is what happens when you edit your code files with your editor.</p>
 
-<li><p>Write tests for those functions</p>
+<li><p>Use <code>git add</code> to register those changes with git. This stores the changes in the &quot;index&quot;.</p>
 
-<li><p>Write the code for the functions</p>
+<li><p>Use <code>git commit</code> to make a new commit with the changes that are stored in the &quot;index&quot;.</p>
 
-<li><p>Check that the tests pass</p>
+<li><p>Repeat steps 1-3 making new commits.</p>
+
+<li><p>Use <code>git push</code> to send the commits to GitHub.</p>
 
 </ol>
-<p>If the tests represent a good check in the correctness of the code then this should mean that your code is now correct. The key part now is what happens if you later want to make changes to the code. For example if you think that the code is correct but it runs slowly and you want to to improve it then you can rewrite the code. If it then runs faster and still passes the tests then that can reassure you that it is still correct after the changes.</p>
-<p>If you discover a bug in your code that means it gives incorrect output then the procedure is:</p>
-<ol>
-<li><p>Add a test for the bug and verify that the test fails.</p>
-
-<li><p>Fix the code so that the tests pass again.</p>
-
-</ol>
-<p>In this way every time a bug is discovered more tests are added. Any future change to the code will need to pass all the tests that were ever added.</p>
-<p>Here&#39;s an example Python file that has a bug:</p>
-<pre><code class=language-python ># det.py
-
-def determinant&#40;M&#41;:
-    &quot;&quot;&quot;Compute the determinant of a square matrix M
-
-    The input matrix should be given as a list of lists.
-
-    &gt;&gt;&gt; M &#61; &#91;&#91;1, 2&#93;, &#91;3, 4&#93;&#93;
-    &gt;&gt;&gt; determinant&#40;M&#41;
-    -1
-    &quot;&quot;&quot;
-    # M is an NxN matrix
-    N &#61; len&#40;M&#41;
-
-    if N &#61;&#61; 2:
-        # Handle 2x2 as the base case
-        &#91;&#91;a, b&#93;, &#91;c, d&#93;&#93; &#61; M
-        return a*d - b*c
-    else:
-        # Recurse using Laplace expansion for 3x3 or larger
-        det &#61; 0
-        for j in range&#40;N&#41;:
-            det &#43;&#61; &#40;-1&#41;**j * M&#91;0&#93;&#91;j&#93; * determinant&#40;minor&#40;M, 0, j&#41;&#41;
-        return det
-
-
-def minor&#40;M, i, j&#41;:
-    &quot;&quot;&quot;Get the &#40;i, j&#41; minor of the matrix M
-
-    The &#40;i, j&#41; minor of M is the matrix formed by removing the ith row and jth
-    column from M.
-
-    &gt;&gt;&gt; minor&#40;&#91;&#91;1, 2, 3&#93;, &#91;4, 5, 6&#93;, &#91;7, 8, 9&#93;&#93;, 0, 1&#41;
-    &#91;&#91;4, 6&#93;, &#91;7, 9&#93;&#93;
-    &quot;&quot;&quot;
-    # Remove the ith row and jth column
-    return &#91;Mi&#91;:j&#93; &#43; Mi&#91;j&#43;1:&#93; for Mi in M&#91;:i&#93; &#43; M&#91;i&#43;1:&#93;&#93;
-
-
-def test_determinant&#40;&#41;:
-    assert determinant&#40;&#91;&#91;1, 2&#93;, &#91;3, 4&#93;&#93;&#41; &#61;&#61; -2
-    assert determinant&#40;&#91;&#91;1, 2, 3&#93;, &#91;4, 5, 6&#93;, &#91;7, 8, 9&#93;&#93;&#41; &#61;&#61; 0
-    assert determinant&#40;&#91;&#91;1, 2, 3&#93;, &#91;4, 5, 6&#93;, &#91;7, 8, 10&#93;&#93;&#41; &#61;&#61; -3</code></pre>
-<p>The first bug here is that the <code>determinant</code> function does not correctly handle <code>1x1</code> or <code>0x0</code> matrices correctly e.g.:</p>
-<pre><code class=language-python >&gt;&gt;&gt; determinant&#40;&#91;&#91;2&#93;&#93;&#41;  # should be 2
-0
-&gt;&gt;&gt; determinant&#40;&#91;&#93;&#41;     # should be 1
-0</code></pre>
-<p>The determinant of a \(1 \times 1\) matrix should just be the entry of the matrix&#33; The determinant of a \(0 \times 0\) matrix is tricky but in fact it should always be 1.</p>
-<p><strong>Exercise</strong>: Add tests for \(1 \times 1\) and \(0 \times 0\) matrices. Fix the <code>determinant</code> function so that it works for those cases as well.</p>
-<p><strong>Exercise</strong>: Add tests for the <code>minor</code> function.</p>
-<p>Try running the tests with the <code>--doctest-modules</code> argument. You should see this:</p>
-<pre><code class=language-console >&#36; pytest --doctest-modules det.py 
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; test session starts &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 3 items                                                                                            
-
-det.py F..                                                                                             &#91;100&#37;&#93;
-
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; FAILURES &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-_________________________________________ &#91;doctest&#93; det.determinant __________________________________________
-002 Compute the determinant of a square matrix M
-003 
-004     The input matrix should be given as a list of lists.
-005 
-006     &gt;&gt;&gt; M &#61; &#91;&#91;1, 2&#93;, &#91;3, 4&#93;&#93;
-007     &gt;&gt;&gt; determinant&#40;M&#41;
-Expected:
-    -1
-Got:
-    -2
-
-/Users/enojb/current/emat10006/materials/det.py:7: DocTestFailure
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; short test summary info &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;
-FAILED det.py::det.determinant
-&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61; 1 failed, 2 passed in 0.04s &#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;&#61;</code></pre>
-<p>Now <code>pytest</code> is testing the examples shown in the docstring and the example is clearly incorrect&#33;</p>
-<p><strong>Exercise</strong>: Fix the doctest example in the <code>determinant</code> docstring. Verify that the tests pass.</p>
-<h2 id=polynomials ><a href="#polynomials" class=header-anchor >Polynomials</a></h2>
-<p>The final exercise in this sheet is to make a program that can find integer roots of polynomials that have integer coefficients. The basic program can be found <a href=roots.py >here</a>. When working the program behaves like this:</p>
-<pre><code class=language-console >&#36; python roots.py 1 -5 6
-2
-3</code></pre>
-<p>This is showing that the roots of \(x^2 - 5x + 6\) are \(2\) and \(3\).</p>
-<p><strong>Exercise</strong>: Download the <code>roots.py</code> script and run <code>pytest</code> on it. Three functions need to be implemented:</p>
+<p>The other step that we haven&#39;t used yet is <code>git pull</code>. The pull command is the opposite of the push command:</p>
 <ul>
-<li><p>The <code>evaluate_polynomial&#40;p, x&#41;</code> function calculates the value of the polynomial \(p(x)\) at <code>x</code>. For example <code>evaluate_polynomial&#40;&#91;1, 2, 1&#93;, 3&#41;</code> calculates \(p(3)\) where \(p(x) = x^2 + 2x + 1\):</p>
-<pre><code>&gt;&gt;&gt; evaluate_polynomial&#40;&#91;1, 2, 1&#93;, 3&#41;
-16</code></pre>
-<p>There are many ways to implement this but the most efficient is to use <a href="https://en.wikipedia.org/wiki/Horner&#37;27s_method">Horner&#39;s method</a>.</p>
+<li><p><code>git push</code> sends commit from your local repo to the remote repo &#40;from your computer to GitHub&#41;.</p>
 
-<li><p>The <code>is_root&#40;p, x&#41;</code> function returns True if <code>x</code> is a root of \(p(x)\) e.g.</p>
-<pre><code>&gt;&gt;&gt; is_root&#40;&#91;1, 2, 1&#93;, 3&#41;
-False</code></pre>
-<p>This is because \(3\) is not a root of \(x^2 + 2x + 1\). It&#39;s easy to check if <code>x</code> is a root of <code>p</code>: we just calculate \(p(x)\) and see if it gives zero.</p>
-
-<li><p>The <code>integer_roots&#40;p&#41;</code> function returns the integer roots of the polynomial \(p(x)\). This works using the <a href="https://en.wikipedia.org/wiki/Rational_root_theorem">rational root theorem</a>. A simple observation is that given e.g. a polynomial \(ax^3 + bx^2 + cx + d\) then any integer root must satisfy \(|x| \le |d|\). So if for example \(d\) is 4 then the only possibilities for integer roots are \(\{-4,-3,-2,-1,0,1,2,3,4\}\). We can test each of these possibilities in a loop to see if any is a root &#40;using the <code>is_root</code> function&#41;.</p>
-
-<li><p>Some of the tests check that a particular exception is being raised by a function for particular inputs. To make those tests pass you will need to add <code>raise BadPolynomialError</code> in those functions.</p>
+<li><p><code>git pull</code> retrieves commit from the remore repo to your local repo &#40;from GitHub to your computer&#41;.</p>
 
 </ul>
-<p>See the tests for more examples. Add the code for those functions so that the tests pass. Some of the tests use the <code>pyest</code> function <code>raises</code>. This is used to check that calling the function with those arguments raises a particular error. You will need to test for those cases and use something like</p>
-<pre><code class=language-julia >raise BadPolynomialError&#40;&quot;Polynomial should be a list of coefficients&quot;&#41;</code></pre>
-<p>The final program should be able to find the integer roots of a polynomial when run from the command line.</p>
+<p>So far we haven&#39;t used <code>git pull</code> because we haven&#39;t been working with anyone else. If you are the only one making commits then there will never be any commits on GitHub apart from the ones you pushed there. Once we start working with other people we need a way to get their commits into the local repo and that&#39;s what we <code>git pull</code> is for.</p>
+<h1>Push, pull exercise</h1>
+<p><strong>Note</strong>: this exercise is to be done in pairs &#40;or groups of three&#41;.</p>
+<p>Firstly, let&#39;s get a repo up and running with a local clone for either of you.</p>
+<p>Just one of you should make a new repo. From now on I&#39;ll refer to the person that made the repo as the &#39;owner&#39; and the other person in the pair as the &#39;collaborator&#39;. Notice that in the following guide, although I get either the owner or collaborator to do certain tasks, these could be accomplished by either – it&#39;s just an easy way of distinguishing between you both &#40;see the N.B. at the bottom of this section for more info on being the &#39;owner&#39; of a repo&#41;.</p>
+<p>The owner should go to the settings tab on their new repo and go to &#39;Manage access&#39;. From here click the &#39;Invite a collaborator&#39; button, and add the collaborator to the project by finding them via their GitHub username. The collaborator should then get an email, asking them to accept the invitation. Now both the owner and the collaborator should be able to see the new repo online, despite it being private.</p>
+<p>You should now both clone the repo onto your computers. If you can&#39;t remember how to do this, check back to the previous worksheet.  Essentially you just need to get the URL from the &#39;Code&#39; button on GitHub, then – in a suitable directory on your machine – run the terminal command:</p>
+<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/week4-push-pull</span></code></pre>
+<p>with the correct URL. You now both have <em>local</em> repos which are clones of the GitHub repo. If you both run <code>git remote -v</code> it should show you both have the same &#39;origin&#39;, which is a URL to the remote GitHub repo. So although you have local different copies of the repo, the remote repo that you push commits to and pull commits from is <em>the same</em> for both of you.</p>
+<p>The owner should now add some stuff to the local repo. Add a simple Python script that does something. Copy a file &#40;or create a new one&#41; into the directory of your local repo. Then use <code>git add</code>, <code>git commit</code> and <code>git push</code> to send that file to GitHub. &#40;Refer to previous git exercises&#41; Both of you can now look on the GitHub repo webpage, and see the new file.</p>
+<p>If the collaborator runs <code>git status</code> it still shows up-to-date, but they actually need to pull down the changes now. If they tried to push their own changes up, Git wouldn&#39;t let them before they&#39;ve pulled. More on this in a moment. For now, the collaborator should run <code>git pull</code> to pull down the changes to their local repo to work on.</p>
+<p>You now both have your own local repo and the shared one online. See the figure below for a useful way to picture this. Notice how there&#39;s no arrows connecting the two local repos; all changes must go through the remote GitHub repo.</p>
+<p><img src=push-pull.svg  alt="Pushing and pulling to synchronise" /></p>
+<p>Firstly, let&#39;s see what happens when one of you tries to push changes to the remote repo without first having pulled down.</p>
+<p><strong>Collaborator</strong>: make some minor changes to a code file. Add, commit, and push them. Get in the habit of making good commit messages which concisely describe the changes you&#39;ve made – even if the changes are minor.</p>
+<p><strong>Owner</strong>: also make some changes. But for now add them to a different file. Just add some text &#40;e.g. a comment&#41; or something. Then add, commit and try to push the commit.</p>
+<p>You should see some scary message telling you your push was rejected. Read this carefully, Git is actually being very helpful here and tells you precisely the problem; which is that someone else has pushed changes which you don&#39;t have yet. You need to integrate the changes from the remote repo before you can push to it.</p>
+<p><strong>Owner</strong>: pull down the changes, noting the info Git gives you about what you just pulled. &#40;Exit from vim by hitting Shift&#43;Z&#43;Z&#41;. As long as you didn&#39;t both make changes to the same lines of projectiles.py, it should <em>merge</em> the changes to your files automatically. Git can do this because the differences between the remote repo and yours aren&#39;t <em>conflicting</em>, i.e. they weren&#39;t on the same line in the same file.</p>
+<p><strong>Owner</strong>: run <code>git status</code>. It will say you are two commits ahead... why two? Use <code>git log</code> to find out. Then, push your changes up&#33; Note how you don&#39;t need to add or commit again.</p>
+<p><strong>Exercise for both of you:</strong> now try making changes to the same file, but ensure the changes are on <em>different</em> lines. Both then try and push up without pulling... Whoever does this second should encounter a similar problem. Can Git still merge the changes by itself?</p>
+<p>Okay, so far so good. No major problems as Git is handling a lot of the work for us. Look at the commits tab on the remote repo&#39;s webpage, noting how it associates the commits with the user who made them. Let&#39;s now make things worse by creating conflicts which Git can&#39;t resolve by itself.</p>
+<p>Ensure when both of you run <code>git status</code> you have a clean working tree, and you have pulled any changes.</p>
+<p>Now both change <em>the same line in different ways</em>&#33; Both <code>git diff</code> before you push to make sure you have changed the same line&#33; Only change one line for now. Both add and commit the change.</p>
+<p>Owner: push up your change to the online repo. Collaborator: run <code>git pull</code> once the owner has pushed their changes.</p>
+<p>Uh-oh, Git is now telling us we have a merge conflict. This is where there is a conflict between the changes and Git can&#39;t sort out the merge by itself. You should see something like:</p>
+<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git pull</span>
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 1), reused 8 (delta 1), pack-reused 0
+Unpacking objects: 100% (8/8), done.
+From https://github.com/simonw23/merge_conflict_test
+   3c06fa3..bf3f0ea  master     -&gt; origin/master
+Auto-merging projectiles.py
+CONFLICT (content): Merge conflict in projectiles.py
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+<p>Git is telling us it tried to automatically merge the changes with your local repo but failed because of a conflict. We must now fix the conflict locally before re-committing our changes to the remote repo. Notice how the merge conflict is a &#39;local&#39; problem.</p>
+<p>For example, I changed the value of a variable called GRAVITY and so did my collaborator, and now I see:</p>
+<pre><code class="python hljs">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+GRAVITY = <span class=hljs-number >0.9813</span>
+=======
+GRAVITY = <span class=hljs-number >0.9812</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; bf3f0ea2df966d6476c5ff47cca7aaee885cde27</code></pre>
+<p>at the top of projectiles.py &#40;the file that we edited&#41;. We can see Git has shown us both versions of the change to the line where <code>GRAVITY</code> is assigned. The one between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and the equals signs is my local change; and the line between the equals signs and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; bf3f0...</code> is my collaborator&#39;s changes that I have attempted to merge. &#40;Owner: run <code>git log</code> – can you see where that big long hex string that the collaborator is seeing comes from?&#41;</p>
+<p>Git doesn&#39;t know which of these versions should be the one that is kept. It has no way of knowing who is &#39;correct&#39;, and so Git is asking you to sort out your own mess&#33; Essentially, delete the line that you do not want to keep, and leave the line in you do want to keep. Then, remove all of the Git stuff &#40;i.e. the lines starting <code>&gt;&gt;&gt;</code>, <code>&#61;&#61;&#61;</code> and <code>&lt;&lt;&lt;</code>&#41;. <em>You want to have a working Python file at the end&#33;</em></p>
+<p>Once you have done this and checked that your code works, all you need to do is re-add the file using <code>git add</code> to tell Git that you have resolved the conflict.  Commit and push as normal. Conflict resolved&#33;</p>
+<p><strong>Owner</strong>: pull down from the remote repo, and both of you run <code>git log</code> to figure out what Git has done with either of your commits that caused the merge conflict.</p>
+<p><strong>Exercise:</strong> Make sure both of you have practice resolving conflicts and understand the output Git gives you to the terminal, as well as the indicators it inserts into files when there is a merge conflict. Also, try changing multiple lines each &#40;some on the same line and some not&#41;. Does Git make you resolve all of them yourself, or just the ones on the same line? What happens if while one user is sorting a merge conflict the other user really winds them up by pushing more changes before the original conflict is resolved?</p>
+<p>Merge conflicts are mostly avoidable, by proper division of tasks and good communication between collaborators. However they become almost inevitable as the size of your projects and the size of your team both increase. Understanding why they arise, minimizing how often they arise, and resolving them are all key concepts in Git.</p>
+<p><strong>Make sure both of you have understood the previous three cases you&#39;ve just gone through of pushing / pulling from the same remote repo.</strong></p>
+<p>N.B. Practically speaking, pushing and pulling from the same remote repo by multiple people is a bad idea in larger projects. Later in the unit we might talk about &#39;forks&#39; and &#39;branches&#39;, which are ways to manage different versions of the same base code by getting Git to keep track of different changes in isolation from each other. This makes it possible to have, for example, one person working on a new feature and another person working on a bug-fix simultaneously, before later merging branches back together in a sensible order. We will also make use of a GitHub feature called &#39;pull requests&#39;, which allow for more control over what ends up on a shared remote repo. At that point, who the &#39;owner&#39; is and who the collaborators are really matters, as it is them who is ultimately in charge of what is merged onto the remote&#39;s master branch.</p>
+<h2 id=functions ><a href="#functions" class=header-anchor >Functions</a></h2>
+<p>The part of this worksheet is about reading and critical reflection. I&#39;m assuming that you&#39;ve already read <a href="../functions">functions</a>. I&#39;m also assuming that you have written some code in the past e.g. for a previous project.</p>
+<p>It is often said among programmers that code is &quot;read more often than it is written&quot;. The point is that you should put effort into making code readable even if that takes a small amount of extra time when you are writing the code. That time will be repaid many times later when you end up having to read the code. A strange thing happens when programming though: it is quite easy to write code that makes sense to you in the exact moment that you are writing it but is actually impossible to understand. The code might &quot;work&quot; but a future reader &#40;including you in a month&#39;s time&#41; might have no chance of being able to understand it.</p>
+<p>You might say that as long as the code works it doesn&#39;t matter if any human can understand it but that makes it impossible to improve the code later. It&#39;s also impossible to fix bugs or take pieces of the code and reuse them for other things if no one understands it any more. Most importantly if you are a beginner at programming: if you learn how to write readable code then it is not much harder than writing unreadable code. This is a skill that once mastered means that everything you produce is naturally better.</p>
+<p><strong>Exercise</strong>: go back over the code that you have written in the past and consider the following:</p>
+<ul>
+<li><p>Have you been using functions in your code?</p>
+
+<li><p>Are there places where your code is repetitive that would benefit from using functions?</p>
+
+<li><p>What names have you given your functions?</p>
+<ul>
+<li><p>Do your functions names convey any meaning?</p>
+
+<li><p>Can you understand what your functions do from their names and the way that they are used without needing to look at the code inside the functions?</p>
+
+<li><p>What kinds of words are you using for your function names? Are they nouns, verbs, adjectives...?</p>
+
+</ul>
+
+<li><p>Are your functions pure or not? Have you been cleanly separating input, output and pure functions?</p>
+
+<li><p>Can you actually understand your own code that you wrote some time ago? If you show it to someone else can they understand it?</p>
+
+<li><p>Do any of your functions look like a piece of code that could ever be reused as part of a future programming project?</p>
+
+</ul>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: February 01, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: February 08, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
-    
-        <script src="/emat10006/libs/katex/katex.min.js"></script>
-<script src="/emat10006/libs/katex/auto-render.min.js"></script>
-<script>renderMathInElement(document.body)</script>
-
-    
-    
-        <script src="/emat10006/libs/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
