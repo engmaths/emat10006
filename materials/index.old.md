@@ -31,6 +31,14 @@ worksheet).
 2. [Exceptions](exceptions/) - using exceptions
 3. [Worksheet](worksheet3/)
 
+# Week 3 - Functions, exceptions and testing
+
+1. [Slides](slides3/)
+2. [Functions](functions/) - explanation of how to write good functions
+2. [Exceptions](exceptions/) - using exceptions
+3. [Worksheet](worksheet3/)
+
+
 # Week 4 - Push/pull and matplotlib
 
 1. [Worksheet](worksheet4/)
