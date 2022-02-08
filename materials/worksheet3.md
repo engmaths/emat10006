@@ -1,13 +1,313 @@
-@def title = "Functions, exceptions and testing"
+EMAT10006: Further Computer Programming
 
-# Functions, exceptions and testing
+Week 3 -- Git in Pairs, functions and packages
 
-This worksheet is about writing functions, using exceptions and also testing
-your code with `pytest`.
+------------------------------------------------------------------------
+
+For this week's worksheet, and the second assignment, you will need to work
+with one or two partners which should be someone from your TA group.
+
+In this worksheet we will
+
+1. learning how to work with a partner with git
+
+2. learn how to do plotting with matplotlib
+
+Quick demo of plotting
+======================
+
+We'll get more on to plotting in the second half of the worksheet. Here is a
+quick demonstration though. This should give you a starting piece of code that
+you can use while working through the push/pull exercises below.
+
+If you have matplotlib and numpy installed (install them with pip if you
+don't) then you can use the following to create a plot that you can see on the
+screen:
+```python
+# plot.py
+
+import math
+import matplotlib.pyplot as plt
+
+# SUVAT equations
+#
+# This will give the path of a projectile launched at angle theta and initial
+# speed v0
+
+GRAVITY = 0.98 # m/s^2
+
+theta = math.pi/4    # 45 deg - launch angle
+v0 = 1          # m/s    - initial speed
+
+uy = v0*math.sin(theta) # m/s - initial vertical velocity
+ux = v0*math.cos(theta) # m/s - horizontal velocity
+ay = -GRAVITY      # m/s^2 - vertical acceleration
+
+t = [0.01*n for n in range(100)]
+y = [uy*ti + 1/2*ay*ti**2 for ti in t]  # constant acceleration
+x = [ux*ti for ti in t]                 # constand speed
+
+# Create a plot of y against x
+plt.plot(x, y, linewidth=3, color='black')
+plt.xlabel(r'$x\,(\mathrm{m})$')
+plt.ylabel(r'$y\,(\mathrm{m})$', rotation=0)
+plt.title('Trajectory of projectile')
+plt.xlim([0, 0.7])
+plt.ylim([0, 0.3])
+
+# Creating the plot with plt.plot does not mean that we can see the plot!
+# We need to "show" the plot:
+plt.savefig('plot1.svg') # save to a file
+plt.show()							 # show on screen
+```
+You can run that with
+```console
+$ python plot.py
+```
+You should see a window open with something looking like this:
+![Simple quadratic plot](plot1.svg)
+
+We will look more at how to use matplotlib later in the unit but for now you
+can use this simple program as an example while practising pushing and pulling
+with your partner.
+
+
+Pushing and pulling
+===================
+
+This exercise requires you to work in your pairs. We will walk through how to
+push and pull to a remote repo that you share. Along the way you should get a
+better idea of why Git is so useful when collaborating on projects, as well as
+some of the complications that it brings!
+
+Firstly here's a diagram showing roughly how the different git commands work
+together and how where they move changes from and to:
+
+![A schematic of your local and remote repositories, showing how changes
+can be pushed and pulled around.](git-commands.svg)
+
+The normal workflow is to:
+
+1. Make changes to the code (the "workspace" or "workeing tree"). This is what
+   happens when you edit your code files with your editor.
+
+2. Use `git add` to register those changes with git. This stores the changes
+   in the "index".
+
+3. Use `git commit` to make a new commit with the changes that are stored in
+   the "index".
+
+4. Repeat steps 1-3 making new commits.
+
+5. Use `git push` to send the commits to GitHub.
+
+The other step that we haven't used yet is `git pull`. The pull command is the
+opposite of the push command:
+
+* `git push` sends commit from your local repo to the remote repo (from your
+  computer to GitHub).
+
+* `git pull` retrieves commit from the remore repo to your local repo (from
+  GitHub to your computer).
+
+So far we haven't used `git pull` because we haven't been working with anyone
+else. If you are the only one making commits then there will never be any
+commits on GitHub apart from the ones you pushed there. Once we start working
+with other people we need a way to get their commits into the local repo and
+that's what we `git pull` is for.
+
+
+Push, pull exercise
+===================
+
+**Note**: this exercise is to be done in pairs (or groups of three).
+
+Firstly, let's get a repo up and running with a local clone for either of you.
+
+Just one of you should make a new repo. From now on I'll refer to the person
+that made the repo as the 'owner' and the other person in the pair as the
+'collaborator'. Notice that in the following guide, although I get either the
+owner or collaborator to do certain tasks, these could be accomplished by
+either -- it's just an easy way of distinguishing between you both (see the
+N.B. at the bottom of this section for more info on being the 'owner' of a
+repo).
+
+The owner should go to the settings tab on their new repo and go to 'Manage
+access'. From here click the 'Invite a collaborator' button, and add the
+collaborator to the project by finding them via their GitHub username. The
+collaborator should then get an email, asking them to accept the invitation.
+Now both the owner and the collaborator should be able to see the new repo
+online, despite it being private.
+
+You should now both clone the repo onto your computers. If you can't remember
+how to do this, check back to the previous worksheet.  Essentially you just
+need to get the URL from the 'Code' button on GitHub, then -- in a suitable
+directory on your machine -- run the terminal command:
+
+```shell
+$ git clone https://github.com/uob-simon/week4-push-pull
+```
+
+with the correct URL. You now both have *local* repos which are clones of the
+GitHub repo. If you both run `git remote -v` it should show you both have the
+same 'origin', which is a URL to the remote GitHub repo. So although you have
+local different copies of the repo, the remote repo that you push commits to
+and pull commits from is *the same* for both of you.
+
+The owner should now add some stuff to the local repo. Add a simple Python
+script that does something. Copy a file (or create a new one) into the
+directory of your local repo. Then use `git add`, `git commit` and `git push`
+to send that file to GitHub. (Refer to previous git exercises) Both of you can
+now look on the GitHub repo webpage, and see the new file.
+
+If the collaborator runs `git status` it still shows up-to-date, but they
+actually need to pull down the changes now. If they tried to push their own
+changes up, Git wouldn't let them before they've pulled. More on this in a
+moment. For now, the collaborator should run `git pull` to pull down the
+changes to their local repo to work on.
+
+You now both have your own local repo and the shared one online. See the
+figure below for a useful way to picture this. Notice how there's no arrows
+connecting the two local repos; all changes must go through the remote GitHub
+repo.
+
+![Pushing and pulling to synchronise](push-pull.svg)
+
+Firstly, let's see what happens when one of you tries to push changes to
+the remote repo without first having pulled down.
+
+**Collaborator**: make some minor changes to a code file. Add, commit, and
+push them. Get in the habit of making good commit messages which concisely
+describe the changes you've made -- even if the changes are minor.
+
+**Owner**: also make some changes. But for now add them to a different file.
+Just add some text (e.g. a comment) or something. Then add, commit and try to
+push the commit.
+
+You should see some scary message telling you your push was rejected. Read
+this carefully, Git is actually being very helpful here and tells you
+precisely the problem; which is that someone else has pushed changes which you
+don't have yet. You need to integrate the changes from the remote repo before
+you can push to it.
+
+**Owner**: pull down the changes, noting the info Git gives you about what you
+just pulled. (Exit from vim by hitting Shift+Z+Z). As long as you didn't both
+make changes to the same lines of projectiles.py, it should *merge* the
+changes to your files automatically. Git can do this because the differences
+between the remote repo and yours aren't *conflicting*, i.e. they weren't on
+the same line in the same file.
+
+**Owner**: run `git status`. It will say you are two commits ahead\... why
+two? Use `git log` to find out. Then, push your changes up! Note how you don't
+need to add or commit again.
+
+**Exercise for both of you:** now try making changes to the same file, but
+ensure the changes are on *different* lines. Both then try and push up without
+pulling\... Whoever does this second should encounter a similar problem. Can
+Git still merge the changes by itself?
+
+Okay, so far so good. No major problems as Git is handling a lot of the work
+for us. Look at the commits tab on the remote repo's webpage, noting how it
+associates the commits with the user who made them. Let's now make things
+worse by creating conflicts which Git can't resolve by itself.
+
+Ensure when both of you run `git status` you have a clean working tree, and you
+have pulled any changes.
+
+Now both change *the same line in different ways*! Both `git diff` before you
+push to make sure you have changed the same line! Only change one line for
+now. Both add and commit the change.
+
+Owner: push up your change to the online repo. Collaborator: run `git pull`
+once the owner has pushed their changes.
+
+Uh-oh, Git is now telling us we have a merge conflict. This is where there is
+a conflict between the changes and Git can't sort out the merge by itself. You
+should see something like:
+
+```shell
+$ git pull
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 1), reused 8 (delta 1), pack-reused 0
+Unpacking objects: 100% (8/8), done.
+From https://github.com/simonw23/merge_conflict_test
+   3c06fa3..bf3f0ea  master     -> origin/master
+Auto-merging projectiles.py
+CONFLICT (content): Merge conflict in projectiles.py
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Git is telling us it tried to automatically merge the changes with your local
+repo but failed because of a conflict. We must now fix the conflict locally
+before re-committing our changes to the remote repo. Notice how the merge
+conflict is a 'local' problem.
+
+For example, I changed the value of a variable called GRAVITY and so did my
+collaborator, and now I see:
+```python
+<<<<<<< HEAD
+GRAVITY = 0.9813
+=======
+GRAVITY = 0.9812
+>>>>>>> bf3f0ea2df966d6476c5ff47cca7aaee885cde27
+```
+at the top of projectiles.py (the file that we edited). We can see Git has
+shown us both versions of the change to the line where `GRAVITY` is assigned.
+The one between `<<<<<<< HEAD` and the equals signs is my local change; and
+the line between the equals signs and `>>>>>>> bf3f0...` is my collaborator's
+changes that I have attempted to merge. (Owner: run `git log` -- can you see
+where that big long hex string that the collaborator is seeing comes from?)
+
+Git doesn't know which of these versions should be the one that is kept. It
+has no way of knowing who is 'correct', and so Git is asking you to sort out
+your own mess! Essentially, delete the line that you do not want to keep, and
+leave the line in you do want to keep. Then, remove all of the Git stuff (i.e.
+the lines starting `>>>`, `===` and `<<<`). *You want to have a working Python
+file at the end!*
+
+Once you have done this and checked that your code works, all you need to do
+is re-add the file using `git add` to tell Git that you have resolved the
+conflict.  Commit and push as normal. Conflict resolved!
+
+**Owner**: pull down from the remote repo, and both of you run `git log` to
+figure out what Git has done with either of your commits that caused the merge
+conflict.
+
+**Exercise:** Make sure both of you have practice resolving conflicts and
+understand the output Git gives you to the terminal, as well as the indicators
+it inserts into files when there is a merge conflict. Also, try changing
+multiple lines each (some on the same line and some not). Does Git make you
+resolve all of them yourself, or just the ones on the same line? What happens
+if while one user is sorting a merge conflict the other user really winds them
+up by pushing more changes before the original conflict is resolved?
+
+Merge conflicts are mostly avoidable, by proper division of tasks and good
+communication between collaborators. However they become almost inevitable as
+the size of your projects and the size of your team both increase.
+Understanding why they arise, minimizing how often they arise, and resolving
+them are all key concepts in Git.
+
+**Make sure both of you have understood the previous three cases you've just
+gone through of pushing / pulling from the same remote repo.**
+
+N.B. Practically speaking, pushing and pulling from the same remote repo by
+multiple people is a bad idea in larger projects. Later in the unit we might
+talk about 'forks' and 'branches', which are ways to manage different versions
+of the same base code by getting Git to keep track of different changes in
+isolation from each other. This makes it possible to have, for example, one
+person working on a new feature and another person working on a bug-fix
+simultaneously, before later merging branches back together in a sensible
+order. We will also make use of a GitHub feature called 'pull requests', which
+allow for more control over what ends up on a shared remote repo. At that
+point, who the 'owner' is and who the collaborators are really matters, as it
+is them who is ultimately in charge of what is merged onto the remote's master
+branch.
 
 ## Functions
 
-The first part of this worksheet is about reading and critical reflection. I'm
+The part of this worksheet is about reading and critical reflection. I'm
 assuming that you've already read [functions](../functions). I'm also assuming
 that you have written some code in the past e.g. for a previous project.
 
@@ -48,296 +348,3 @@ consider the following:
   you show it to someone else can they understand it?
 * Do any of your functions look like a piece of code that could ever be reused
   as part of a future programming project?
-
-
-## Testing
-
-**Note**: You will need to have `pytest` installed to follow through the
-examples here. If you installed Python using Anaconda then you should already
-have `pytest` installed. If your `$PATH` is set up correctly you should be
-able to run `pytest` in the terminal. The output looks something like this:
-```
-$ pytest
-====================================================== test session starts =======================================================
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/sympy/sympy, configfile: pytest.ini
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 0 items
-```
-If the `pytest` command does not work but you do have `pytest` installed then
-one of the following should work:
-```
-$ python -m pytest
-$ python3 -m pytest
-$ py -m pytest
-```
-If you need to install `pytest` then you might be able to install it with
-```
-$ python -m pip install pytest
-```
-
-# Using pytest
-
-The `pytest` library is for [unit
-testing](https://en.wikipedia.org/wiki/Unit_testing). It is used to run tests
-that check if code works correctly. The documentation for `pytest` is
-[here](https://docs.pytest.org/en/stable/).
-
-To use `pytest` we just need to put some functions with names that begin with
-`test_` in our Python file. Here's a simple example of a Python script with a
-function that is tested with `pytest`:
-```python
-# square.py
-
-def square(x):
-    """Returns the square of x"""
-    return x * x
-
-def test_square():
-    assert square(0) == 0
-    assert square(2) == 4
-    assert square(-2) == 4
-```
-If you save that code in a file `square.py` then you can use `pytest` to run
-the tests in the `test_square` function that check that the `square` function
-is working correctly:
-```console
-$ pytest square.py
-============================================ test session starts =============================================
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 1 item
-
-square.py .                                                                                             [100%]
-
-============================================= 1 passed in 0.02s ==============================================
-```
-The key part of the output here is "1 passed" which means that 1 test was run
-and it passed as expected.
-
-Now put this into a file called `cube.py`:
-```python
-# cube.py
-
-def cube(x):
-    """Returns the cube of x"""
-    return 0  # <--- This obviously doesn't work correctly
-
-def test_square():
-    assert cube(0) == 0
-    assert cube(2) == 8
-    assert cube(-2) == 8
-```
-This time we have a function `cube` that does not actually work because it
-always returns 0 instead of computing $x^3$. If we run `pytest` now then it
-the tests will fail:
-```console
-$ pytest cube.py
-============================================ test session starts =============================================
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 1 item
-
-cube.py F                                                                                              [100%]
-
-================================================== FAILURES ==================================================
-________________________________________________ test_square _________________________________________________
-
-    def test_square():
-        assert cube(0) == 0
->       assert cube(2) == 8
-E       assert 0 == 8
-E        +  where 0 = cube(2)
-
-cube.py:9: AssertionError
-========================================== short test summary info ===========================================
-FAILED cube.py::test_square - assert 0 == 8
-============================================= 1 failed in 0.19s ==============================================
-```
-Now `pytest` shows that the tests have failed. It says "1 failed" meaning that
-1 test was run and it failed.
-
-**Exercise**: Fix the cube function so that it works and so that `pytest`
-shows the tests passing.
-
-
-# Test driven development
-
-The idea of test driven development (TDD) is that the process of writing code
-takes place like this:
-
-1. Decide what functions you will have in your program.
-2. Write tests for those functions
-3. Write the code for the functions
-4. Check that the tests pass
-
-If the tests represent a good check in the correctness of the code then this
-should mean that your code is now correct. The key part now is what happens if
-you later want to make changes to the code. For example if you think that the
-code is correct but it runs slowly and you want to to improve it then you can
-rewrite the code. If it then runs faster and still passes the tests then that
-can reassure you that it is still correct after the changes.
-
-If you discover a bug in your code that means it gives incorrect output then
-the procedure is:
-
-1. Add a test for the bug and verify that the test fails.
-2. Fix the code so that the tests pass again.
-
-In this way every time a bug is discovered more tests are added. Any future
-change to the code will need to pass all the tests that were ever added.
-
-Here's an example Python file that has a bug:
-```python
-# det.py
-
-def determinant(M):
-    """Compute the determinant of a square matrix M
-
-    The input matrix should be given as a list of lists.
-
-    >>> M = [[1, 2], [3, 4]]
-    >>> determinant(M)
-    -1
-    """
-    # M is an NxN matrix
-    N = len(M)
-
-    if N == 2:
-        # Handle 2x2 as the base case
-        [[a, b], [c, d]] = M
-        return a*d - b*c
-    else:
-        # Recurse using Laplace expansion for 3x3 or larger
-        det = 0
-        for j in range(N):
-            det += (-1)**j * M[0][j] * determinant(minor(M, 0, j))
-        return det
-
-
-def minor(M, i, j):
-    """Get the (i, j) minor of the matrix M
-
-    The (i, j) minor of M is the matrix formed by removing the ith row and jth
-    column from M.
-
-    >>> minor([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 0, 1)
-    [[4, 6], [7, 9]]
-    """
-    # Remove the ith row and jth column
-    return [Mi[:j] + Mi[j+1:] for Mi in M[:i] + M[i+1:]]
-
-
-def test_determinant():
-    assert determinant([[1, 2], [3, 4]]) == -2
-    assert determinant([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == 0
-    assert determinant([[1, 2, 3], [4, 5, 6], [7, 8, 10]]) == -3
-```
-The first bug here is that the `determinant` function does not correctly
-handle `1x1` or `0x0` matrices correctly e.g.:
-```python
->>> determinant([[2]])  # should be 2
-0
->>> determinant([])     # should be 1
-0
-```
-The determinant of a $1 \times 1$ matrix should just be the entry of the
-matrix! The determinant of a $0 \times 0$ matrix is tricky but in fact it
-should always be 1.
-
-**Exercise**: Add tests for $1 \times 1$ and $0 \times 0$ matrices. Fix the
-`determinant` function so that it works for those cases as well.
-
-**Exercise**: Add tests for the `minor` function.
-
-Try running the tests with the `--doctest-modules` argument. You should see
-this:
-```console
-$ pytest --doctest-modules det.py 
-============================================ test session starts =============================================
-platform darwin -- Python 3.8.5, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
-rootdir: /Users/enojb/current/emat10006/materials
-plugins: instafail-0.4.2, xdist-2.1.0, cov-2.10.1, doctestplus-0.8.0, forked-1.3.0
-collected 3 items                                                                                            
-
-det.py F..                                                                                             [100%]
-
-================================================== FAILURES ==================================================
-_________________________________________ [doctest] det.determinant __________________________________________
-002 Compute the determinant of a square matrix M
-003 
-004     The input matrix should be given as a list of lists.
-005 
-006     >>> M = [[1, 2], [3, 4]]
-007     >>> determinant(M)
-Expected:
-    -1
-Got:
-    -2
-
-/Users/enojb/current/emat10006/materials/det.py:7: DocTestFailure
-========================================== short test summary info ===========================================
-FAILED det.py::det.determinant
-======================================== 1 failed, 2 passed in 0.04s =========================================
-```
-Now `pytest` is testing the examples shown in the docstring and the example is
-clearly incorrect!
-
-**Exercise**: Fix the doctest example in the `determinant` docstring. Verify
-that the tests pass.
-
-
-## Polynomials
-
-The final exercise in this sheet is to make a program that can find integer
-roots of polynomials that have integer coefficients. The basic program can be
-found [here](roots.py). When working the program behaves like this:
-```console
-$ python roots.py 1 -5 6
-2
-3
-```
-This is showing that the roots of $x^2 - 5x + 6$ are $2$ and $3$.
-
-**Exercise**: Download the `roots.py` script and run `pytest` on it. Three
-functions need to be implemented:
-* The `evaluate_polynomial(p, x)` function calculates the value of the
-  polynomial $p(x)$ at `x`. For example `evaluate_polynomial([1, 2, 1], 3)`
-  calculates $p(3)$ where $p(x) = x^2 + 2x + 1$:
-
-      >>> evaluate_polynomial([1, 2, 1], 3)
-      16
-
-  There are many ways to implement this but the most efficient is to use
-  [Horner's method](https://en.wikipedia.org/wiki/Horner%27s_method).
-* The `is_root(p, x)` function returns True if `x` is a root of $p(x)$ e.g.
-
-      >>> is_root([1, 2, 1], 3)
-      False
-
-  This is because $3$ is not a root of $x^2 + 2x + 1$. It's easy to check if
-  `x` is a root of `p`: we just calculate $p(x)$ and see if it gives zero.
-* The `integer_roots(p)` function returns the integer roots of the polynomial
-  $p(x)$. This works using the [rational root
-  theorem](https://en.wikipedia.org/wiki/Rational_root_theorem). A simple
-  observation is that given e.g. a polynomial $ax^3 + bx^2 + cx + d$ then any
-  integer root must satisfy $|x| \le |d|$. So if for example $d$ is 4 then the
-  only possibilities for integer roots are $\{-4,-3,-2,-1,0,1,2,3,4\}$. We can
-  test each of these possibilities in a loop to see if any is a root (using
-  the `is_root` function).
-* Some of the tests check that a particular exception is being raised by a
-  function for particular inputs. To make those tests pass you will need to
-  add `raise BadPolynomialError` in those functions.
-
-See the tests for more examples. Add the code for those functions so that the
-tests pass. Some of the tests use the `pyest` function `raises`. This is used
-to check that calling the function with those arguments raises a particular
-error. You will need to test for those cases and use something like
-```
-raise BadPolynomialError("Polynomial should be a list of coefficients")
-```
-
-The final program should be able to find the integer roots of a
-polynomial when run from the command line.
