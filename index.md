@@ -5,7 +5,7 @@
 ## Purpose of the unit
 
 This unit is EMAT10006 - Further Computer Programming. It is intended to
-follow on from EMAT10007 - Introduction to Computer Programming.
+follow on from EMAT10007 - Introduction to Computer Programming!
 
 The intro unit introduces programming with Python and is intended for students
 with no prior background in programming. The Further Computer Programming
