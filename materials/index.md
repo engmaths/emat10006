@@ -27,3 +27,8 @@ worksheet).
 2. [Functions](functions/) - explanation of how to write good functions
 2. [Exceptions](exceptions/) - using exceptions
 3. [Worksheet](worksheet3/)
+
+# Week 4 - NumPy and SciPy
+
+1. [Notes](NumPy_Notes.pdf)
+2. [Worksheet](NumPySciPy_Worksheet.pdf)
