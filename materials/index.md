@@ -32,3 +32,8 @@ worksheet).
 
 1. [Notes](NumPy_Notes.pdf)
 2. [Worksheet](NumPySciPy_Worksheet.pdf)
+
+# Week 5 - Pandas Part I
+
+1. [Notes](Pandas_Notes.pdf)
+2. [Worksheet](Pandas_Worksheet.pdf)
