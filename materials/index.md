@@ -37,3 +37,4 @@ worksheet).
 
 1. [Notes](Pandas_Notes.pdf)
 2. [Worksheet](Pandas_Worksheet.pdf)
+3. [NBA Stats .csv](NBA_Stats.csv)
