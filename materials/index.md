@@ -38,3 +38,10 @@ worksheet).
 1. [Notes](Pandas_Notes.pdf)
 2. [Worksheet](Pandas_Worksheet.pdf)
 3. [NBA Stats .csv](NBA_Stats.csv)
+
+# Week 6 - Pandas Part II and matplotlib
+
+1. [Notes](PandasII_matplotlib_Notes.pdf)
+2. [Worksheet](Pandas_Part2_matplotlib_WS.pdf)
+3. [Wine data .csv](wineData.csv)
+4. [Energy data. csv](energyData.csv)
