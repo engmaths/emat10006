@@ -42,6 +42,6 @@ worksheet).
 # Week 6 - Pandas Part II and matplotlib
 
 1. [Notes](PandasII_matplotlib_Notes.pdf)
-2. [Worksheet](Pandas_Part2_matplotlib_WS.pdf)
+2. [Worksheet](PandasPart2-matplotlib-Worksheet.pdf)
 3. [Wine data .csv](wineData.csv)
 4. [Energy data. csv](energyData.csv)
