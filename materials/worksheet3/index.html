@@ -32,7 +32,7 @@ plt.ylim([<span class=hljs-number >0</span>, <span class=hljs-number >0.3</span>
 <span class=hljs-comment ># Creating the plot with plt.plot does not mean that we can see the plot!</span>
 <span class=hljs-comment ># We need to &quot;show&quot; the plot:</span>
 plt.savefig(<span class=hljs-string >&#x27;plot1.svg&#x27;</span>) <span class=hljs-comment ># save to a file</span>
-plt.show()							 <span class=hljs-comment ># show on screen</span></code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python plot.py</span></code></pre>
+plt.show()							 <span class=hljs-comment ># show on screen</span></code></pre> <p>You can run that with</p> <pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >python plot.py</span></code></pre>
 <p>You should see a window open with something looking like this: <img src=plot1.svg  alt="Simple quadratic plot" /></p>
 <p>We will look more at how to use matplotlib later in the unit but for now you can use this simple program as an example while practising pushing and pulling with your partner.</p>
 <h1>Pushing and pulling</h1>
@@ -66,7 +66,7 @@ plt.show()							 <span class=hljs-comment ># show on screen</span></code></pre>
 <p>Just one of you should make a new repo. From now on I&#39;ll refer to the person that made the repo as the &#39;owner&#39; and the other person in the pair as the &#39;collaborator&#39;. Notice that in the following guide, although I get either the owner or collaborator to do certain tasks, these could be accomplished by either – it&#39;s just an easy way of distinguishing between you both &#40;see the N.B. at the bottom of this section for more info on being the &#39;owner&#39; of a repo&#41;.</p>
 <p>The owner should go to the settings tab on their new repo and go to &#39;Manage access&#39;. From here click the &#39;Invite a collaborator&#39; button, and add the collaborator to the project by finding them via their GitHub username. The collaborator should then get an email, asking them to accept the invitation. Now both the owner and the collaborator should be able to see the new repo online, despite it being private.</p>
 <p>You should now both clone the repo onto your computers. If you can&#39;t remember how to do this, check back to the previous worksheet.  Essentially you just need to get the URL from the &#39;Code&#39; button on GitHub, then – in a suitable directory on your machine – run the terminal command:</p>
-<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/week4-push-pull</span></code></pre>
+<pre><code class="shell hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/week4-push-pull</span></code></pre>
 <p>with the correct URL. You now both have <em>local</em> repos which are clones of the GitHub repo. If you both run <code>git remote -v</code> it should show you both have the same &#39;origin&#39;, which is a URL to the remote GitHub repo. So although you have local different copies of the repo, the remote repo that you push commits to and pull commits from is <em>the same</em> for both of you.</p>
 <p>The owner should now add some stuff to the local repo. Add a simple Python script that does something. Copy a file &#40;or create a new one&#41; into the directory of your local repo. Then use <code>git add</code>, <code>git commit</code> and <code>git push</code> to send that file to GitHub. &#40;Refer to previous git exercises&#41; Both of you can now look on the GitHub repo webpage, and see the new file.</p>
 <p>If the collaborator runs <code>git status</code> it still shows up-to-date, but they actually need to pull down the changes now. If they tried to push their own changes up, Git wouldn&#39;t let them before they&#39;ve pulled. More on this in a moment. For now, the collaborator should run <code>git pull</code> to pull down the changes to their local repo to work on.</p>
@@ -84,7 +84,7 @@ plt.show()							 <span class=hljs-comment ># show on screen</span></code></pre>
 <p>Now both change <em>the same line in different ways</em>&#33; Both <code>git diff</code> before you push to make sure you have changed the same line&#33; Only change one line for now. Both add and commit the change.</p>
 <p>Owner: push up your change to the online repo. Collaborator: run <code>git pull</code> once the owner has pushed their changes.</p>
 <p>Uh-oh, Git is now telling us we have a merge conflict. This is where there is a conflict between the changes and Git can&#39;t sort out the merge by itself. You should see something like:</p>
-<pre><code class="shell hljs"><span class=hljs-meta >$ </span><span class=language-bash >git pull</span>
+<pre><code class="shell hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git pull</span>
 remote: Enumerating objects: 14, done.
 remote: Counting objects: 100% (13/13), done.
 remote: Compressing objects: 100% (7/7), done.
@@ -150,12 +150,12 @@ GRAVITY = <span class=hljs-number >0.9812</span>
 <li><p>In the terminal <code>cd</code> into the same directory where you saved the file and run python. Then import your function and call it:</p>
 
 </ol>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >python</span>
 Python 2.7.12 (default, Mar  1 2021, 11:38:31) 
 [GCC 5.4.0 20160609] on linux2
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-<span class=hljs-meta >&gt;</span><span class=language-bash >&gt;&gt; from mymodule import myfunction</span>
-<span class=hljs-meta >&gt;</span><span class=language-bash >&gt;&gt; myfunction(3)</span>
+<span class="hljs-meta prompt_">&gt;</span><span class=language-bash >&gt;&gt; from mymodule import myfunction</span>
+<span class="hljs-meta prompt_">&gt;</span><span class=language-bash >&gt;&gt; myfunction(3)</span>
 9</code></pre>
 <ol start=3 >
 <li><p>Create another file in the same directory called <code>myscript.py</code> that imports your function and calls it e.g.:</p>
@@ -177,24 +177,24 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <li><p>Create a directory called <code>mypackage</code> and move the <code>mymodule.py</code> file into it:</p>
 
 </ol>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mkdir</span> mypackage</span>
-<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >mv</span> mymodule.py mypackage</span></code></pre>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >mkdir</span> mypackage</span>
+<span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >mv</span> mymodule.py mypackage</span></code></pre>
 <ol start=2 >
 <li><p>We also need an <code>__init__.py</code> file but that file can be completely empty so we can just create it with the <code>touch</code> terminal command:</p>
 
 </ol>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >touch</span> mypackage/__init__.py</span></code></pre>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >touch</span> mypackage/__init__.py</span></code></pre>
 <ol start=3 >
 <li><p>Let&#39;s now see what our files look like:</p>
 
 </ol>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >ls</span></span>
 mypackage
 myscript.py
-<span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> mypackage</span>
+<span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> mypackage</span>
 __init__.py  mymodule.py</code></pre>
 <p>Note that we can do this in one command with the <code>-R</code> &#40;recursive&#41; option to <code>ls</code>:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> -R</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash ><span class=hljs-built_in >ls</span> -R</span>
 .:
 mypackage
 myscript.py
@@ -212,7 +212,7 @@ __init__.py  mymodule.py</code></pre>
 <li><p>Check that the script still works:</p>
 
 </ol>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >python myscript.py</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >python myscript.py</span>
 9</code></pre>
 <p>Now what we could do in a large project is make many modules in a package that define all of the complicated code. Then we can make many different scripts that do useful things with the functions defined in the package and its submodules. The different scripts can <em>share</em> the same code. It&#39;s much better to share the code using modules than to copy the code from one script to another. If you have a complicated function that does something useful then having only one version of that function means that you can fix all of its bugs in one place. When you make lots of copies then over time they will change and become different and you won&#39;t know whether the bugs have been fixed in all places.</p>
 <p><strong>Exercise</strong>: Play around with creating packages and modules and importing from them. Make a package with multiple modules and have the modules import from each other. Make multiple scripts that do different things with the same function. As an example, take the plotting script from the top of this worksheet. Reorganise the script to have a function like:</p>
@@ -230,7 +230,7 @@ __init__.py  mymodule.py</code></pre>
 </ol>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: March 08, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: March 15, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

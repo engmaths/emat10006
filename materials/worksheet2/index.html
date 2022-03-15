@@ -5,7 +5,7 @@ $ git config --<span class=hljs-keyword >global</span> user.email <span class=hl
 <p>If you are in Windows or OSX then in a strange pop-up window you will be asked to enter your GitHub username and password. You might also need to click &quot;Authorise credential manager&quot; or something like that...</p>
 <p>If you are using the lab machines you will see an error at this point if you did not previously create a personal access token. If you have created the token then after running <code>git clone</code> you will be asked for your username and password. The username is your GitHub username and the password should be your personal access token. Again you might need to run this command twice to get it to work...</p>
 <p>Once you have done that you should see something like this:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/fcp-week14.git</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git <span class=hljs-built_in >clone</span> https://github.com/uob-simon/fcp-week14.git</span>
 Cloning into &#x27;fcp-week14&#x27;...
 remote: Enumerating objects: 3, done.
 remote: Counting objects: 100\% (3/3), done.
@@ -31,10 +31,10 @@ Unpacking objects: 100\% (3/3), done.</code></pre>
 <p><strong>Note about editors</strong> In the instructions below I suggest using <code>gedit</code> which is a text editor found on most Linux machines. If you are using the lab machines then you can use <code>gedit</code>. Wherever you see an instruction like <code>gedit
 somefile.py</code> it just means that you should edit the file in any code editor that you want. For example if you normally use <code>vscode</code> or <code>spyder</code> you could you could use that. You also don&#39;t need to open the file from the terminal at all as you can just do it in your editor.</p>
 <p>Let&#39;s add a simple Python script to our repo. When inside your repo directory, type <code>gedit welcome.py</code> and copy this very simple script in there and save it:</p>
-<pre><code class="console hljs"><span class=hljs-meta >#</span><span class=language-bash >! /usr/bin/python3</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">#</span><span class=language-bash >! /usr/bin/python3</span>
 print(&quot;Welcome to my repository&quot;)</code></pre>
 <p>Type <code>ls</code> to see the new script, then try the command <code>git status</code> again.  You should see something like:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git status</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git status</span>
  On branch master
  Untracked files:
    (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
@@ -49,14 +49,14 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 <p>A quick aside: each Git <strong>commit</strong> is a record of what files have changed since the previous commit. You can think of them as like snapshots of your repo, which you take regularly to keep a tracked history of how your repo has changed since it began. They form the foundation of Git&#39;s &#39;version control&#39;, and allow you to go back to a previous state of the repo by going back to a particular commit.</p>
 <p>Back to our file: by adding it, the file is now in the Git &#39;staging area&#39;. The staging area is where we put the files that we wish to commit. So the files listed under &#39;Changes to be committed:&#39; when we run <code>git status</code> are in the staging area.</p>
 <p>Once we are happy with the new / changed files which are in the staging area, we can make our commit. Type the following and you should see some similar output:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git commit -m <span class=hljs-string >&quot;Add a new welcome script&quot;</span></span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git commit -m <span class=hljs-string >&quot;Add a new welcome script&quot;</span></span>
 [master 60d6d24] Add a new welcome script
 Committer: Simon Webber &lt;sw1850@it075705.wks.bris.ac.uk&gt;
 1 file changed, 2 insertions(+)
 create mode 100644 welcome.py</code></pre>
 <p>The string after the <code>-m</code> flag is the commit message. It can be whatever you like, but it should be short, informative and usually worded like a command &#40;e.g. starting with &quot;Add ... \&quot;, &quot;Change ... \&quot;, &quot;Fix ... \&quot;&#41;. When you look back at your commits the message will be included, so you should be able to understand what state your repo was in just by looking through recent commit messages. Notice also how Git gives a summary of what has changed: it tells us one file has been changed, and that in that file there have been 2 &#39;insertions&#39;. Git keeps track of what has changed line-by-line, so these two insertions refer to the two lines of code we added in our script.</p>
 <p>So we&#39;ve made our first commit&#33; Next – of course – we try <code>git status</code> again. You will see something like this:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git status</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git status</span>
  On branch master
  Your branch is ahead of &#x27;origin/master&#x27; by 1 commit.
    (use &quot;git push&quot; to publish your local commits)
@@ -67,13 +67,13 @@ nothing to commit, working directory clean</code></pre>
 <h1 id=viewing_diffs_and_logs ><a href="#viewing_diffs_and_logs" class=header-anchor >Viewing diffs and logs</a></h1>
 <p>Let&#39;s make some changes to our <code>welcome.py</code> script, and see what Git can tell us about those changes. I updated mine to include another print line following the previous one. Entering <code>git status</code> we can see Git has seen the new changes, and tells us there is a modified file which is not in the staging area.</p>
 <p>Now enter <code>git diff</code> and you should see output which looks something like this:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git diff</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git diff</span>
 diff --git a/welcome.py b/welcome.py
 index 04b3760..2748ae8 100644
 --- a/welcome.py
 +++ b/welcome.py
 @@ -1,2 +1,3 @@
-<span class=hljs-meta > #</span><span class=language-bash >! /usr/bin/venv/python</span>
+<span class="hljs-meta prompt_"> #</span><span class=language-bash >! /usr/bin/venv/python</span>
  print(&quot;Welcome to my repository&quot;)
 +print(&quot;There isn&#x27;t much here yet&quot;)</code></pre>
 <p>That&#39;s quite a lot of output even for a small file&#33; The first line, starting with <code>diff</code> tells us the two files which the diff command is comparing: <code>a/welcome.py</code> and <code>b/welcome.py</code>. These are the two different versions of our script. Don&#39;t worry too much about the second line. The next two lines starting with <code>&#43;&#43;&#43;</code> and <code>---</code> are giving us a key to identify either file by. So changes to <code>a/welcome.py</code> will be marked with a plus symbol, and changes to <code>b/welcome.py</code> will be marked with a minus symbol. Next comes the main part of the diff, the &#39;diff chunks&#39;. These tell us what is different between the two versions, and where the difference occurs.  The line with the <code>@</code> symbols is like a summary, and the lines after are the actual changes. Here, we can see that version <code>a/welcome.py</code> has an additional line, denoted by the <code>&#43;</code> and the contents of the line.</p>
@@ -89,7 +89,7 @@ index 04b3760..2748ae8 100644
 <p>Finally we are ready to push our commits up to our online repo.  Ensure your working tree is clean when you run <code>git status</code>, and that it informs you that you are a few commits ahead of <code>origin/master</code>.</p>
 <p>Run the command <code>git push</code>, and you will see some output giving information on the upload.</p>
 <p>Check all of your commits have been pushed by running <code>git status</code>, you should now see:</p>
-<pre><code class="console hljs"><span class=hljs-meta >$ </span><span class=language-bash >git status</span>
+<pre><code class="console hljs"><span class="hljs-meta prompt_">$ </span><span class=language-bash >git status</span>
 On branch master
 Your branch is up to date with &#x27;origin/master&#x27;.
 
@@ -111,7 +111,7 @@ clone</code>. The two &#40;or more&#41; of you could practice pushing and pullin
 <h1 id=thats_all ><a href="#thats_all" class=header-anchor >That&#39;s all&#33;</a></h1>
 <div class=page-foot >
   <div class=copyright >
-    &copy; Oscar Benjamin. Last modified: March 08, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; Oscar Benjamin. Last modified: March 15, 2022. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
